@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Search</title>
+    <meta charset="utf-8".>
+    <meta name="viewport" content="width=device-width, initial scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+<body>
+    <header class="header">
+        <div class="jumbotron jumbotron-fluid", style="width: auto; height: 170px;">
+          <div class="container">
+            <div class="row">
+              <div class="col-11">
+                <h1 class="text-center">Begin Your Research Journey Here</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+    </header>
+    <div class="container"> 
+        <div class= "row">       
+            <div class= "col-11">   
+                <div class="input-group">
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="opt">Chose option</span> <span class="caret"></span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" id="1" href="#">Name</a>
+                            <a class="dropdown-item" id="2" href="#">Research Interest</a>
+                            <a class="dropdown-item" id="3" href="#">Department</a>
+                            <a class="dropdown-item" id="3" href="#">Availability</a>
+                        </div>
+                        <script type="text/javascript">
+                            $(function(){
+                              $("#1").click(function () {
+                              $("#opt").text($(this).text());
+                              });
+                              $("#2").click(function () {
+                              $("#opt").text($(this).text());
+                              });
+                              $("#3").click(function () {
+                              $("#opt").text($(this).text());
+                              });
+                              $("#4").click(function () {
+                              $("#opt").text($(this).text());
+                              });
+                            });
+                            </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-outline-secondary float-right" type="button">Search</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class= "row"> 
+            <div class="mt-2 col-11">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Research Interest</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Availability</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Seth Friese</td>
+                        <td>Synthetic Organic Chemistry</td>
+                        <td>Chemistry</td>
+                        <td>Not Available</td>
+                        <a href="#" class="stretched-link"></a>
+                      </tr>
+                      <tr>
+                        <td>Randall Cone</td>
+                        <td>Natural Language Processing</td>
+                        <td>Math and Art</td>
+                        <td>Not Available</td>
+                        <a href="#" class="stretched-link"></a>
+                      </tr>
+                      <tr>
+                        <td>Joseph Anderson</td>
+                        <td>Computational Geometry</td>
+                        <td>Computer Science</td>
+                        <td>Available</td>
+                        <a href="#" class="stretched-link"></a>
+                      </tr>
+                    </tbody>
+                  </table>
+          </div>
+        </div>
+    </div>
+</body>
+</html>

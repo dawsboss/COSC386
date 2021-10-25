@@ -7,7 +7,7 @@ include ("back.php");
 session_start();
 
 if( $connect = @mysqli_connect('localhost', 'gdawson1', 'gdawson1','SUResearchProjDB') ){
-	echo 'Successfully connected to MySQL';
+  echo 'Successfully connected to MySQL';
 }
 
 $query = 'SELECT * FROM Professor';
@@ -18,31 +18,31 @@ $jtasql = mysqli_query($connect, $jtaquery);
 $jta = mysqli_fetch_array($jtasql);
 
 echo "<table border=1>
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Email</th>
-			<th>Department Name</th>
-			<th>School Name</th>
-			<th>Research Statment</th>
-			<th>Website</th>
-			<th>Availability</th>
-			<th>Bio</th>
-			<th>Phone Number</th>
-		</tr>
-	</thread>";
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Department Name</th>
+      <th>School Name</th>
+      <th>Research Statment</th>
+      <th>website</th>
+      <th>Availability</th>
+      <th>Bio</th>
+      <th>Phone Number</th>
+    </tr>
+  </thread>";
 while($row = mysqli_fetch_array($sql)){
-	echo "<tr>";
-	echo "<td>" . $row['Name'] . '</td>';
-	echo "<td>" . $row['Email'] . '</td>';
-	echo "<td>" . $row['DeptName'] . '</td>';
-	echo "<td>" . $row['SchoolName'] . '</td>';
-	echo "<td>" . $row['ResearchStatment'] . '</td>';
-	echo "<td>" . $row['Website'] . '</td>';
-	echo "<td>" . $row['Availability'] . '</td>';
-	echo "<td>" . $row['Bio'] . '</td>';
-	echo "<td>" . $row['PhoneNum'] . '</td>';
-	echo "<tr>";
+  echo "<tr>";
+  echo "<td>" . $row['Name'] . '</td>';
+  echo "<td>" . $row['Email'] . '</td>';
+  echo "<td>" . $row['DeptName'] . '</td>';
+  echo "<td>" . $row['SchoolName'] . '</td>';
+  echo "<td>" . $row['ResearchStatment'] . '</td>';
+  echo "<td>" . $row['Website'] . '</td>';
+  echo "<td>" . $row['Availability'] . '</td>';
+  echo "<td>" . $row['Bio'] . '</td>';
+  echo "<td>" . $row['PhoneNum'] . '</td>';
+  echo "<tr>";
 
 }
 echo "</table>";

@@ -11,4 +11,6 @@ Justin Ventura jventura3@gulls.salisbury.edu
 Blaine Mason bmason3@gulls.salisbury.edu
 
 Brock Forsythe bforsythe2@gulls.salisbury.edu
+
+Joseph Fernandez jfernandez3@gulls.salisbury.edu
 <enter name and email>

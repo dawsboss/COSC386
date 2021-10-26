@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+
+<?php
+include("test.php");
+session_start();
+?>
+
 <html lang="en">
   <head>	
     <title>Joseph Anderson</title>
@@ -25,12 +31,10 @@
                 <div class="mt-4 card" style="width: 17rem;">
                     <div class="card-body">
                         <h5 class="card-title">Bio</h5>
-                        <p class="card-text">Hi, I am an Assistant Professor in the Computer Science Department at Salisbury Universisty.
-                                        I mainly teach 200 and 300-level Computer Science courses during both the fall and spring semesters.
-                                        I am open to research projects and willing to work with any student. </p>
+			<p class="card-text"><?php echo $bio;?>
                         <h5 class="card-title">Contact</h5>
-                        <p class="card-text">Email:<br>jtanderson@salisbury.edu</p>
-                        <p class="card-text">Phone:<br>410-543-6469</p>
+				<p class="card-text">Email:<br><?php echo $email;?></p>
+				<p class="card-text">Phone:<br><?php echo $phone;?></p>
                         <p class="card-text">Office:<br>128 Henson Hall</p>
                     </div>
                 </div>
@@ -39,15 +43,7 @@
                 <div class="mb-4 card" style="width: 55rem;">
                     <div class="card-body">
                         <h5 class="card-title">Research Statement</h5>
-                        <p class="card-text">My research interests lie in machine learning, geometry, and algorithms. Problems in machine learning
-                        and data analysis are abundant, both in theory and applications, but the most important problems are
-                        complicated enough that either there is no known solution, or efficient algorithms require a significant amount
-                        of ad-hoc analysis and modeling. Furthermore, some solutions are only statistical in nature, only providing
-                        asymptotic convergence of an estimator, but no guarantee of efficiency (e.g. only requiring polynomially many
-                        samples).
-                        The main theme of my work can be expressed with two goals in mind: (1) Use geometric primitives to solve
-                        difficult statistical learning problems and (2) Develop new geometric primitives which can be used to simplify
-                        learning problems.</p>
+                        <p class="card-text"><?php echo $researchstatement;?></p>
                     </div>
                 </div>
                 <h3> Current Research</h3>

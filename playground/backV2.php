@@ -14,7 +14,9 @@ if( $connect = @mysqli_connect('localhost', 'gdawson1', 'gdawson1','SUResearchPr
 $data = null;
 $search=[];
 if((isset($_GET["q"]) || isset($_GET["f"])) && $_GET["q"] && $_GET["f"]){
-  $query = "SELECT * FROM Professor WHERE {$_GET["f"]}  LIKE \"%{$_GET["q"]}%\"";
+  $filter = mysqli_real_escape_string($connect,$_GET["f"]);
+  $question = mysqli_real_escape_string($connect,$_GET["q"]);
+  $query = "SELECT * FROM Professor WHERE $filter LIKE \"%$question%\"";
   print("$query");
   $sql = mysqli_query($connect, $query);
   while($data = mysqli_fetch_array($sql)){

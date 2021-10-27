@@ -2,6 +2,7 @@
 
 <?php
 include("test.php");
+include("../BackEnd.php");
 session_start();
 ?>
 
@@ -31,7 +32,7 @@ session_start();
                 <div class="mt-4 card" style="width: 17rem;">
                     <div class="card-body">
                         <h5 class="card-title">Bio</h5>
-			<p class="card-text"><?php echo $bio;?>
+			<p class="card-text"><?php echo /*$profile['Bio'];*/ $bio?>
                         <h5 class="card-title">Contact</h5>
 				<p class="card-text">Email:<br><?php echo $email;?></p>
 				<p class="card-text">Phone:<br><?php echo $phone;?></p>

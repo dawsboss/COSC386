@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 
 <?php
-include("test.php");
-include("../BackEnd.php");
 session_start();
+include("../BackEnd.php");
 ?>
 
 <html lang="en">
@@ -21,22 +20,22 @@ session_start();
     <header class="header" style="position: relative; top: -50px;">
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
-                <h1 class="text-center">Joseph Anderson</h1>
+          <h1 class="text-center"><?php echo $profile['Name'];?></h1>
           </div>
         </div>
     </header>
     <div class="container"> 
         <div class= "row">       
             <div class= "col-3" style="position: relative; top: -60px;">
-                <img style="width: 17rem;height: 300px"  src="https://0utwqfl7.cdn.imgeng.in/_images/headshots/profile/jtanderson.jpg" alt="logo"/>   
+            <img style="width: 17rem;height: 300px"  src="https://0utwqfl7.cdn.imgeng.in/_images/headshots/profile/<?php echo $profile['uname'];?>.jpg" alt="logo"/>   
                 <div class="mt-4 card" style="width: 17rem;">
                     <div class="card-body">
                         <h5 class="card-title">Bio</h5>
-			<p class="card-text"><?php echo /*$profile['Bio'];*/ $bio?>
+			<p class="card-text"><?php echo $profile['Bio']; $bio?>
                         <h5 class="card-title">Contact</h5>
-				<p class="card-text">Email:<br><?php echo $email;?></p>
-				<p class="card-text">Phone:<br><?php echo $phone;?></p>
-                        <p class="card-text">Office:<br>128 Henson Hall</p>
+				<p class="card-text">Email:<br><?php echo $profile['Email'];?></p>
+				<p class="card-text">Phone:<br><?php echo $profile['PhoneNum'];;?></p>
+                        <!--<p class="card-text">Office:<br>128 Henson Hall</p>-->
                     </div>
                 </div>
             </div>
@@ -44,7 +43,7 @@ session_start();
                 <div class="mb-4 card" style="width: 55rem;">
                     <div class="card-body">
                         <h5 class="card-title">Research Statement</h5>
-                        <p class="card-text"><?php echo $researchstatement;?></p>
+                        <p class="card-text"><?php echo $profile['ResearchStatement'];?></p>
                     </div>
                 </div>
                 <h3> Current Research</h3>

@@ -32,23 +32,23 @@ if(!$d){
 else{
         echo "The query succeeded";
 }
-$query1 = "SELECT * FROM Department";
-$r = mysqli_query($connect, $query1);
-echo "<table border='1'>
-        <thead>
-        <tr>
-        <th>NAME</th>
-        <th>School Name</th>
-        </tr>
-        </thead>";
-while($row=mysqli_fetch_array($r)){
-        echo "<tr>";
-        echo "<td>" . $row['Name'] . "</td>";
-        echo "<td>" . $row['SchoolName'] . "</td>";
-        echo "</tr>";
+$query1 = "SELECT * FROM $table";
+if($r = mysqli_query($connect, $query1)){
+        echo "<table = border='1'>";
+        while($row=mysqli_fetch_array($r)){
+                foreach($row as $key => $value){
+                        if(!is_numeric($key)){
+                                echo "<tr><td>" . $key . "</td><td>" . $value . "</td></tr>";
+                        }
+                }
+        }
+        echo "</table>";
 }
-echo "</table>";
+else{
+        echo "if statement did not work for r";
+}
 mysqli_close($connection);
 ?>
 </body>
 </html>
+

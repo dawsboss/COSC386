@@ -6,9 +6,18 @@ if( $connect = @mysqli_connect('localhost', 'gdawson1', 'gdawson1','SUResearchPr
 session_start();
 #init session vars
 $_SESSION['logged'] = "null";
-$_SESSION['admin'] = false;
+$_SESSION['admin'] = 0;
 $profile = null;
+print_r($_SESSION);
+?>
+<html>
+<a href="login.php"> admin 1</a>
+<a href="logout.php"> admin 0</a>
+<a href="junk.php"> admin 3 </a>
+</html>
+<?php
 
+var_dump($_SESSION);
 #Search Page Quering
 #To use: Make the href have ?q=VAR1&f=VAR2
 #Returns: A query p in Professor table where VAR2 like %VAR1%
@@ -25,6 +34,7 @@ if((isset($_GET["q"]) || isset($_GET["f"])) && $_GET["q"] && $_GET["f"]){
     array_push($search, $data);
   }
   print_r($search);
+  session_close();
 }
 
 #Login Page Quering and Access
@@ -48,7 +58,7 @@ if(isset($_POST['username']) && $_POST['username'] && isset($_POST['passhash']) 
       $_SESSION['admin'] = true;
     }
   }
-
+  //session_close();
 }
 
 #Profile Page Quering
@@ -80,7 +90,8 @@ if(isset($_GET['p']) && $_GET['p']){
       } 
     }
   }
-  
+  $_SESSION['admin']=1;
+  print_r($_SESSION);
   /*print($Pquery);
   echo "<br>";
   print_r($profile);
@@ -88,6 +99,7 @@ if(isset($_GET['p']) && $_GET['p']){
   print($profile['Bio']);
   echo "<br>";
   print("<h1>hello</h1>");*/
+  //session_close();
 }
 
 #Research Page Quering
@@ -101,6 +113,7 @@ if(isset($_GET['r']) && $_GET['r']){
   $Rquery = "SELECT * FROM Research WHERE ID = $RID";#TODO idk if this will work yet... string stuff no fun
   $Rsql = mysqli_query($connect,$Rquery);
   $research = mysqli_fetch_array($Rsql);
+  //session_close();
 }
 
 #Editing Page Querying
@@ -116,6 +129,7 @@ if(isset($_POST['eu']) && $_POST['eu']){
     $Esql = mysqli_query($connect,$Equery);
     $Eprofile = mysqli_fetch_array($Esql);
   }
+  session_close();
 }
 #Editing Page Alter
 #To use: Post using 'ea' editAalter
@@ -148,6 +162,7 @@ if(isset($_POST['ename']) && $_POST['ename'] && isset($_POST['euname']) && $_POS
     
     
   }
+  session_close();
 }
 
 
@@ -186,6 +201,7 @@ if(isset($_POST['ename']) && $_POST['ename'] && isset($_POST['euname']) && $_POS
       print("Nothing added");
     }
   }
+  session_close();
 }
  */
 mysqli_close($connect);

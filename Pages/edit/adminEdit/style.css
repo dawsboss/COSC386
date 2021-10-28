@@ -1,0 +1,27 @@
+.button{
+  color: #910101;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.button:hover{
+        background-color: #b00000;
+}
+
+.imageRound {
+        border-radius: 20px;
+}
+
+.imageRound img{
+        width: auto;
+}
+.header{
+        padding: 60px;
+        text-align: center;
+        background-color: #a9a9a9;
+        color: #000000;
+        font-size: 30px;
+        font-family: Lucida;
+}

@@ -7,7 +7,7 @@ include("../BackEnd.php");
 
 <html lang="en">
   <head>	
-    <title>Joseph Anderson</title>
+  <title><?php echo $profile['Name']; ?></title>
     <meta charset="utf-8".>
     <meta name="viewport" content="width=device-width, initial scale=1">
     <link rel="stylesheet"
@@ -27,15 +27,15 @@ include("../BackEnd.php");
     <div class="container"> 
         <div class= "row">       
             <div class= "col-3" style="position: relative; top: -60px;">
-            <img style="width: 17rem;height: 300px"  src="https://0utwqfl7.cdn.imgeng.in/_images/headshots/profile/<?php echo $profile['uname'];?>.jpg" alt="logo"/>   
+            <img style="width: 17rem;height: 300px"  src="https://0utwqfl7.cdn.imgeng.in/_images/headshots/profile/<?php echo $profile['Username'];?>.jpg" alt="logo"/>   
                 <div class="mt-4 card" style="width: 17rem;">
                     <div class="card-body">
                         <h5 class="card-title">Bio</h5>
-			<p class="card-text"><?php echo $profile['Bio']; $bio?>
+        <p class="card-text"><?php echo $profile['Bio']; $bio?>
                         <h5 class="card-title">Contact</h5>
-				<p class="card-text">Email:<br><?php echo $profile['Email'];?></p>
-				<p class="card-text">Phone:<br><?php echo $profile['PhoneNum'];;?></p>
-                        <!--<p class="card-text">Office:<br>128 Henson Hall</p>-->
+        <p class="card-text">Email:<br><?php echo $profile['Username'];?>@salisbury.edu</p>
+        <p class="card-text">Phone:<br><?php echo $profile['PhoneNum'];;?></p>
+        <p class="card-text">Office:<br><?php echo $profile['OfficeLoc'];?></p>
                     </div>
                 </div>
             </div>
@@ -55,14 +55,22 @@ include("../BackEnd.php");
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <!--<tr>
                         <td>Naive Floating Body</td>
                         <td>Exploring the proof of a faster method to approximate the Floating Body of a convex polytope.</td>
                         </tr>
                         <tr>
                         <td>Gaussian Mixture Models</td>
                         <td>Using methods in Convex Geometry to assist in Rust Learning of Gaussian Mixture Models</td>
-                        </tr>
+                        </tr>-->
+                        <?php 
+                          foreach($currentresearch as $printpast){
+                            echo "<tr>"; 
+                            echo "<td>{$printpast['Title']}</td>";
+                            echo "<td>{$printpast['Description']}</td>";
+                            echo "</tr>";
+                          } 
+                        ?>
                     </tbody>
                 </table>
                 <h3> Past Research</h3>
@@ -74,7 +82,7 @@ include("../BackEnd.php");
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <!--<tr>
                         <td>Efficiency of the floating body as a robust measure of dispersion.</td>
                         <td>Exploring the proof of a faster method to approximate the Floating Body of a convex polytope.</td>
                         </tr>
@@ -85,7 +93,15 @@ include("../BackEnd.php");
                         <tr>
                         <td>Heavy-Tailed Independent Component Analysis</td>
                         <td>Using methods in Convex Geometry to assist in Rust Learning of Gaussian Mixture Models</td>
-                        </tr>
+                        </tr>-->
+                            <?php 
+                              foreach($pastresearch as $printpast){
+                                echo "<tr>"; 
+                                echo "<td>{$printpast['Title']}</td>";
+                                echo "<td>{$printpast['Description']}</td>";
+                                echo "</tr>";
+                              } 
+                            ?>
                     </tbody>
                 </table>
             </div>

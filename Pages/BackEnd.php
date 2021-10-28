@@ -55,18 +55,39 @@ if(isset($_POST['username']) && $_POST['username'] && isset($_POST['passhash']) 
 #To use: Make the href have ?p=VAR
 #Returns: A query p in Professor table
 # profile: A tuple and all attributes
+# currentresearch: List of current rsearch
+# pastresearch: List of past research
 if(isset($_GET['p']) && $_GET['p']){
 #PROFILE STUFF TODO not tested
   $profile = null;
+  $data = null;
   $Pusername = mysqli_real_escape_string($connect,$_GET['p']);
-  $Pquery = "SELECT * FROM Professor WHERE Email LIKE \"$Pusername%\"";#TODO turn like to = when fix email att stuff
+  $Pquery = "SELECT * FROM Professor WHERE Username = \"$Pusername\"";
   $Psql = mysqli_query($connect,$Pquery);
   $profile = mysqli_fetch_array($Psql);
-  #print_r($profile);
-  #echo "<br>";
-  #print($profile['Bio']);
-  #echo "<br>";
-  #print("<h1>hello</h1>");
+
+  if($profile){
+    $currentresearch = [];
+    $pastresearch = [];
+    $RPquery = "SELECT * FROM Research WHERE ID in (SELECT researchID FROM Has WHERE Username = \"{$profile['Username']}\")";
+    $RPsql = mysqli_query($connect,$RPquery);
+    while($data = mysqli_fetch_array($RPsql)){
+      //print_r($data);
+      if($data['Current'] == 1){#It is current
+        array_push($currentresearch, $data);
+      }else{
+        array_push($pastresearch, $data);
+      } 
+    }
+  }
+  
+  /*print($Pquery);
+  echo "<br>";
+  print_r($profile);
+  echo "<br>";
+  print($profile['Bio']);
+  echo "<br>";
+  print("<h1>hello</h1>");*/
 }
 
 #Research Page Quering

@@ -33,7 +33,7 @@
 <body>
 <div class="header">
         <h1><b>Admin edit</b></h1>
-        <form action="https://lamp.salisbury.edu/~jfernandez3/tableMenu.php">
+        <form action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/tableMenu.php">
         <input type="submit" class="button" value="Back">
       </form>       
 </div>
@@ -113,7 +113,7 @@ $test=$connect->query($query);
 if(!$test){
         //echo"<br>update query failed";
 }
-else{
+else{https://lamp.salisbury.edu/~jfernandez3/tableMenu.php
         //echo"<br>update query succeeded";
 }
 }

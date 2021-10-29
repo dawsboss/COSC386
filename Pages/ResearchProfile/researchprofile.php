@@ -26,24 +26,23 @@ include("../BackEnd.php");
     </header>
     <div class="container"> 
         <div class= "row">       
-            <div class= "col-3" style="position: relative; top: -60px;">
-            <img style="width: 17rem;height: 300px"  src="https://0utwqfl7.cdn.imgeng.in/_images/headshots/profile/jtanderson.jpg" alt="logo"/>   
+            <div class= "col-3" style="position: relative; top: -85px;">
                 <div class="mt-4 card" style="width: 17rem;">
                     <div class="card-body">
                         <h5 class="card-title">Description</h5>
-        <p class="card-text"><?php echo $research['Description']; $bio?>
+        <p class="card-text"><?php echo $research['Description'];?>
                         <h5 class="card-title">Contact</h5>
         <p class="card-text">Link<br><?php echo $research['Link'];?>@salisbury.edu</p>
-        <p class="card-text">Phone:<br><?php echo $profile['PhoneNum'];;?></p>
+        <p class="card-text">Phone:<br><?php echo $profile['PhoneNum'];?></p>
         <p class="card-text">Office:<br><?php echo $profile['OfficeLoc'];?></p>
                     </div>
                 </div>
             </div>
-            <div class="col-9" style="position: relative; top: -60px;">
+            <div class="col-9" style="position: relative; top: -60px; height: auto">
                 <div class="mb-4 card" style="width: 55rem;">
                     <div class="card-body">
                         <h5 class="card-title">Abstract</h5>
-                        <p class="card-text"><?php echo $research['Abstract'];?></p>
+                        <p class="card-text"><?php echo $research['Abstract'];?>I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I haye Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant</p>
                     </div>
                 </div>
                 <h3> Current Research</h3>
@@ -55,14 +54,6 @@ include("../BackEnd.php");
                         </tr>
                     </thead>
                     <tbody>
-                        <!--<tr>
-                        <td>Naive Floating Body</td>
-                        <td>Exploring the proof of a faster method to approximate the Floating Body of a convex polytope.</td>
-                        </tr>
-                        <tr>
-                        <td>Gaussian Mixture Models</td>
-                        <td>Using methods in Convex Geometry to assist in Rust Learning of Gaussian Mixture Models</td>
-                        </tr>-->
                         <?php 
                           foreach($currentresearch as $printpast){
                             echo "<tr>"; 
@@ -82,18 +73,6 @@ include("../BackEnd.php");
                         </tr>
                     </thead>
                     <tbody>
-                        <!--<tr>
-                        <td>Efficiency of the floating body as a robust measure of dispersion.</td>
-                        <td>Exploring the proof of a faster method to approximate the Floating Body of a convex polytope.</td>
-                        </tr>
-                        <tr>
-                        <td>Heavy-Tailed Analogues of the Covariance Matrix for ICA</td>
-                        <td>Using methods in Convex Geometry to assist in Rust Learning of Gaussian Mixture Models</td>
-                        </tr>
-                        <tr>
-                        <td>Heavy-Tailed Independent Component Analysis</td>
-                        <td>Using methods in Convex Geometry to assist in Rust Learning of Gaussian Mixture Models</td>
-                        </tr>-->
                             <?php 
                               foreach($pastresearch as $printpast){
                                 echo "<tr>"; 
@@ -110,4 +89,3 @@ include("../BackEnd.php");
     </div>
 </body>
 </html>
-

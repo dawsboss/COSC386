@@ -5,7 +5,22 @@ session_start();
 include("../BackEnd.php");
 ?>
 
+
+
 <html lang="en">
+<style>
+.container a {
+  color: #000;
+  text-decoration: none;
+}
+
+td a {
+    display:block;
+    width:100%;
+}
+
+</style>
+
   <head>	
   <title><?php echo $profile['Name']; ?></title>
     <meta charset="utf-8".>
@@ -66,8 +81,8 @@ include("../BackEnd.php");
                         <?php 
                           foreach($currentresearch as $printpast){
                             echo "<tr>"; 
-                            echo "<td>{$printpast['Title']}</td>";
-                            echo "<td>{$printpast['Description']}</td>";
+                            echo "<td><a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}\" target='_blank'>{$printpast['Title']}</a></td>";
+                            echo "<td><a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}\" target='_blank'>{$printpast['Description']}</a></td>";
                             echo "</tr>";
                           } 
                         ?>
@@ -97,8 +112,8 @@ include("../BackEnd.php");
                             <?php 
                               foreach($pastresearch as $printpast){
                                 echo "<tr>"; 
-                                echo "<td>{$printpast['Title']}</td>";
-                                echo "<td>{$printpast['Description']}</td>";
+                                echo "<td><a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}\" target='_blank'>{$printpast['Title']}</a></td>";
+                                echo "<td><a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}\" target='_blank'>{$printpast['Title']}</a></td>";
                                 echo "</tr>";
                               } 
                             ?>

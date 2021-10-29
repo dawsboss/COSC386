@@ -33,7 +33,9 @@
 <body>
 <div class="header">
         <h1><b>Admin edit</b></h1>
-        <button class="button" onclick="history.go(-1)">Back </button>
+        <form action="https://lamp.salisbury.edu/~jfernandez3/tableMenu.php">
+        <input type="submit" class="button" value="Back">
+      </form>       
 </div>
 <center>
 <?php

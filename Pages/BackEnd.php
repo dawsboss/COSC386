@@ -8,16 +8,7 @@ session_start();
 $_SESSION['logged'] = "null";
 $_SESSION['admin'] = 0;
 $profile = null;
-print_r($_SESSION);
-?>
-<html>
-<a href="login.php"> admin 1</a>
-<a href="logout.php"> admin 0</a>
-<a href="junk.php"> admin 3 </a>
-</html>
-<?php
 
-var_dump($_SESSION);
 #Search Page Quering
 #To use: Make the href have ?q=VAR1&f=VAR2
 #Returns: A query p in Professor table where VAR2 like %VAR1%
@@ -90,8 +81,6 @@ if(isset($_GET['p']) && $_GET['p']){
       } 
     }
   }
-  $_SESSION['admin']=1;
-  print_r($_SESSION);
   /*print($Pquery);
   echo "<br>";
   print_r($profile);

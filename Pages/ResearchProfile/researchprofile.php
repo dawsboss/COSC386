@@ -3,6 +3,11 @@
 <?php
 session_start();
 include("../BackEnd.php");
+if ( !$_GET['r'] ):
+  header('Location: #');
+endif;
+
+
 ?>
 
 <html lang="en">
@@ -20,7 +25,18 @@ include("../BackEnd.php");
     <header class="header" style="position: relative; top: -50px;">
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
-          <h1 class="text-center"><?php echo $research['Title'];?></h1>
+          <?php
+            
+            if($_SESSION['admin'] == true || in_array($_SESSION['logged'], $profs) ):
+              echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
+            endif;
+            if ( !$research ):
+              echo "<h1 class='text-center'>NO PROFILE</h1>";
+            else:
+              echo session_id();
+              echo "<h1 class='text-center'>{$research['Title']}<br>".print_r($_SESSION)."<br>".session_id()."</h1>";
+            endif;
+          ?>
           </div>
         </div>
     </header>
@@ -32,9 +48,9 @@ include("../BackEnd.php");
                         <h5 class="card-title">Description</h5>
         <p class="card-text"><?php echo $research['Description'];?>
                         <h5 class="card-title">Contact</h5>
-        <p class="card-text">Link<br><?php echo $research['Link'];?>@salisbury.edu</p>
+        <p class="card-text">Link(s):<br><?php echo $research['Link'];?></p>
         <p class="card-text">Phone:<br><?php echo $profile['PhoneNum'];?></p>
-        <p class="card-text">Office:<br><?php echo $profile['OfficeLoc'];?></p>
+        <p class="card-text">Office:<br><?php echo $profile['OfficeLoc'];?>Sample data to show that the box will stretch down as you add more text so it fits the screen better. Man this really should have gone in the Description portion but oh well... here we are</p>
                     </div>
                 </div>
             </div>
@@ -45,42 +61,24 @@ include("../BackEnd.php");
                         <p class="card-text"><?php echo $research['Abstract'];?>I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I haye Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant</p>
                     </div>
                 </div>
-                <h3> Current Research</h3>
+                <h3> Research Information</h3>
                 <table class="table">
                     <thead>
                         <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
+                        <th scope="col">Funds?</th>
+                        <th scope="col">Grants Provided</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php 
-                          foreach($currentresearch as $printpast){
+                          foreach($Grants as $printgrant){
                             echo "<tr>"; 
-                            echo "<td>{$printpast['Title']}</td>";
-                            echo "<td>{$printpast['Description']}</td>";
+                            echo "<td>{$printpast['Organization']}</td>";
+                            echo "<td>{$printpast['Year']}</td>";
+                            echo "<td>{$printpast['Amount']}</td>";
                             echo "</tr>";
                           } 
                         ?>
-                    </tbody>
-                </table>
-                <h3> Past Research</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            <?php 
-                              foreach($pastresearch as $printpast){
-                                echo "<tr>"; 
-                                echo "<td>{$printpast['Title']}</td>";
-                                echo "<td>{$printpast['Description']}</td>";
-                                echo "</tr>";
-                              } 
-                            ?>
                     </tbody>
                 </table>
             </div>

@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 
 <?php
+if ( !$_GET['p'] ):
+  header('Location: "#"');#TODO go back to search screen
+endif;
 session_start();
 include("../BackEnd.php");
 ?>
 
 <html lang="en">
+<style>
+.container a {
+  color: #000;
+  text-decoration: none;
+}
+
+td a {
+    display:block;
+    width:100%;
+}
+
+</style>
+
   <head>	
   <title><?php echo $profile['Name']; ?></title>
     <meta charset="utf-8".>
@@ -20,7 +36,12 @@ include("../BackEnd.php");
     <header class="header" style="position: relative; top: -50px;">
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
-          <h1 class="text-center"><?php echo $profile['Name'];?></h1>
+            <?php
+              if ($_SESSION['logged'] == $profile['Username'] || $_SESSION['admin'] == true):
+              echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
+              endif;
+            ?>
+            <h1 class="text-center"><?php echo $profile['Name']; echo "<br>";print_r($_SESSION);echo "<br>";echo session_id();?></h1>
           </div>
         </div>
     </header>
@@ -66,8 +87,8 @@ include("../BackEnd.php");
                         <?php 
                           foreach($currentresearch as $printpast){
                             echo "<tr>"; 
-                            echo "<td>{$printpast['Title']}</td>";
-                            echo "<td>{$printpast['Description']}</td>";
+                            echo "<td><a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}\" target='_blank'>{$printpast['Title']}</a></td>";
+                            echo "<td><a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}\" target='_blank'>{$printpast['Description']}</a></td>";
                             echo "</tr>";
                           } 
                         ?>
@@ -97,8 +118,8 @@ include("../BackEnd.php");
                             <?php 
                               foreach($pastresearch as $printpast){
                                 echo "<tr>"; 
-                                echo "<td>{$printpast['Title']}</td>";
-                                echo "<td>{$printpast['Description']}</td>";
+                                echo "<td><a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}\" target='_blank'>{$printpast['Title']}</a></td>";
+                                echo "<td><a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}\" target='_blank'>{$printpast['Title']}</a></td>";
                                 echo "</tr>";
                               } 
                             ?>

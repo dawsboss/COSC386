@@ -9,6 +9,8 @@ $_SESSION['logged'] = "null";
 $_SESSION['admin'] = 0;
 $profile = null;
 
+print_r($_SESSION);
+
 #Search Page Quering
 #To use: Make the href have ?q=VAR1&f=VAR2
 #Returns: A query p in Professor table where VAR2 like %VAR1%
@@ -25,7 +27,6 @@ if((isset($_GET["q"]) || isset($_GET["f"])) && $_GET["q"] && $_GET["f"]){
     array_push($search, $data);
   }
   print_r($search);
-  session_close();
 }
 
 #Login Page Quering and Access
@@ -33,23 +34,31 @@ if((isset($_GET["q"]) || isset($_GET["f"])) && $_GET["q"] && $_GET["f"]){
 #Returns: logged in status, admin status
 # session->logged - *username*
 # session->admin - T/F 
-if(isset($_POST['username']) && $_POST['username'] && isset($_POST['passhash']) && $_POST['passhash']){
-  #LOGIN STUFF
+if(isset($_POST['username']) && $_POST['username'] && isset($_POST['password']) && $_POST['password']){
+  print("u:{$_POST['username']} | p:{$_POST['password']}");
   $logUser = null;
   $Luname = mysqli_real_escape_string($connect,$_POST["username"]);
-  $Lpass = mysqli_real_escape_string($connect,$_POST["passhash"]);
+  print($Luname);
+  $Lpass = mysqli_real_escape_string($connect,$_POST["password"]);
+  print($Lpass);
   $Lquery = "SELECT * FROM Login WHERE Username = \"$Luname\"";
   $Lsql = mysqli_query($connect, $Lquery);
   $logUser = mysqli_fetch_array($Lsql);
-  if(logUser){#There is a username found
-    if(passhash == logUser['Password']){#Then valid login
+  if($logUser){#There is a username found
+    print("UserName correct<br>");
+    print("Here:".hash('sha256',$Lpass)." | DB: ".$logUser['Password']);
+    if(hash('sha256',$Lpass) == $logUser['Password']){#Then valid login
       $_SESSION['logged'] = $Luname;
+      print("<br> Logged");
     }
-    if(logUser['Admin'] == 1){#User was an admin TODO changed based on Login table values
+    if($logUser['Admin'] == 1){
       $_SESSION['admin'] = true;
+      print("<br> isAdmin");
     }
+    header("Location: ProfProfile/profile.php?p=jtanderson");
   }
-  //session_close();
+  print("<br>");
+  print_r($_SESSION);
 }
 
 #Profile Page Quering
@@ -59,7 +68,6 @@ if(isset($_POST['username']) && $_POST['username'] && isset($_POST['passhash']) 
 # currentresearch: List of current rsearch
 # pastresearch: List of past research
 if(isset($_GET['p']) && $_GET['p']){
-#PROFILE STUFF TODO not tested
   $profile = null;
   $data = null;
   $Pusername = mysqli_real_escape_string($connect,$_GET['p']);
@@ -81,28 +89,46 @@ if(isset($_GET['p']) && $_GET['p']){
       } 
     }
   }
-  /*print($Pquery);
-  echo "<br>";
-  print_r($profile);
-  echo "<br>";
-  print($profile['Bio']);
-  echo "<br>";
-  print("<h1>hello</h1>");*/
-  //session_close();
 }
 
 #Research Page Quering
 #To use: Make the href have ?r=VAR
 #Returns: A query r in Research table
 # research - Tuple of research and all attributes
+# students - Tuple of students and all attributes
 if(isset($_GET['r']) && $_GET['r']){
   #RESEARCH STUFF TODO test
-  $research = null;
+  $research = null;#pulls research info
   $RID = mysqli_real_escape_string($connect, $_GET['r']);
-  $Rquery = "SELECT * FROM Research WHERE ID = $RID";#TODO idk if this will work yet... string stuff no fun
+  $Rquery = "SELECT * FROM Research WHERE ID = $RID";
   $Rsql = mysqli_query($connect,$Rquery);
   $research = mysqli_fetch_array($Rsql);
   //session_close();
+
+  $students = null;#Pulls students that worked on the research project
+  $data = null;
+  $RSquery = "SELECT * FROM Student WHERE Email in (SELECT studentEmail FROM WorkOn WHERE researchID = $RID)";
+  $RSsql = mysqli_query($connect, $RSquery);
+  while($data = mysqli_fetch_array($RSsql)){
+    array_push($students, $data);
+  }
+
+  $grants = null;#pulls the grants the research worked under
+  $data = null;
+  $RGquery = "SELECT * FROM Grant WHERE ID IN (SELECT grantID FROM FundedBy WHERE researchID = $RID)";
+  $RGsql = mysqli_query($connect, $RGquery);
+  while($data = mysqli_fetch_array($RGsql)){
+    array_push($grants, $data);
+  }
+  
+  $profs = null;#List of professors that worked on the proj
+  $data = null;
+  $RPquery="";
+  $RPsql = mysqli_query($RPquery);
+  while($data = mysqli_fetch_array($RPsql)){
+    array_push($profs,$data);
+  }
+
 }
 
 #Editing Page Querying
@@ -118,7 +144,6 @@ if(isset($_POST['eu']) && $_POST['eu']){
     $Esql = mysqli_query($connect,$Equery);
     $Eprofile = mysqli_fetch_array($Esql);
   }
-  session_close();
 }
 #Editing Page Alter
 #To use: Post using 'ea' editAalter
@@ -151,7 +176,6 @@ if(isset($_POST['ename']) && $_POST['ename'] && isset($_POST['euname']) && $_POS
     
     
   }
-  session_close();
 }
 
 
@@ -190,7 +214,6 @@ if(isset($_POST['ename']) && $_POST['ename'] && isset($_POST['euname']) && $_POS
       print("Nothing added");
     }
   }
-  session_close();
 }
  */
 mysqli_close($connect);

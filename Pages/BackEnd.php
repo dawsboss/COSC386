@@ -32,7 +32,7 @@ if((isset($_GET["q"]) || isset($_GET["f"])) && $_GET["q"] && $_GET["f"]){
 #Returns: logged in status, admin status
 # session->logged - *username*
 # session->admin - T/F 
-if(isset($_POST['username']) && $_POST['username'] && isset($_POST['passhash']) && $_POST['passhash']){
+if(isset($_POST['username']) && $_POST['username'] && isset($_POST['password']) && $_POST['password']){
   $logUser = null;
   $Luname = mysqli_real_escape_string($connect,$_POST["username"]);
   $Lpass = mysqli_real_escape_string($connect,$_POST["passhash"]);
@@ -40,7 +40,7 @@ if(isset($_POST['username']) && $_POST['username'] && isset($_POST['passhash']) 
   $Lsql = mysqli_query($connect, $Lquery);
   $logUser = mysqli_fetch_array($Lsql);
   if(logUser){#There is a username found
-    if(passhash == logUser['Password']){#Then valid login
+    if(hash('sha256',$Lpass) == logUser['Password']){#Then valid login
       $_SESSION['logged'] = $Luname;
     }
     if(logUser['Admin'] == 1){

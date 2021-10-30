@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 
 <?php
+if ( !$_GET['p'] ):
+  header('Location: "#"');#TODO go back to search screen
+endif;
 session_start();
 include("../BackEnd.php");
 ?>
-
-
 
 <html lang="en">
 <style>
@@ -35,7 +36,12 @@ td a {
     <header class="header" style="position: relative; top: -50px;">
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
-          <h1 class="text-center"><?php echo $profile['Name'];?></h1>
+<?php
+if ($_SESSION['logged'] == $profile['Username'] || $_SESSION['admin'] == true):
+  echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
+endif;
+?>
+<h1 class="text-center"><?php echo $profile['Name'];?></h1>
           </div>
         </div>
     </header>

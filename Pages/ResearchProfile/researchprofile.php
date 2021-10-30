@@ -34,7 +34,7 @@ include("../BackEnd.php");
                         <h5 class="card-title">Contact</h5>
         <p class="card-text">Link<br><?php echo $research['Link'];?>@salisbury.edu</p>
         <p class="card-text">Phone:<br><?php echo $profile['PhoneNum'];?></p>
-        <p class="card-text">Office:<br><?php echo $profile['OfficeLoc'];?></p>
+        <p class="card-text">Office:<br><?php echo $profile['OfficeLoc'];?>Sample data to show that the box will stretch down as you add more text so it fits the screen better. Man this really should have gone in the Description portion but oh well... here we are</p>
                     </div>
                 </div>
             </div>
@@ -45,12 +45,12 @@ include("../BackEnd.php");
                         <p class="card-text"><?php echo $research['Abstract'];?>I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I haye Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant</p>
                     </div>
                 </div>
-                <h3> Current Research</h3>
+                <h3> Research Information</h3>
                 <table class="table">
                     <thead>
                         <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
+                        <th scope="col">Funds?</th>
+                        <th scope="col">Grants Provided</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,25 +62,6 @@ include("../BackEnd.php");
                             echo "</tr>";
                           } 
                         ?>
-                    </tbody>
-                </table>
-                <h3> Past Research</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            <?php 
-                              foreach($pastresearch as $printpast){
-                                echo "<tr>"; 
-                                echo "<td>{$printpast['Title']}</td>";
-                                echo "<td>{$printpast['Description']}</td>";
-                                echo "</tr>";
-                              } 
-                            ?>
                     </tbody>
                 </table>
             </div>

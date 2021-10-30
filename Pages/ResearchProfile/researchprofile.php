@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 
 <?php
+if ( !$_GET['r'] ):
+
+endif;
+
 session_start();
 include("../BackEnd.php");
 ?>
@@ -55,10 +59,11 @@ include("../BackEnd.php");
                     </thead>
                     <tbody>
                         <?php 
-                          foreach($currentresearch as $printpast){
+                          foreach($Grants as $printgrant){
                             echo "<tr>"; 
-                            echo "<td>{$printpast['Title']}</td>";
-                            echo "<td>{$printpast['Description']}</td>";
+                            echo "<td>{$printpast['Organization']}</td>";
+                            echo "<td>{$printpast['Year']}</td>";
+                            echo "<td>{$printpast['Amount']}</td>";
                             echo "</tr>";
                           } 
                         ?>

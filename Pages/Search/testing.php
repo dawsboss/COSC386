@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <?php
-    session_start();
-    include ("BackEnd.php");
+session_start();
+include("../BackEnd.php");
 ?>
 <html lang="en">
-
 <head>
+    
     <title>Search</title>
     <meta charset="utf-8" .>
     <meta name="viewport" content="width=device-width, initial scale=1">
@@ -29,42 +29,26 @@
     </header>
     <div class="container">
         <div class="row">
+        <form method="get">
             <div class="col-11">
                 <div class="input-group">
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button", id="search">
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button" name="q">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <span id="opt">Chose option</span> <span class="caret"></span>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" id="1" href="#">Name</a>
-                            <a class="dropdown-item" id="2" href="#">Research Interest</a>
-                            <a class="dropdown-item" id="3" href="#">Department</a>
-                            <a class="dropdown-item" id="3" href="#">Availability</a>
-                        </div>
-                        <script type="text/javascript">
-                        $(function() {
-                            $("#1").click(function() {
-                                $("#opt").text($(this).text());
-                            });
-                            $("#2").click(function() {
-                                $("#opt").text($(this).text());
-                            });
-                            $("#3").click(function() {
-                                $("#opt").text($(this).text());
-                            });
-                            $("#4").click(function() {
-                                $("#opt").text($(this).text());
-                            });
-                        });
-                        </script>
+                        <select class="btn btn-outline-secondary dropdown-toggle" type="button"
+                            aria-haspopup="true" aria-expanded="false" name="f">
+                            <option  class="dropdown-item" value="" disabled selected>Choose option</option>
+                            <option  class="dropdown-item" value="Name">Name</option>
+                            <option  class="dropdown-item" value="ResearchStatement">Research Interest</option>
+                            <option  class="dropdown-item" value="DeptName">Department</option>
+                            <option  class="dropdown-item" value="Availability">Availability</option>
+                        </select>
                     </div>
                 </div>
             </div>
             <div class="col-1">
-                <button class="btn btn-outline-secondary float-right" type="button" onclick="transfer(document.getElementById('search').value)">Search</button>
+                <input class="btn btn-outline-secondary float-right" type="submit">
             </div>
+            </form>
         </div>
     </div>
     <div class="container">
@@ -80,46 +64,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <?php 
+                          print_r($search);
+                          foreach($search as $printpast){
+                            echo "<tr>"; 
+                            echo "<td>{$printpast['Name']}</td>";
+                            echo "<a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ProfProfile/profile.php?p={$printpast['Username']}\" class='stretched-link'></a>";
+                            echo "</tr>";
+                          } 
+                        ?>
+                        <!-- <tr>
                             <td>Seth Friese</td>
                             <td>Synthetic Organic Chemistry</td>
                             <td>Chemistry</td>
                             <td>Not Available</td>
                             <a href="#" class="stretched-link"></a>
-                        </tr>
-                        <tr>
-                            <td>Randall Cone</td>
-                            <td>Natural Language Processing</td>
-                            <td>Math and Art</td>
-                            <td>Not Available</td>
-                            <a href="#" class="stretched-link"></a>
-                        </tr>
-                        <tr>
-                            <td>Joseph Anderson</td>
-                            <td>Computational Geometry</td>
-                            <td>Computer Science</td>
-                            <td>Available</td>
-                            <a href="#" class="stretched-link"></a>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-<script>
-function transfer(search){
-
-  var linkout =  window.location.pathname + "?q=" + search + "&f=" + filter;
-
-
-  window.location.href = linkout;
-  //reutrn false;
-  //data = <?php echo json_encode($data)?>;
-  //console.log(data);
-  //document.getElementById('output').innerHTML = data[0];
-  //document.getElementById('table').style.display = "block";
-}
-</script>
-
 </body>
+
 </html>

@@ -36,12 +36,12 @@ td a {
     <header class="header" style="position: relative; top: -50px;">
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
-<?php
-if ($_SESSION['logged'] == $profile['Username'] || $_SESSION['admin'] == true):
-  echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
-endif;
-?>
-<h1 class="text-center"><?php echo $profile['Name'];?></h1>
+            <?php
+              if ($_SESSION['logged'] == $profile['Username'] || $_SESSION['admin'] == true):
+              echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
+              endif;
+            ?>
+            <h1 class="text-center"><?php echo $profile['Name']; echo "<br>";print_r($_SESSION);echo "<br>";echo session_id();?></h1>
           </div>
         </div>
     </header>

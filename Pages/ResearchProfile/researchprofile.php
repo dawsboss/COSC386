@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 
 <?php
-if ( !$_GET['r'] ):
-
-endif;
-
 session_start();
 include("../BackEnd.php");
+if ( !$_GET['r'] ):
+  header('Location: #');
+endif;
+
+
 ?>
 
 <html lang="en">
@@ -24,7 +25,18 @@ include("../BackEnd.php");
     <header class="header" style="position: relative; top: -50px;">
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
-          <h1 class="text-center"><?php echo $research['Title'];?></h1>
+          <?php
+            
+            if($_SESSION['admin'] == true || in_array($_SESSION['logged'], $profs) ):
+              echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
+            endif;
+            if ( !$research ):
+              echo "<h1 class='text-center'>NO PROFILE</h1>";
+            else:
+              echo session_id();
+              echo "<h1 class='text-center'>{$research['Title']}<br>".print_r($_SESSION)."<br>".session_id()."</h1>";
+            endif;
+          ?>
           </div>
         </div>
     </header>
@@ -36,7 +48,7 @@ include("../BackEnd.php");
                         <h5 class="card-title">Description</h5>
         <p class="card-text"><?php echo $research['Description'];?>
                         <h5 class="card-title">Contact</h5>
-        <p class="card-text">Link<br><?php echo $research['Link'];?>@salisbury.edu</p>
+        <p class="card-text">Link(s):<br><?php echo $research['Link'];?></p>
         <p class="card-text">Phone:<br><?php echo $profile['PhoneNum'];?></p>
         <p class="card-text">Office:<br><?php echo $profile['OfficeLoc'];?>Sample data to show that the box will stretch down as you add more text so it fits the screen better. Man this really should have gone in the Description portion but oh well... here we are</p>
                     </div>

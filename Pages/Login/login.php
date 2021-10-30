@@ -32,26 +32,26 @@
             <div class="col-4"></div>
               <div class="col-3">
         <div class="text-center">
-        <form class="form-signin">
-        <div class="imageRound">
-                <img class="mb-4" src="https://s3-us-west-2.amazonaws.com/webresources-savingforcollege/images/school_logos/salisbury-university.png" alt="" width="128" height="128">
+        <form class="form-signin" method="post" action="../BackEnd.php">
+          <div class="imageRound">
+            <img class="mb-4" src="https://s3-us-west-2.amazonaws.com/webresources-savingforcollege/images/school_logos/salisbury-university.png" alt="" width="128" height="128">
+          </div>
+          <h1 class="h3 mb-3 font-weight-normal">Sign Into Undergraduate Research Database</h1>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="username" id="inputEmail" name='username'class="form-control" placeholder="Username" required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
+          <div class="checkbox mb-3">
+            <!--<label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>-->
+            <input class="btn btn-lg btn-primary btn-block" type="submit" placeholder="Sign in">
+            <p class="mt-5 mb-3 text-muted">&copy; 2021-2022</p>
+              </form>
+            </div>
+          </div>
         </div>
-        <h1 class="h3 mb-3 font-weight-normal">Sign Into Undergraduate Research Database</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2021-2021</p>
-    </form>
       </div>
-      </div>
-      </div>
-    </div>
     </div>
   </body>
 </html>

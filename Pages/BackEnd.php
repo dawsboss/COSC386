@@ -9,6 +9,8 @@ $_SESSION['logged'] = "null";
 $_SESSION['admin'] = 0;
 $profile = null;
 
+print_r($_SESSION);
+
 #Search Page Quering
 #To use: Make the href have ?q=VAR1&f=VAR2
 #Returns: A query p in Professor table where VAR2 like %VAR1%
@@ -33,20 +35,30 @@ if((isset($_GET["q"]) || isset($_GET["f"])) && $_GET["q"] && $_GET["f"]){
 # session->logged - *username*
 # session->admin - T/F 
 if(isset($_POST['username']) && $_POST['username'] && isset($_POST['password']) && $_POST['password']){
+  print("u:{$_POST['username']} | p:{$_POST['password']}");
   $logUser = null;
   $Luname = mysqli_real_escape_string($connect,$_POST["username"]);
-  $Lpass = mysqli_real_escape_string($connect,$_POST["passhash"]);
+  print($Luname);
+  $Lpass = mysqli_real_escape_string($connect,$_POST["password"]);
+  print($Lpass);
   $Lquery = "SELECT * FROM Login WHERE Username = \"$Luname\"";
   $Lsql = mysqli_query($connect, $Lquery);
   $logUser = mysqli_fetch_array($Lsql);
-  if(logUser){#There is a username found
-    if(hash('sha256',$Lpass) == logUser['Password']){#Then valid login
+  if($logUser){#There is a username found
+    print("UserName correct<br>");
+    print("Here:".hash('sha256',$Lpass)." | DB: ".$logUser['Password']);
+    if(hash('sha256',$Lpass) == $logUser['Password']){#Then valid login
       $_SESSION['logged'] = $Luname;
+      print("<br> Logged");
     }
-    if(logUser['Admin'] == 1){
+    if($logUser['Admin'] == 1){
       $_SESSION['admin'] = true;
+      print("<br> isAdmin");
     }
+    header("Location: ProfProfile/profile.php?p=jtanderson");
   }
+  print("<br>");
+  print_r($_SESSION);
 }
 
 #Profile Page Quering
@@ -108,6 +120,15 @@ if(isset($_GET['r']) && $_GET['r']){
   while($data = mysqli_fetch_array($RGsql)){
     array_push($grants, $data);
   }
+  
+  $profs = null;#List of professors that worked on the proj
+  $data = null;
+  $RPquery="";
+  $RPsql = mysqli_query($RPquery);
+  while($data = mysqli_fetch_array($RPsql)){
+    array_push($profs,$data);
+  }
+
 }
 
 #Editing Page Querying

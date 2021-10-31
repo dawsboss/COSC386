@@ -1,11 +1,6 @@
 <!DOCTYPE html>
-<?php
-session_start();
-include("../BackEnd.php");
-?>
 <html lang="en">
 <head>
-    
     <title>Search</title>
     <meta charset="utf-8" .>
     <meta name="viewport" content="width=device-width, initial scale=1">
@@ -16,6 +11,9 @@ include("../BackEnd.php");
 </head>
 
 <body>
+    <?php
+        include ("../BetterBackEnd.php");
+    ?>
     <header class="header">
         <div class="jumbotron jumbotron-fluid" , style="width: auto; height: 170px;">
             <div class="container">
@@ -28,8 +26,8 @@ include("../BackEnd.php");
         </div>
     </header>
     <div class="container">
+    <form method="get">
         <div class="row">
-        <form method="get">
             <div class="col-11">
                 <div class="input-group">
                     <input type="text" class="form-control" aria-label="Text input with dropdown button" name="q">
@@ -48,8 +46,8 @@ include("../BackEnd.php");
             <div class="col-1">
                 <input class="btn btn-outline-secondary float-right" type="submit">
             </div>
-            </form>
         </div>
+        </form>
     </div>
     <div class="container">
         <div class="row">
@@ -65,23 +63,30 @@ include("../BackEnd.php");
                     </thead>
                     <tbody>
                         <?php 
-                          print_r($search);
                           foreach($search as $printpast){
                             echo "<tr>"; 
+                            echo "<tr class='table-row' data-href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ProfProfile/profile.php?p={$printpast['Username']}\" class='stretched-link'></th>";
                             echo "<td>{$printpast['Name']}</td>";
-                            echo "<a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ProfProfile/profile.php?p={$printpast['Username']}\" class='stretched-link'></a>";
+                            echo "<td>{$printpast['ResearchStatement']}</td>";
+                            echo "<td>{$printpast['DeptName']}</td>";
+                            echo "<td>{$printpast['Availability']}</td>";
                             echo "</tr>";
                           } 
                         ?>
-                        <!-- <tr>
-                            <td>Seth Friese</td>
-                            <td>Synthetic Organic Chemistry</td>
-                            <td>Chemistry</td>
-                            <td>Not Available</td>
-                            <a href="#" class="stretched-link"></a>
-                        </tr> -->
                     </tbody>
                 </table>
+                <script type="text/javascript">
+                $(document).ready(function($) {
+                    $(".table-row").click(function() {
+                        window.document.location = $(this).data("href");
+                    });
+                });
+                </script>
+                <style type="text/css">
+                .table-row{
+                cursor:pointer;
+                }
+                </style>
             </div>
         </div>
     </div>

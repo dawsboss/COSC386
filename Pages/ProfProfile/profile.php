@@ -15,13 +15,10 @@ include("../BackEnd.php");
   text-decoration: none;
 }
 
-td a {
-    display:block;
-    width:100%;
+.table-row{
+  cursor:pointer;
 }
-
 </style>
-
   <head>	
   <title><?php echo $profile['Name']; ?></title>
     <meta charset="utf-8".>
@@ -76,19 +73,11 @@ td a {
                         </tr>
                     </thead>
                     <tbody>
-                        <!--<tr>
-                        <td>Naive Floating Body</td>
-                        <td>Exploring the proof of a faster method to approximate the Floating Body of a convex polytope.</td>
-                        </tr>
-                        <tr>
-                        <td>Gaussian Mixture Models</td>
-                        <td>Using methods in Convex Geometry to assist in Rust Learning of Gaussian Mixture Models</td>
-                        </tr>-->
-                        <?php 
+                        <?php
                           foreach($currentresearch as $printpast){
-                            echo "<tr>"; 
-                            echo "<td><a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}\" target='_blank'>{$printpast['Title']}</a></td>";
-                            echo "<td><a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}\" target='_blank'>{$printpast['Description']}</a></td>";
+                            echo "<tr class='table-row' data-href='https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}'>";
+                            echo "<td>{$printpast['Title']}</td>";
+                            echo "<td>{$printpast['Description']}</td>";
                             echo "</tr>";
                           } 
                         ?>
@@ -117,9 +106,9 @@ td a {
                         </tr>-->
                             <?php 
                               foreach($pastresearch as $printpast){
-                                echo "<tr>"; 
-                                echo "<td><a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}\" target='_blank'>{$printpast['Title']}</a></td>";
-                                echo "<td><a href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}\" target='_blank'>{$printpast['Title']}</a></td>";
+                            echo "<tr class='table-row' data-href='https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ResearchProfile/researchprofile.php?r={$printpast['ID']}'>";
+                                echo "<td>{$printpast['Title']}</td>";
+                                echo "<td>{$printpast['Description']}</td>";
                                 echo "</tr>";
                               } 
                             ?>
@@ -130,5 +119,12 @@ td a {
         </div>
     </div>
 </body>
+<script type="text/javascript">
+  $(document).ready(function($) {
+    $(".table-row").click(function() {
+      window.document.location = $(this).data("href");
+    });
+  });
+</script>
 </html>
 

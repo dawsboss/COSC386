@@ -9,7 +9,7 @@ $_SESSION['logged'] = "null";
 $_SESSION['admin'] = 0;
 $profile = null;
 
-print_r($_SESSION);
+//print_r($_SESSION);
 
 #Search Page Quering
 #To use: Make the href have ?q=VAR1&f=VAR2
@@ -26,7 +26,7 @@ if((isset($_GET["q"]) || isset($_GET["f"])) && $_GET["q"] && $_GET["f"]){
   while($data = mysqli_fetch_array($Ssql)){
     array_push($search, $data);
   }
-  print_r($search);
+  //print_r($search);
 }
 
 #Login Page Quering and Access
@@ -98,6 +98,7 @@ if(isset($_GET['p']) && $_GET['p']){
 # students - Tuple of students and all attributes
 if(isset($_GET['r']) && $_GET['r']){
   #RESEARCH STUFF TODO test
+  //print("HELLO <br>");
   $research = null;#pulls research info
   $RID = mysqli_real_escape_string($connect, $_GET['r']);
   $Rquery = "SELECT * FROM Research WHERE ID = $RID";
@@ -105,13 +106,22 @@ if(isset($_GET['r']) && $_GET['r']){
   $research = mysqli_fetch_array($Rsql);
   //session_close();
 
+  //print_r($research);
+  //print("HELLO <br>");
+  //print($RID."<br>");
+
   $students = null;#Pulls students that worked on the research project
   $data = null;
-  $RSquery = "SELECT * FROM Student WHERE Email in (SELECT studentEmail FROM WorkOn WHERE researchID = $RID)";
+  $RSquery = "SELECT * FROM Student WHERE Email IN (SELECT studentEmail FROM WorkOn WHERE researchID = $RID)";
   $RSsql = mysqli_query($connect, $RSquery);
   while($data = mysqli_fetch_array($RSsql)){
+    //print($data."test<br>");
     array_push($students, $data);
   }
+
+  //print($RSquery."<br>");
+  //print_r($students);
+  //print("HELLO <br>");
 
   $grants = null;#pulls the grants the research worked under
   $data = null;
@@ -120,14 +130,19 @@ if(isset($_GET['r']) && $_GET['r']){
   while($data = mysqli_fetch_array($RGsql)){
     array_push($grants, $data);
   }
-  
+
+  //print_r($grants);
+  //print("HELLO <br>");
+
   $profs = null;#List of professors that worked on the proj
   $data = null;
-  $RPquery="";
+  $RPquery="SELECT * FROM Professor WHERE Username in (SELECT Username FROM Has where researchID = $RID)";
   $RPsql = mysqli_query($RPquery);
   while($data = mysqli_fetch_array($RPsql)){
     array_push($profs,$data);
   }
+  //print_r($profs);
+  //print("HELLO <br>");
 
 }
 

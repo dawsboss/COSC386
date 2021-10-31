@@ -4,7 +4,7 @@
 session_start();
 include("../BackEnd.php");
 if ( !$_GET['r'] ):
-  header('Location: #');
+  header('Location: ../Search/testing.php');#TODO Go to search page
 endif;
 
 
@@ -24,19 +24,19 @@ endif;
 <body>
     <header class="header" style="position: relative; top: -50px;">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Salisbury University</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">Search</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="#">Login</a>
       </li>
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
       </li>
       <li class="nav-item dropdown">
@@ -48,7 +48,7 @@ endif;
           <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
-      </li>
+      </li>-->
     </ul>
   </div>
 </nav>
@@ -100,7 +100,7 @@ endif;
                     </thead>
                     <tbody>
                         <?php 
-                          foreach($Grants as $printgrant){
+                          foreach($grants as $printgrant){
                             echo "<tr>"; 
                             echo "<td>{$printpast['Organization']}</td>";
                             echo "<td>{$printpast['Year']}</td>";

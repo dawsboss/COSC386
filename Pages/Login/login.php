@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Undergraduate Research Database</title>
+    <title>Login</title>
     <meta charset="utf-8".>
     <meta name="viewport" content="width=device-width, initial scale=1">
     <link rel="stylesheet"
@@ -57,6 +57,7 @@
   </div>
 </nav>
     <div class="container">
+    <div class="row" style="width:auto; height:50px;"></div>
     <div class="row" style="width: auto;height: 150px;">
             <div class="col-4"></div>
               <div class="col-3">

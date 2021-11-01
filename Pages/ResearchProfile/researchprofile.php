@@ -87,10 +87,10 @@ endif;
                 <div class="mb-4 card" style="width: 55rem;">
                     <div class="card-body">
                         <h5 class="card-title">Abstract</h5>
-                        <p class="card-text"><?php echo $research['Abstract'];?>I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I haye Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant</p>
+                        <p class="card-text"><?php echo $research['Abstract'];?></p>
                     </div>
                 </div>
-                <h3> Research Information</h3>
+                <h3 style = "text-align: center"> Research Information</h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -104,10 +104,9 @@ endif;
                             echo "<tr>"; 
                             echo "<td>{$printpast['Organization']}</td>";
                             echo "<td>{$printpast['Year']}</td>";
-                            echo "<td>{$printpast['Amount']}</td>";
+			    echo "<td>{$printpast['Amount']}</td>";
                             echo "</tr>";
-                          } 
-                        ?>
+                          }?>
                     </tbody>
                 </table>
             </div>

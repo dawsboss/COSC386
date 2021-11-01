@@ -128,7 +128,8 @@ if(isset($_GET['r']) && $_GET['r']){
 
   $grants = null;#pulls the grants the research worked under
   $data = null;
-  $RGquery = "SELECT * FROM Grant WHERE ID IN (SELECT grantID FROM FundedBy WHERE researchID = $RID)";
+  //$RGquery = "SELECT * FROM Grants WHERE ID IN (SELECT grantID FROM FundedBy WHERE researchID = $RID)";
+  $RGquery = "SELECT Amount, year, ID, Organization FROM Grants JOIN FundedBy ON Grants.ID = FundedBy.researchID = $RID";
   $RGsql = mysqli_query($connect, $RGquery);
   while($data = mysqli_fetch_array($RGsql)){
     array_push($grants, $data);

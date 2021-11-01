@@ -94,14 +94,15 @@ endif;
                 <table class="table">
                     <thead>
                         <tr>
-                        <th scope="col">Funds?</th>
-                        <th scope="col">Grants Provided</th>
+                        <th scope="col" style = "text-align: center">Funds?</th>
+                        <th scope="col" style = "text-align: center">Grants Provided</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php 
                           foreach($grants as $printgrant){
-                            echo "<tr>"; 
+			    echo "Hello"; 
+		 	    echo "<tr>"; 
                             echo "<td>{$printpast['Organization']}</td>";
                             echo "<td>{$printpast['Year']}</td>";
 			    echo "<td>{$printpast['Amount']}</td>";

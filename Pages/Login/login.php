@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php 
+session_start();
+include('../BackUp.php');
+?>
+
 <html lang="en">
   <head>
     <title>Login</title>
@@ -35,10 +40,10 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Search</a>
+        <a class="nav-link" href="../Search/testing.php">Search</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Login<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="">Login<span class="sr-only">(current)</span></a>
       </li>
       <!--<li class="nav-item">
         <a class="nav-link" href="#">Test</a>
@@ -77,6 +82,7 @@
             </label>-->
             <input class="btn btn-lg btn-primary btn-block" type="submit" placeholder="Sign in">
             <p class="mt-5 mb-3 text-muted">&copy; 2021-2022</p>
+            <?php print_r($_SESSION); print("TEST");?>
               </form>
             </div>
           </div>

@@ -13,6 +13,7 @@
 <body>
     <?php
         include ("../BackEnd.php");
+        session_start();
     ?>
     <header class="header">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,7 +49,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-11">
-                        <h1 class="text-center">Begin Your Research Journey Here</h1>
+                      <?php echo "<h1 class='text-center'>Begin Your Research Journey Here</h1>";print_r($_SESSION);?>
                     </div>
                 </div>
             </div>

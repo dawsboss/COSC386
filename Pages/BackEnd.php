@@ -5,8 +5,10 @@ if( $connect = @mysqli_connect('localhost', 'gdawson1', 'gdawson1','SUResearchPr
 }
 session_start();
 #init session vars
-$_SESSION['logged'] = "null";
-$_SESSION['admin'] = 0;
+if(!isset($_SESSION['logged'])){
+  $_SESSION['logged'] = "null";
+  $_SESSION['admin'] = 0;
+}
 $profile = null;
 
 //print_r($_SESSION);
@@ -55,10 +57,10 @@ if(isset($_POST['username']) && $_POST['username'] && isset($_POST['password']) 
       $_SESSION['admin'] = true;
       print("<br> isAdmin");
     }
-    header("Location: ProfProfile/profile.php?p=jtanderson");
   }
   print("<br>");
   print_r($_SESSION);
+  header("Location: Login/login.php");
 }
 
 #Profile Page Quering
@@ -98,7 +100,7 @@ if(isset($_GET['p']) && $_GET['p']){
 # students - Tuple of students and all attributes
 if(isset($_GET['r']) && $_GET['r']){
   #RESEARCH STUFF TODO test
-  //print("HELLO <br>");
+  print("HELLO <br>");
   $research = null;#pulls research info
   $RID = mysqli_real_escape_string($connect, $_GET['r']);
   $Rquery = "SELECT * FROM Research WHERE ID = $RID";
@@ -106,22 +108,23 @@ if(isset($_GET['r']) && $_GET['r']){
   $research = mysqli_fetch_array($Rsql);
   //session_close();
 
-  //print_r($research);
-  //print("HELLO <br>");
-  //print($RID."<br>");
+  print_r($research);
+  print("HELLO <br>");
+  print($RID."<br>");
 
   $students = null;#Pulls students that worked on the research project
   $data = null;
-  $RSquery = "SELECT * FROM Student WHERE Email IN (SELECT studentEmail FROM WorkOn WHERE researchID = $RID)";
+  $RSquery = "SELECT * FROM Student WHERE Email IN (SELECT studentEmail FROM WorkOn AS SE WHERE researchID = $RID)";
   $RSsql = mysqli_query($connect, $RSquery);
+  echo mysqli_error($connect);
   while($data = mysqli_fetch_array($RSsql)){
-    //print($data."test<br>");
+    print($data." test<br>");
     array_push($students, $data);
   }
 
-  //print($RSquery."<br>");
-  //print_r($students);
-  //print("HELLO <br>");
+  print($RSquery."<br>");
+  print_r($students);
+  print("HELLO <br>");
 
   $grants = null;#pulls the grants the research worked under
   $data = null;
@@ -131,8 +134,8 @@ if(isset($_GET['r']) && $_GET['r']){
     array_push($grants, $data);
   }
 
-  //print_r($grants);
-  //print("HELLO <br>");
+  print_r($grants);
+  print("HELLO <br>");
 
   $profs = null;#List of professors that worked on the proj
   $data = null;
@@ -141,8 +144,8 @@ if(isset($_GET['r']) && $_GET['r']){
   while($data = mysqli_fetch_array($RPsql)){
     array_push($profs,$data);
   }
-  //print_r($profs);
-  //print("HELLO <br>");
+  print_r($profs);
+  print("HELLO <br>");
 
 }
 

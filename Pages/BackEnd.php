@@ -121,7 +121,7 @@ if(isset($_GET['r']) && $_GET['r']){
 
   $grants = null;#pulls the grants the research worked under
   $data = null;
-  $RGquery = "SELECT Amount, year, ID, Organization FROM Grants JOIN FundedBy ON Grants.ID = FundedBy.researchID = $RID";
+  $RGquery = "SELECT Amount, year, ID, Organization FROM Grants LEFT JOIN FundedBy ON Grants.ID = FundedBy.researchID = $RID";
   $RGsql = mysqli_query($connect, $RGquery);
   while($data = mysqli_fetch_array($RGsql)){
 	  array_push($grants, $data);

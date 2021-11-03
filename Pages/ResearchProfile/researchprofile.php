@@ -94,20 +94,29 @@ endif;
                 <table class="table">
                     <thead>
                         <tr>
-                        <th scope="col" style = "text-align: center">Funds?</th>
+                        <th scope="col" style = "text-align: center">Students</th>
                         <th scope="col" style = "text-align: center">Grants Provided</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
+			<?php 
                           foreach($grants as $printgrant){
+		 	    echo "<tr>"; 
+                            echo "<td>{$printgrant['Organization']}</td>";
+                            echo "<td>{$printgrant['Year']}</td>";
+			    echo "<td>{$printgrant['Amount']}</td>";
+                            echo "</tr>";
+			  }?>
+                    </tbody>
+		    <tbody>
+			<?php
+			  foreach($students as $printstudents){
 			    echo "Hello"; 
 		 	    echo "<tr>"; 
-                            echo "<td>{$printpast['Organization']}</td>";
-                            echo "<td>{$printpast['Year']}</td>";
-			    echo "<td>{$printpast['Amount']}</td>";
+			    echo "<td>{$printstudents['Email']}</td>";
+			    echo "<td>{$printstudents['Name']}</td>";
                             echo "</tr>";
-                          }?>
+			  }?>
                     </tbody>
                 </table>
             </div>

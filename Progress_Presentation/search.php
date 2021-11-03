@@ -57,7 +57,7 @@
     <div class="container">
     <form method="get">
         <div class="row">
-            <div class="col-11">
+            <div class="col-10">
                 <div class="input-group">
                     <input type="text" class="form-control" aria-label="Text input with dropdown button" name="q">
                     <div class="input-group-append">
@@ -72,6 +72,7 @@
                     </div>
                 </div>
             </div>
+            <div class="col-1"></div>
             <div class="col-1">
                 <input class="btn btn-outline-secondary float-right" type="submit">
             </div>

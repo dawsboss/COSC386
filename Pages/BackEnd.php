@@ -100,17 +100,12 @@ if(isset($_GET['p']) && $_GET['p']){
 # students - Tuple of students and all attributes
 if(isset($_GET['r']) && $_GET['r']){
   #RESEARCH STUFF TODO test
-  print("HELLO <br>");
   $research = null;#pulls research info
   $RID = mysqli_real_escape_string($connect, $_GET['r']);
   $Rquery = "SELECT * FROM Research WHERE ID = $RID";
   $Rsql = mysqli_query($connect,$Rquery);
   $research = mysqli_fetch_array($Rsql);
   //session_close();
-
-  print_r($research);
-  print("HELLO <br>");
-  print($RID."<br>");
 
   $students = null;#Pulls students that worked on the research project
   $data = null;
@@ -122,21 +117,16 @@ if(isset($_GET['r']) && $_GET['r']){
     array_push($students, $data);
   }
 
-  print($RSquery."<br>");
   print_r($students);
-  print("HELLO <br>");
 
   $grants = null;#pulls the grants the research worked under
   $data = null;
-  //$RGquery = "SELECT * FROM Grants WHERE ID IN (SELECT grantID FROM FundedBy WHERE researchID = $RID)";
   $RGquery = "SELECT Amount, year, ID, Organization FROM Grants JOIN FundedBy ON Grants.ID = FundedBy.researchID = $RID";
   $RGsql = mysqli_query($connect, $RGquery);
   while($data = mysqli_fetch_array($RGsql)){
-    array_push($grants, $data);
+	  array_push($grants, $data);
   }
-
   print_r($grants);
-  print("HELLO <br>");
 
   $profs = null;#List of professors that worked on the proj
   $data = null;
@@ -146,7 +136,6 @@ if(isset($_GET['r']) && $_GET['r']){
     array_push($profs,$data);
   }
   print_r($profs);
-  print("HELLO <br>");
 
 }
 

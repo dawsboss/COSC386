@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--<link rel="stylesheet" href="style.css?v=<?php echo time();?>" type="text/css"/>-->
-<style>
-        <?php include "style.css" ?>
-</style>
+<!--<link rel="stylesheet" href="style.css?v=<?php //echo time();?>" type="text/css"/>-->
 <link rel="stylesheet" href="style.css"/>
 <meta name="viewport" content="width=device-width, initial scale=1">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -33,12 +29,15 @@
 <body>
 <div class="header">
         <h1><b>Admin edit</b></h1>
+        <!--<button class="button" onclick="history.go(-1)">Back </button>-->
         <form action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/tableMenu.php">
         <input type="submit" class="button" value="Back">
-      </form>       
+        </form>
+
 </div>
 <center>
 <?php
+session_start();
 //echo "<button class=\"button\" onclick=\"history.go(-1)\">Back </button>";//goes back to the table selection page
 if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){//connects to the database
         echo "CONNECTION SUCCESS";
@@ -57,7 +56,7 @@ if($r = $connect->query($query1)){
                 echo "<th>" . $hold->name . "</th>";
                   }
         echo "</tr>";
-        echo "</thead>";
+	echo "</thead>";
 }
 if($r = mysqli_query($connect, $query1)){
         while($row=mysqli_fetch_array($r)){
@@ -84,12 +83,13 @@ echo "<form name=\"getInfo\" action=\"\" method=\"post\">
         <input type=\"text\" name=\"key\" id=\"key\" placeholder=\"Enter the key for the attribute you entered\" style=\"width:300px;\"><br>
         <input type=\"submit\" value=\"submit\" class=\"button\">
         </form>";
-$att=$_POST['attribute'];
+$attribute=$_POST['attribute'];
 $k=$_POST['key'];
+$_SESSION['key']=$key;
 //echo "table name=$tableName";
 //echo "Attribute=$att";
 //echo "key=$k";
-$query2 = "SELECT * FROM $tableName where $att=\"$k\"";
+$query2 = "SELECT * FROM $tableName where $attribute=\"$k\"";
 $d=mysqli_query($connect,$query2);
 $info=mysqli_fetch_array($d);
 #echo "<br> Size of columnNames= " . sizeof($columnNames);
@@ -99,21 +99,29 @@ for ($i=0; $i < sizeof($columnNames);$i++){
                 <input type=\"hidden\" name=\"attribute\" id=\"attribute\" value=\"".$columnNames[$i]."\">
                 <input type=\"hidden\" name=\"table\" id=\"table\" value=\"$tableName\">
                 <input type=\"hidden\" name=\"toReplace\" id=\"toReplace\" value=\"".$info[$i]."\">
+                <input type=\"hidden\" name=\"keyValIn\" id=\"keyValIn\" value=\"$k\">
+                <input type=\"hidden\" name=\"keyAttIn\" id=\"keyAttIn\" value=\"$attribute\">
                 <input type=\"text\" name=\"input\" id=\"input\" value=\"".$info[$i]."\" style=\"width:300px;\">
                 <input type=\"submit\" value=\"Submit\" class=\"button\">
                 </form>";
 $toReplace=$_POST['toReplace'];
 $att=$_POST['attribute'];
 $replaceWith=$_POST['input'];
-//echo "table name=$tableName";
-//echo "Attribute=".$att;
-//echo "replace with =$replaceWith";
-  $query = "UPDATE $tableName SET $att=\"$replaceWith\" WHERE $att=\"$toReplace\"";
+$key=$_SESSION['key'];
+$keyAtt=$_POST['keyAttIn'];
+$keyVal=$_POST['keyValIn'];
+/*echo "table name=$tableName";
+echo "replace with =$replaceWith";
+echo "att=$att";
+echo "key=$key";
+echo "keyAtt=$keyAtt";*/
+$query = "UPDATE $tableName SET $att=\"$replaceWith\" WHERE $keyAtt=\"$keyVal\"";
+//echo "<br>Query=$query<br>";
 $test=$connect->query($query);
 if(!$test){
         //echo"<br>update query failed";
 }
-else{https://lamp.salisbury.edu/~jfernandez3/tableMenu.php
+else{
         //echo"<br>update query succeeded";
 }
 }
@@ -125,7 +133,10 @@ else{
 }
 mysqli_close($conneciton);
 ?>
+<form method="post" action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/showUpdate.php">
+    <input type="hidden" name="table" id="table" value="Department">
+     <input type="submit" class="button" value="View updated table">
+</form>
 </center>
 </body>
 </html>
-

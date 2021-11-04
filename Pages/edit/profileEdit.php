@@ -25,6 +25,11 @@ include("../BackEnd.php");
           </div>
         </div>
     </header>
+    <?php
+      if($connection = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){
+        //echo "<br> connection successful<br>";
+      }
+    ?>
     <div class="container">
         <div class= "row">
             <div class= "col-3" style="position: relative; top: -60px;">
@@ -37,8 +42,8 @@ include("../BackEnd.php");
               <input type="text" name="bio" id="bio" value="<?php echo $profile['Bio']; //$bio?>">
                         <h5 class="card-title">Contact</h5>
         <p class="card-text">Email:<br>
-             <input type="text" name="email" value="<?php echo $profile['Username'];?>@salisbury.edu">
-        </p>
+             <input type="text" name="email" value="<?php echo $profile['Username'];?>">@salisbury.edu
+          </p>
         <p class="card-text">Phone:<br><!--<form name="getPhone" action="" method="post">-->
                  <input type="text" name="phoneNum" value="<?php echo $profile['PhoneNum'];?>">
                  </p>
@@ -56,12 +61,12 @@ include("../BackEnd.php");
                             <center><textarea name="researchStatement" rows="3" cols="80"><?php echo $profile['ResearchStatement'];?></textarea></center>
                             </textarea>
                         </p>
-                                  </div>
+                    </div>
                 </div>
                 <h3> Current Research</h3>
                 <table class="table">
                     <thead>
-                        <tr>
+                      <tr>
                         <th scope="col">Title</th>
                         <th scope="col">Description</th>
                         </tr>
@@ -84,7 +89,7 @@ include("../BackEnd.php");
                 <table class="table">
                     <thead>
                         <tr>
-                        <th scope="col">Title</th>
+                          <th scope="col">Title</th>
                         <th scope="col">Description</th>
                         </tr>
                     </thead>
@@ -101,14 +106,27 @@ include("../BackEnd.php");
                                 echo "</tr>";
                                 $count=$count+1;
                               }
-                            ?>
+                      ?>
                     </tbody>
                 </table>
             </div>
         </div>
         </div>
-    </div>
+  </div>
    <center><input type="submit" value="Submit Changes" class="button"></center>
+<?php
+                         if($_POST['bio']!=""){
+                         $query="UPDATE Professor SET Bio=\"".$_POST['bio']."\", ResearchStatement=\"".$_POST['researchStatement']."\", PhoneNum=\"".$_POST['phoneNum']."\", OfficeLoc=\"".$_POST['office']."\" WH$                         }
+                         //"\"", ResearchStatement=\"".$_POST['researchStatement']."\", PhoneNum=\"".$_POST['phoneNum']."\", OfficeLoc=\"".$_POST['office'].
+                         //echo $query;
+                         $test=mysqli_query($connection, $query);
+                         if($test){
+                           echo "<br> update query succeeded";
+                         }
+                         else{
+                           echo "<br> update query failed";
+                         }
+   ?>
   </form>
 </body>
 </html>

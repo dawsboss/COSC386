@@ -34,7 +34,7 @@
 }
 </style>
 <div class="header">
-        <h1><b>Admin edit</b></h1>
+        <h1><b>Admin Edit</b></h1>
 </div>
 <center>
 <label for "table" style="font-size: 150%;"> Select a Table: </label>

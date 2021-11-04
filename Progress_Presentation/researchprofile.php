@@ -2,9 +2,9 @@
 
 <?php
 session_start();
-include("BackEnd.php");
+include("../BackEnd.php");
 if ( !$_GET['r'] ):
-  header('Location: search.php');#TODO Go to search page
+  header('Location: ../Search/testing.php');#TODO Go to search page
 endif;
 
 
@@ -22,36 +22,8 @@ endif;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  </head>
 <body>
-    <header class="header" >
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Salisbury University</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="search.php">Search</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="login.php">Login</a>
-      </li>
-      <!--<li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>-->
-    </ul>
-  </div>
-</nav>
+    <header class="header" style="position: relative; top: -50px;">
+    <?php include ("../navbar.php");?>
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
           <?php
@@ -62,7 +34,8 @@ endif;
             if ( !$research ):
               echo "<h1 class='text-center'>NO PROFILE</h1>";
             else:
-              echo "<h1 class='text-center'>{$research['Title']}</h1>";
+              echo session_id();
+              echo "<h1 class='text-center'>{$research['Title']}<br>".print_r($_SESSION)."<br>".session_id()."</h1>";
             endif;
           ?>
           </div>
@@ -86,28 +59,54 @@ endif;
                 <div class="mb-4 card" style="width: 55rem;">
                     <div class="card-body">
                         <h5 class="card-title">Abstract</h5>
-                        <p class="card-text"><?php echo $research['Abstract'];?>I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I haye Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant I hate Grant</p>
+                        <p class="card-text"><?php echo $research['Abstract'];?></p>
                     </div>
                 </div>
-                <h3> Research Information</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">Funds?</th>
-                        <th scope="col">Grants Provided</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                          foreach($grants as $printgrant){
-                            echo "<tr>"; 
-                            echo "<td>{$printpast['Organization']}</td>";
-                            echo "<td>{$printpast['Year']}</td>";
-                            echo "<td>{$printpast['Amount']}</td>";
-                            echo "</tr>";
-                          } 
-                        ?>
-                    </tbody>
+		<table class="table" border="5">
+		<tr>
+			<th colspan = "2">
+			 <h3 style = "text-align: center"><br> Students </h3>
+			</th>
+		</tr>
+				<tr>
+				 <td> Test 1 </td>
+				 <td> Test 2 </td>
+				</tr>
+				<tr>
+				 <td> Test 3 </td>
+				 <td> Test 4 </td>
+				</tr>
+				<?php
+			  	foreach($students as $printstudents){
+			    	echo "Hello"; 
+		 	    	echo "<tr>"; 
+			    	echo "<td>{$printstudents['Email']}</td>";
+			    	echo "<td>{$printstudents['Name']}</td>";
+                            	echo "</tr>";
+			  	}?>
+                </table>
+		<table class="table" border="5">
+		<tr>
+			<th colspan = "2">
+			 <h3 style = "text-align: center"><br> Grants Provided </h3>
+			</th>
+		</tr>
+				<tr>
+				 <td> Test 1 </td>
+				 <td> Test 2 </td>
+				</tr>
+				<tr>
+				 <td> Test 3 </td>
+				 <td> Test 4 </td>
+				</tr>
+				<?php 
+                          	foreach($grants as $printgrant){
+		 	    	echo "<tr>"; 
+                            	echo "<td>{$printgrant['Organization']}</td>";
+                            	echo "<td>{$printgrant['Year']}</td>";
+			    	echo "<td>{$printgrant['Amount']}</td>";
+                            	echo "</tr>";
+			  	}?>
                 </table>
             </div>
         </div>

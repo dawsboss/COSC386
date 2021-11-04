@@ -1,23 +1,26 @@
-
 .button{
-  color: #910101;
+  background-color: #910101;
+  color: #FFFFFF;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  margin-bottom:15px;
+  border-radius: 25%;
+  font-family: Helvetica;
 }
 .button:hover{
         background-color: #b00000;
 }
+
 .imageRound {
         border-radius: 20px;
 }
-.header{
-        padding: 60px;
-        text-align: center;
-        background-color: #ededed;
-        color: #000000;
-        font-size: 30px;
-        font-family: Helvetica;
+
+.imageRound img{
+        width: auto;
+}
+img{
+  border-radius:0%;
 }

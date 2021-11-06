@@ -43,7 +43,7 @@ include("../BackEnd.php");
                         <h5 class="card-title">Contact</h5>
         <p class="card-text">Email:<br>
              <input type="text" name="email" value="<?php echo $profile['Username'];?>">@salisbury.edu
-          </p>
+        </p>
         <p class="card-text">Phone:<br><!--<form name="getPhone" action="" method="post">-->
                  <input type="text" name="phoneNum" value="<?php echo $profile['PhoneNum'];?>">
                  </p>
@@ -56,7 +56,7 @@ include("../BackEnd.php");
             <div class="col-9" style="position: relative; top: -60px;">
                 <div class="mb-4 card" style="width: 55rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Research Statement</h5>
+                      <h5 class="card-title">Research Statement</h5>
                         <p class="card-text">
                             <center><textarea name="researchStatement" rows="3" cols="80"><?php echo $profile['ResearchStatement'];?></textarea></center>
                             </textarea>
@@ -66,7 +66,7 @@ include("../BackEnd.php");
                 <h3> Current Research</h3>
                 <table class="table">
                     <thead>
-                      <tr>
+                        <tr>
                         <th scope="col">Title</th>
                         <th scope="col">Description</th>
                         </tr>
@@ -77,11 +77,15 @@ include("../BackEnd.php");
                          foreach($currentresearch as $printpast){
                            $tempTitle=$printpast['Title'];
                            $tempDes=$printpast['Description'];
+                           $currId=$printpast['ID'];
+                           $currentIDs=[$countCurr];
+                           array_push($currentIDs,$currId);
                             echo "<tr>";
                             echo "<td>";
                             echo "<textarea name=\"currentTitle".$countCurr."\" rows=\"3\" cols=\"40\">$tempTitle</textarea></td>
                               <td><textarea name=\"currentDes".$countCurr."\" rows=\"4\" cols=\"70\">$tempDes</textarea></td>
-                            </tr>";
+                              </tr>";
+                            $countCurr=$countCurr+1;
                           } ?>
                     </tbody>
                 </table>
@@ -89,13 +93,13 @@ include("../BackEnd.php");
                 <table class="table">
                     <thead>
                         <tr>
-                          <th scope="col">Title</th>
+                        <th scope="col">Title</th>
                         <th scope="col">Description</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
-                             $countPast=0;
+                            $countPast=0;
                               foreach($pastresearch as $printpast){
                                 $tempTitle=$printpast['Title'];
                                 $tempDes=$printpast['Description'];
@@ -110,13 +114,13 @@ include("../BackEnd.php");
                     </tbody>
                 </table>
             </div>
+      </div>
         </div>
-        </div>
-  </div>
+    </div>
    <center><input type="submit" value="Submit Changes" class="button"></center>
 <?php
                          if($_POST['bio']!=""){
-                         $query="UPDATE Professor SET Bio=\"".$_POST['bio']."\", ResearchStatement=\"".$_POST['researchStatement']."\", PhoneNum=\"".$_POST['phoneNum']."\", OfficeLoc=\"".$_POST['office']."\" WH$                         }
+                         $query="UPDATE Professor SET Bio=\"".$_POST['bio']."\", ResearchStatement=\"".$_POST['researchStatement']."\", PhoneNum=\"".$_POST['phoneNum']."\", OfficeLoc=\"".$_POST['office']."\" WHERE Name=\"".$profile['Nam$                         }
                          //"\"", ResearchStatement=\"".$_POST['researchStatement']."\", PhoneNum=\"".$_POST['phoneNum']."\", OfficeLoc=\"".$_POST['office'].
                          //echo $query;
                          $test=mysqli_query($connection, $query);
@@ -125,6 +129,25 @@ include("../BackEnd.php");
                          }
                          else{
                            echo "<br> update query failed";
+                         }
+                         for($i=0; $i<$countCurr; $i++){
+                           $temp="currentTitle".$i;
+                           echo "<br>".$_POST[$temp];
+                           $tempTitle=$_POST[$temp];
+                           $temp="currentDes".$i;
+                           echo "<br>".$_POST[$temp];
+                           $tempDes=$_POST[$temp];
+                           echo "<br>ID: ".$currentIDs[$i];
+                           $queryCurr= "UPDATE Research SET Description=\"$tempDes\", Title=\"$tempTitle\" where ID=".$currentIDs[$i];
+                         echo "<br>".$queryCurr;
+                         }
+                         for($i=0; $i<$count;$i++){
+                         $temp="pastTitle".$i;
+                           echo "<br>".$_POST[$temp];
+                           $tempTitle=$_POST[$temp];
+                           $temp="pastDes".$i;
+                           echo "<br>".$_POST[$temp];
+                           $tempDes=$_POST[$temp];
                          }
    ?>
   </form>

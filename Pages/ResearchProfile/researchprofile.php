@@ -51,7 +51,7 @@ endif;
                         <h5 class="card-title">Contact</h5>
         <p class="card-text">Link(s):<br><?php echo $research['Link'];?></p>
         <p class="card-text">Phone:<br><?php echo $profile['PhoneNum'];?></p>
-        <p class="card-text">Office:<br><?php echo $profile['OfficeLoc'];?>Sample data to show that the box will stretch down as you add more text so it fits the screen better. Man this really should have gone in the Description portion but oh well... here we are</p>
+        <p class="card-text">Office:<br><?php echo $profile['OfficeLoc'];?></p>
                     </div>
                 </div>
             </div>

@@ -109,7 +109,7 @@ if(isset($_GET['r']) && $_GET['r']){
 
   $students = null;#Pulls students that worked on the research project
   $data = null;
-  $RSquery = "SELECT * FROM Student WHERE Email IN (SELECT studentEmail FROM WorkOn AS SE WHERE researchID = $RID)";
+  $RSquery = "SELECT * FROM Student WHERE Email IN (SELECT studentEmail AS SE FROM WorkOn WHERE researchID = $RID)";
   $RSsql = mysqli_query($connect, $RSquery);
   echo mysqli_error($connect);
   while($data = mysqli_fetch_array($RSsql)){

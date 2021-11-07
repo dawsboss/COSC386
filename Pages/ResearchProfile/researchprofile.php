@@ -44,7 +44,7 @@ endif;
     <div class="container"> 
         <div class= "row">       
             <div class= "col-3" style="position: relative; top: -85px;">
-                <div class="mt-4 card" style="width: 17rem;">
+                <div class="mt-4 card" style="width: 17rem; border: 4px solid black">
                     <div class="card-body">
                         <h5 class="card-title">Description</h5>
         <p class="card-text"><?php echo $research['Description'];?>
@@ -56,58 +56,50 @@ endif;
                 </div>
             </div>
             <div class="col-9" style="position: relative; top: -60px; height: auto">
-                <div class="mb-4 card" style="width: 55rem;">
+                <div class="mb-4 card" style="width: 55rem; border: 4px solid black">
                     <div class="card-body">
                         <h5 class="card-title">Abstract</h5>
                         <p class="card-text"><?php echo $research['Abstract'];?></p>
                     </div>
                 </div>
-		<table class="table" border="5">
-		<tr>
-			<th colspan = "2">
-			 <h3 style = "text-align: center"><br> Students </h3>
-			</th>
-		</tr>
-				<tr>
-				 <td> Test 1 </td>
-				 <td> Test 2 </td>
-				</tr>
-				<tr>
-				 <td> Test 3 </td>
-				 <td> Test 4 </td>
-				</tr>
+			<h3 style = "text-align: center"><br> Students </h3>
+			<table class = "table" border = "5" style = "width: 55rem">
+				<thead>
+					<tr>
+					<th scope = "col"> Email</th>
+					<th scope = "col"> Name</th>
+					</tr>
+				</thead>
+				<tbody>
 				<?php
 			  	foreach($students as $printstudents){
-			    	echo "Hello"; 
-		 	    	echo "<tr>"; 
-			    	echo "<td>{$printstudents['Email']}</td>";
-			    	echo "<td>{$printstudents['Name']}</td>";
-                            	echo "</tr>";
-			  	}?>
-                </table>
-		<table class="table" border="5">
-		<tr>
-			<th colspan = "2">
-			 <h3 style = "text-align: center"><br> Grants Provided </h3>
-			</th>
-		</tr>
-				<tr>
-				 <td> Test 1 </td>
-				 <td> Test 2 </td>
-				</tr>
-				<tr>
-				 <td> Test 3 </td>
-				 <td> Test 4 </td>
-				</tr>
+		 	    	    echo "<tr>"; 
+			     	    echo "<td>{$printstudents['Email']}</td>";
+			    	    echo "<td>{$printstudents['Name']}</td>";
+                            	    echo "</tr>";
+				}?>
+				</tbody>
+                	</table>
+			<h3 style = "text-align: center"><br> Grants </h3>
+			<table class = "table" border = "5" style = "width: 55rem">
+				<thead>
+					<tr>
+					<th scope = "col"> Organization</th>
+					<th scope = "col"> Year</th>
+					<th scope = "col"> Amount</th>
+					</tr>
+				</thead>
+				<tbody>
 				<?php 
                           	foreach($grants as $printgrant){
-		 	    	echo "<tr>"; 
-                            	echo "<td>{$printgrant['Organization']}</td>";
-                            	echo "<td>{$printgrant['Year']}</td>";
-			    	echo "<td>{$printgrant['Amount']}</td>";
-                            	echo "</tr>";
+		 	    	    echo "<tr>"; 
+                                    echo "<td>{$printgrant['Organization']}</td>";
+                            	    echo "<td>{$printgrant['Year']}</td>";
+			    	    echo "<td>{$printgrant['Amount']}</td>";
+                            	    echo "</tr>";
 			  	}?>
-                </table>
+				</tbody>
+                	</table>
             </div>
         </div>
         </div>

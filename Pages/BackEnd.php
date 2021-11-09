@@ -112,21 +112,24 @@ if(isset($_GET['r']) && $_GET['r']){
   $RSquery = "SELECT * FROM Student WHERE Email IN (SELECT studentEmail AS SE FROM WorkOn WHERE researchID = $RID)";
   $RSsql = mysqli_query($connect, $RSquery);
   echo mysqli_error($connect);
-  while($data = mysqli_fetch_array($RSsql)){
-    print($data." test<br>");
-    array_push($students, $data);
-  }
-
+  $students = mysqli_fetch_array($RSsql);
+  //while($data = mysqli_fetch_array($RSsql)){
+    //print($data." test<br>");
+    //array_push($students, $data);
+  //}
+  print("student test\n");
   print_r($students);
 
   $grants = null;#pulls the grants the research worked under
   $data = null;
-  $RGquery = "SELECT Amount AS A, year AS B, ID AS C, Organization AS D FROM Grants LEFT JOIN FundedBy ON Grants.ID = FundedBy.researchID = $RID";
+  $RGquery = "SELECT Organization, year, Amount FROM Grants WHERE ID IN (SELECT grantID FROM FundedBy WHERE researchID = $RID)";
   if (!$RGquery ) echo mysqli_error($connect);
   $RGsql = mysqli_query($connect, $RGquery);
-  while($data = mysqli_fetch_array($RGsql)){
-	  array_push($grants, $data);
-  }
+  $grants = mysqli_fetch_array($RGsql);
+// while($data = mysqli_fetch_array($RGsql)){
+//	  array_push($grants, $data);
+  //}
+  print("Grants test\n");
   print_r($grants);
 
   $profs = null;#List of professors that worked on the proj

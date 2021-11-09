@@ -72,11 +72,15 @@ endif;
 				</thead>
 				<tbody>
 				<?php
-			  	foreach($students as $printstudents){
+	      			$EmailCount = 0;
+	      			$NameCount = 1;
+	      			foreach($students as $printstudents){
 		 	    	    echo "<tr>"; 
-			     	    echo "<td>{$printstudents['Email']}</td>";
-			    	    echo "<td>{$printstudents['Name']}</td>";
-                            	    echo "</tr>";
+			     	    echo "<td>{$students[$EmailCount]}</td>";
+			    	    echo "<td>{$students[$NameCount]}</td>";
+				    echo "</tr>";
+				    $EmailCount += 2;
+				    $NameCount += 2;
 				}?>
 				</tbody>
                 	</table>
@@ -91,12 +95,18 @@ endif;
 				</thead>
 				<tbody>
 				<?php 
+				$OrgCount = 0;
+			        $yearCount = 1;
+		                $AmountCount = 2;		    
                           	foreach($grants as $printgrant){
-		 	    	    echo "<tr>"; 
-                                    echo "<td>{$printgrant['Organization']}</td>";
-                            	    echo "<td>{$printgrant['Year']}</td>";
-			    	    echo "<td>{$printgrant['Amount']}</td>";
-                            	    echo "</tr>";
+				    echo "<tr>"; 
+                                    echo "<td>{$grants[$OrgCount]}</td>";
+                            	    echo "<td>{$grants[$yearCount]}</td>";
+			    	    echo "<td>{$grants[$AmountCount]}</td>";
+				    echo "</tr>";
+				    $OrgCount += 3;
+				    $yearCount += 3;
+				    $AmountCount += 3;
 			  	}?>
 				</tbody>
                 	</table>

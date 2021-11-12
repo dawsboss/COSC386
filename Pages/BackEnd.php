@@ -1,7 +1,7 @@
 <?php
 
 if( $connect = @mysqli_connect('localhost', 'gdawson1', 'gdawson1','SUResearchProjDB') ){
-  echo "<p>Connect</p>";
+//  echo "<p>Connect</p>";
 }
 session_start();
 #init session vars
@@ -40,22 +40,16 @@ if(isset($_POST['username']) && $_POST['username'] && isset($_POST['password']) 
   print("u:{$_POST['username']} | p:{$_POST['password']}");
   $logUser = null;
   $Luname = mysqli_real_escape_string($connect,$_POST["username"]);
-  print($Luname);
   $Lpass = mysqli_real_escape_string($connect,$_POST["password"]);
-  print($Lpass);
   $Lquery = "SELECT * FROM Login WHERE Username = \"$Luname\"";
   $Lsql = mysqli_query($connect, $Lquery);
   $logUser = mysqli_fetch_array($Lsql);
   if($logUser){#There is a username found
-    print("UserName correct<br>");
-    print("Here:".hash('sha256',$Lpass)." | DB: ".$logUser['Password']);
     if(hash('sha256',$Lpass) == $logUser['Password']){#Then valid login
       $_SESSION['logged'] = $Luname;
-      print("<br> Logged");
     }
     if($logUser['Admin'] == 1){
       $_SESSION['admin'] = true;
-      print("<br> isAdmin");
     }
   }
   print("<br>");
@@ -107,32 +101,31 @@ if(isset($_GET['r']) && $_GET['r']){
   $research = mysqli_fetch_array($Rsql);
   //session_close();
 
-  $students = null;#Pulls students that worked on the research project
+  $students = [];#Pulls students that worked on the research project
   $data = null;
   $RSquery = "SELECT * FROM Student WHERE Email IN (SELECT studentEmail AS SE FROM WorkOn WHERE researchID = $RID)";
   $RSsql = mysqli_query($connect, $RSquery);
   echo mysqli_error($connect);
-  $students = mysqli_fetch_array($RSsql);
-  //while($data = mysqli_fetch_array($RSsql)){
-    //print($data." test<br>");
-    //array_push($students, $data);
-  //}
+  //$students = mysqli_fetch_array($RSsql);
+  while($data = mysqli_fetch_array($RSsql)){
+    print($data." test<br>");
+    array_push($students, $data);
+  }
   print("student test\n");
   print_r($students);
 
-  $grants = null;#pulls the grants the research worked under
+  $grants = [];#pulls the grants the research worked under
   $data = null;
   $RGquery = "SELECT Organization, year, Amount FROM Grants WHERE ID IN (SELECT grantID FROM FundedBy WHERE researchID = $RID)";
   if (!$RGquery ) echo mysqli_error($connect);
   $RGsql = mysqli_query($connect, $RGquery);
-  $grants = mysqli_fetch_array($RGsql);
-// while($data = mysqli_fetch_array($RGsql)){
-//	  array_push($grants, $data);
-  //}
+  while($data = mysqli_fetch_array($RGsql)){
+    array_push($grants, $data);
+  }
   print("Grants test\n");
   print_r($grants);
 
-  $profs = null;#List of professors that worked on the proj
+  $profs = [];#List of professors that worked on the proj
   $data = null;
   $RPquery="SELECT * FROM Professor WHERE Username in (SELECT Username FROM Has where researchID = $RID)";
   $RPsql = mysqli_query($RPquery);

@@ -22,7 +22,7 @@ endif;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  </head>
 <body>
-    <header class="header" style="position: relative; top: -50px;">
+    <header class="header" style="position: relative; margin-bottom: 100px;">
     <?php include ("../navbar.php");?>
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
@@ -32,10 +32,9 @@ endif;
               echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
             endif;
             if ( !$research ):
-              echo "<h1 class='text-center'>NO PROFILE</h1>";
+              echo "<h1 class='text-center'>NO RESEARCH</h1>";
             else:
-              echo session_id();
-              echo "<h1 class='text-center'>{$research['Title']}<br>".print_r($_SESSION)."<br>".session_id()."</h1>";
+              echo "<h1 class='text-center'>{$research['Title']}</h1>";
             endif;
           ?>
           </div>
@@ -70,20 +69,16 @@ endif;
 					<th scope = "col"> Name</th>
 					</tr>
 				</thead>
-				<tbody>
-				<?php
-	      			$EmailCount = 0;
-	      			$NameCount = 1;
-	      			foreach($students as $printstudents){
-		 	    	    echo "<tr>"; 
-			     	    echo "<td>{$students[$EmailCount]}</td>";
-			    	    echo "<td>{$students[$NameCount]}</td>";
-				    echo "</tr>";
-				    $EmailCount += 2;
-				    $NameCount += 2;
-				}?>
-				</tbody>
-                	</table>
+        <tbody>
+        <?php
+              foreach($students as $printstudents){
+                echo "<tr>"; 
+                echo "<td>{$printstudents['Email']}</td>";
+                echo "<td>{$printstudents['Name']}</td>";
+                echo "</tr>";
+        }?>
+        </tbody>
+      </table>
 			<h3 style = "text-align: center"><br> Grants </h3>
 			<table class = "table" border = "5" style = "width: 55rem">
 				<thead>
@@ -94,20 +89,15 @@ endif;
 					</tr>
 				</thead>
 				<tbody>
-				<?php 
-				$OrgCount = 0;
-			        $yearCount = 1;
-		                $AmountCount = 2;		    
-                          	foreach($grants as $printgrant){
-				    echo "<tr>"; 
-                                    echo "<td>{$grants[$OrgCount]}</td>";
-                            	    echo "<td>{$grants[$yearCount]}</td>";
-			    	    echo "<td>{$grants[$AmountCount]}</td>";
-				    echo "</tr>";
-				    $OrgCount += 3;
-				    $yearCount += 3;
-				    $AmountCount += 3;
-			  	}?>
+        <?php 
+          foreach($grants as $printgrant){
+            echo "<tr>"; 
+            echo "<td>{$printgrant['Organization']}</td>";
+            echo "<td>{$printgrant['year']}</td>";
+            echo "<td>{$printgrant['Amount']}</td>";
+            echo "</tr>";
+          }
+        ?>
 				</tbody>
                 	</table>
             </div>

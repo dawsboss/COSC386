@@ -34,8 +34,8 @@ include("../BackEnd.php");
 
 
 
-    <header class="header" style="position: relative; top: -50px;">
-    <?php include ("../navbar.php"); ?>
+    <header class="header" style="position: relative; margin-bottom: 100px;">
+      <?php include ("../navbar.php"); ?>
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
             <?php
@@ -43,10 +43,11 @@ include("../BackEnd.php");
               echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
               endif;
             ?>
-            <h1 class="text-center"><?php echo $profile['Name']; echo "<br>";print_r($_SESSION);echo "<br>";echo session_id();?></h1>
+            <h1 class="text-center"><?php echo $profile['Name'];?></h1>
           </div>
         </div>
     </header>
+    
     <div class="container"> 
         <div class= "row">       
             <div class= "col-3" style="position: relative; top: -60px;">

@@ -111,8 +111,6 @@ if(isset($_GET['r']) && $_GET['r']){
     print($data." test<br>");
     array_push($students, $data);
   }
-  print("student test\n");
-  print_r($students);
 
   $grants = [];#pulls the grants the research worked under
   $data = null;
@@ -122,8 +120,6 @@ if(isset($_GET['r']) && $_GET['r']){
   while($data = mysqli_fetch_array($RGsql)){
     array_push($grants, $data);
   }
-  print("Grants test\n");
-  print_r($grants);
 
   $profs = [];#List of professors that worked on the proj
   $data = null;
@@ -132,8 +128,6 @@ if(isset($_GET['r']) && $_GET['r']){
   while($data = mysqli_fetch_array($RPsql)){
     array_push($profs,$data);
   }
-  print_r($profs);
-
 }
 
 #Editing Page Querying

@@ -80,12 +80,12 @@ if($r = $connect->query($query1)){
                 $count++;
         }
 }
-$keyQuery="SHOW FIELDS FROM $tableName";
+$keyQuery="show fields from $tableName";
 $getKeys=mysqli_query($connect, $keyQuery);
 $keys=array();
 $keyCount=0;
-while($row=mysqli_fetch_array($result)){
-  if($row['Key']!=NULL){
+while($row=mysqli_fetch_array($getKeys)){
+  if($row['Key']!=Null){
     $keys[$keyCount]=$row['Key'];
     $keyCount++;
   }

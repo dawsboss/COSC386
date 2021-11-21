@@ -17,7 +17,7 @@
 <link href="style.css" rel="stylesheet">
 </head>
 <body>
-<!-- <style>
+<style>
 .button{
   background-color:#910101;
   color: #ffffff;
@@ -32,7 +32,7 @@
         color=#ffffff;
         background-color: #b00000;
 }
-</style> -->
+</style>
 <div class="header">
         <h1><b>Admin Edit</b></h1>
 </div>

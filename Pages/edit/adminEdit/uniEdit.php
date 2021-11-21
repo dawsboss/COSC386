@@ -25,10 +25,11 @@
         background-color: #b00000;
 }
 </style>
+  <title>Admin Edit <?php echo $_POST['table'];?></title>
 </head>
 <body>
 <div class="header">
-        <h1><b>Admin edit</b></h1>
+        <h1><b>Admin Edit</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->
         <form action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/tableMenu.php">
         <input type="submit" class="button" value="Back">
@@ -45,7 +46,9 @@ if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearc
 else{
         echo "Connection Error";
 }
-$tableName=$_POST['table'];//gets the table from the previous page or this page
+if(isset($_SESSION['table'])){
+  $tableName=$_SESSION['table'];//gets the table from the previous page or this page
+}
 $query1 = "SELECT * FROM $tableName";//to display the table
 $columnNames=array();//gets the names of the columns
 $count=0;
@@ -53,10 +56,10 @@ if($r = $connect->query($query1)){
         echo "<table = border='1'>";
         echo "<thead><tr>";
         while($hold=$r->fetch_field()){
-                echo "<th>" . $hold->name . "</th>";
+		echo "<th>" . $hold->name . "</th>";
                   }
         echo "</tr>";
-	echo "</thead>";
+        echo "</thead>";
 }
 if($r = mysqli_query($connect, $query1)){
         while($row=mysqli_fetch_array($r)){
@@ -110,12 +113,7 @@ $replaceWith=$_POST['input'];
 $key=$_SESSION['key'];
 $keyAtt=$_POST['keyAttIn'];
 $keyVal=$_POST['keyValIn'];
-/*echo "table name=$tableName";
-echo "replace with =$replaceWith";
-echo "att=$att";
-echo "key=$key";
-echo "keyAtt=$keyAtt";*/
-$query = "UPDATE $tableName SET $att=\"$replaceWith\" WHERE $keyAtt=\"$keyVal\"";
+	$query = "UPDATE $tableName SET $att=\"$replaceWith\" WHERE $keyAtt=\"$keyVal\"";
 //echo "<br>Query=$query<br>";
 $test=$connect->query($query);
 if(!$test){
@@ -134,7 +132,7 @@ else{
 mysqli_close($conneciton);
 ?>
 <form method="post" action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/showUpdate.php">
-    <input type="hidden" name="table" id="table" value="Department">
+<input type="hidden" name="table" id="table" value="<?php echo $tableName;?>">
      <input type="submit" class="button" value="View updated table">
 </form>
 </center>

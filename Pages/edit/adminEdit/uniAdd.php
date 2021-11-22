@@ -29,7 +29,7 @@
 </head>
 <body>
 <div class="header">
-        <h1><b>Admin Edit</b></h1>
+        <h1><b>Admin Add</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->
         <form action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/tableMenu.php">
         <input type="submit" class="button" value="Back">
@@ -56,7 +56,7 @@ if($r = $connect->query($query1)){
         echo "<table = border='1'>";
         echo "<thead><tr>";
         while($hold=$r->fetch_field()){
-		echo "<th>" . $hold->name . "</th>";
+            echo "<th>" . $hold->name . "</th>";
                   }
         echo "</tr>";
         echo "</thead>";
@@ -80,54 +80,44 @@ if($r = $connect->query($query1)){
                 $count++;
         }
 }
-echo "<form name=\"getInfo\" action=\"\" method=\"post\">
-        <input type=\"hidden\" name=\"table\" id=\"table\" value=\"$tableName\">
-        <input type=\"text\" name=\"attribute\" id=\"attribute\" placeholder=\"Enter the name of the attribute you would like to change\" style=\"width:300px;\"><br>
-        <input type=\"text\" name=\"key\" id=\"key\" placeholder=\"Enter the key for the attribute you entered\" style=\"width:300px;\"><br>
-        <input type=\"submit\" value=\"submit\" class=\"button\">
-        </form>";
-$attribute=$_POST['attribute'];
-$k=$_POST['key'];
-$_SESSION['key']=$key;
-//echo "table name=$tableName";
-//echo "Attribute=$att";
-//echo "key=$k";
-$query2 = "SELECT * FROM $tableName where $attribute=\"$k\"";
-$d=mysqli_query($connect,$query2);
-$info=mysqli_fetch_array($d);
-#echo "<br> Size of columnNames= " . sizeof($columnNames);
+$keyQuery="show fields from $tableName";
+$getKeys=mysqli_query($connect, $keyQuery);
+$keys=array();
+$keyCount=0;
+while($row=mysqli_fetch_array($getKeys)){
+  if($row['Key']!=Null){
+    $keys[$keyCount]=$row['Field'];
+    $keyCount++;
+  }
+}
+echo "<form name=\"mainForm\" method=\"post\">";
 for ($i=0; $i < sizeof($columnNames);$i++){
-        echo"<form name=\"".$columnNames[$i]."\" action =\"\" method=\"post\">
-                <label>".$columnNames[$i]."</label>
-                <input type=\"hidden\" name=\"attribute\" id=\"attribute\" value=\"".$columnNames[$i]."\">
-                <input type=\"hidden\" name=\"table\" id=\"table\" value=\"$tableName\">
-                <input type=\"hidden\" name=\"toReplace\" id=\"toReplace\" value=\"".$info[$i]."\">
-                <input type=\"hidden\" name=\"keyValIn\" id=\"keyValIn\" value=\"$k\">
-                <input type=\"hidden\" name=\"keyAttIn\" id=\"keyAttIn\" value=\"$attribute\">
-                <input type=\"text\" name=\"input\" id=\"input\" value=\"".$info[$i]."\" style=\"width:300px;\">
-                <input type=\"submit\" value=\"Submit\" class=\"button\">
-                </form>";
-$toReplace=$_POST['toReplace'];
-$att=$_POST['attribute'];
-$replaceWith=$_POST['input'];
-$key=$_SESSION['key'];
-$keyAtt=$_POST['keyAttIn'];
-$keyVal=$_POST['keyValIn'];
-	$query = "UPDATE $tableName SET $att=\"$replaceWith\" WHERE $keyAtt=\"$keyVal\"";
-//echo "<br>Query=$query<br>";
-$test=$connect->query($query);
-if(!$test){
-        //echo"<br>update query failed";
+  if(in_array($columnNames[$i],$keys)){
+    echo "<label>".$columnNames[$i]." (Required) </label>
+      <input type=\"hidden\" name=\"keyAttIn".$i."\" id=\"keyAttIn".$i."\" value=\"$columnNames\">
+      <input type=\"text\" name=\"input".$i."\" id=\"input".$i."\" value=\"".$info[$i]."\" style=\"width:300px;\" required>";
+    }
+    else{
+      echo"<label>".$columnNames[$i]."</label>
+                <input type=\"hidden\" name=\"keyAttIn".$i."\" id=\"keyAttIn".$i."\" value=\"$columnNames\">
+                <input type=\"text\" name=\"input".$i."\" id=\"input".$i."\" value=\"".$info[$i]."\" style=\"width:300px;\">";
+    }
+    echo "<br>";
+}
+echo "<input type=\"submit\" value=\"Submit\" class=\"button\">
+      </form>";
+$addQuery="INSERT INTO $tableName VALUES ('".$_POST['input0']."'";
+for($i=1; $i <sizeof($columnNames); $i++){
+  $addQuery.=", '".$_POST['input'.$i]."'";
+}
+$addQuery.=");";
+echo "Add Query= $addQuery\n";
+$a=mysqli_query($connect, $addQuery);
+if($a){
+     echo "Query Success\n";
 }
 else{
-        //echo"<br>update query succeeded";
-}
-}
-if(!$d){
-        //echo "<br>The table query failed";
-}
-else{
-        //echo "<br>The table query succeeded";
+  echo "Query Unsuccessfull\n";
 }
 mysqli_close($conneciton);
 ?>

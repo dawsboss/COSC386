@@ -38,7 +38,7 @@
 </div>
 <center>
 <label for "table" style="font-size: 150%;"> Select a Table: </label>
-            <form action="uniEdit.php" method="post">
+            <form method="post">
                      <select name="table" id="table">
                                      <option value="Department">Department</option>
                                      <option value="FundedBy">Funded By</option>
@@ -52,8 +52,27 @@
                                         <option value="WorkOn">Work On</option>
                                         </select>
                                         <br>
-                                        <input type="submit" name="submit" value="Go!" class="button">
+                                        <input type="submit" name="editButton" value="Edit" class="button">
+                                        <input type="submit" name="addButton" value="Add" class="button">
+                                        <input type="submit" name="deleteButton" value="Delete" class="button">
                                     </form>
-</center>
+        </center>
+<?php
+session_start();
+$_SESSION['table']=$_POST['table'];
+echo $_SESSION['table'];
+if(isset($_POST['editButton'])){
+  header('Location: uniEdit.php');
+  exit();
+}
+else if(isset($_POST['addButton'])){
+  header('Location: uniAdd.php');
+  exit();
+}
+else if(isset($_POST['deleteButton'])){
+  header('Location: uniEdit.php');//FILLER UNTIL uniDel.php IS MADE
+  exit();
+}
+?>
 </body>
 </html>

@@ -21,7 +21,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-11">
-                      <?php echo "<h1 class='text-center'>Begin Your Research Journey Here</h1>";print_r($_SESSION);?>
+                      <?php echo "<h1 class='text-center'>Begin Your Research Journey Here</h1>";?>
                     </div>
                 </div>
             </div>

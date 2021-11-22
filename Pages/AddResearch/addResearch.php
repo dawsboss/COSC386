@@ -13,11 +13,12 @@
 
 <body>
     <?php
+    session_start();
     include('../BackEnd.php');
     include('../navbar.php');
     ?>
     <div class="container mt-5">
-        <form>
+        <form name="submit" action="https://lamp.salisbury.edu/~jventura3/COSC386/Pages/AddResearch/submitResearch.php" method="post">
             <div class="row g-3 mb-2">
                 <div class="col-md-12">
                     <label for="researchTitle">Research Title</label>
@@ -42,7 +43,7 @@
                     <textarea class="form-control" rows="5" name="rabstract"></textarea>
                 </div>
             </div>
-            <button action="submitResearch.php" method="POST" type="submit" class="btn btn-primary" name="Update">Update</button>
+            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         </form>
     </div>
 </body>

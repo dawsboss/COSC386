@@ -29,7 +29,9 @@
 <body>
 <center>
 <div class="header">
-<h1><b>Updated <?php echo $_POST['table'];?> Table</b></h1>
+<h1><b>Updated <?php
+    session_start();
+    echo $_SESSION['table'];?> Table</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->
         <form action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/tableMenu.php">
         <input type="submit" class="button" value="Back to table selection">
@@ -37,13 +39,13 @@
 
 </div>
 <?php
-if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){//connects to the database
+    if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){//connects to the database
         //echo "CONNECTION SUCCESS";
 }
 else{
         //echo "Connection Error";
 }
-$tableName=$_POST['table'];//gets the table from the previous page or this page
+$tableName=$_SESSION['table'];//gets the table from the previous page or this page
 $query1 = "SELECT * FROM $tableName";//to display the table
 $columnNames=array();//gets the names of the columns
 $count=0;

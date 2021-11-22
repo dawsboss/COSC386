@@ -2,10 +2,10 @@
 
 <?php
 if ( !$_GET['p'] ):
-  header('Location: "#"');#TODO go back to search screen
+  header('Location: search.php');#TODO go back to search screen
 endif;
 session_start();
-include("../BackEnd.php");
+include("BackEnd.php");
 ?>
 
 <html lang="en">
@@ -35,7 +35,7 @@ include("../BackEnd.php");
 
 
     <header class="header" style="position: relative; margin-bottom: 100px;">
-      <?php include ("../navbar.php"); ?>
+      <?php include ("navbar.php"); ?>
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
             <?php

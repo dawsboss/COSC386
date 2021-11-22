@@ -92,7 +92,7 @@ while($row=mysqli_fetch_array($getKeys)){
 }
 echo "<form name=\"mainForm\" method=\"post\">";
 for ($i=0; $i < sizeof($columnNames);$i++){
-  if(in_array($columnNames[$i],$keys)){
+  if(in_array($columnNames[$i],$keys)||$columnNames[$i]=="Password"||$columnNames[$i]=="Admin"){
     echo "<label>".$columnNames[$i]." (Required) </label>
       <input type=\"hidden\" name=\"keyAttIn".$i."\" id=\"keyAttIn".$i."\" value=\"$columnNames\">
       <input type=\"text\" name=\"input".$i."\" id=\"input".$i."\" value=\"".$info[$i]."\" style=\"width:300px;\" required>";

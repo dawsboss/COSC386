@@ -12,8 +12,8 @@
 
 <body>
     <?php
-        include ("../BackEnd.php");
-        include ("../navbar.php");
+        include ("BackEnd.php");
+        include ("navbar.php");
         session_start();
     ?>
     <header class="header">

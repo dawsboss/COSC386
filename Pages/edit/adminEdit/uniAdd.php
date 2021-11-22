@@ -50,13 +50,13 @@ if(isset($_SESSION['table'])){
   $tableName=$_SESSION['table'];//gets the table from the previous page or this page
 }
 $query1 = "SELECT * FROM $tableName";//to display the table
-$columnNames=array();//gets the names of the columns
+    $columnNames=array();//gets the names of the columns
 $count=0;
 if($r = $connect->query($query1)){
         echo "<table = border='1'>";
         echo "<thead><tr>";
         while($hold=$r->fetch_field()){
-            echo "<th>" . $hold->name . "</th>";
+                echo "<th>" . $hold->name . "</th>";
                   }
         echo "</tr>";
         echo "</thead>";
@@ -101,23 +101,31 @@ for ($i=0; $i < sizeof($columnNames);$i++){
       echo"<label>".$columnNames[$i]."</label>
                 <input type=\"hidden\" name=\"keyAttIn".$i."\" id=\"keyAttIn".$i."\" value=\"$columnNames\">
                 <input type=\"text\" name=\"input".$i."\" id=\"input".$i."\" value=\"".$info[$i]."\" style=\"width:300px;\">";
-    }
+        }
     echo "<br>";
 }
-echo "<input type=\"submit\" value=\"Submit\" class=\"button\">
+echo "<input name=\"submit\" type=\"submit\" value=\"Submit\" class=\"button\">
       </form>";
 $addQuery="INSERT INTO $tableName VALUES ('".$_POST['input0']."'";
 for($i=1; $i <sizeof($columnNames); $i++){
-  $addQuery.=", '".$_POST['input'.$i]."'";
+  if($columnNames[$i]=="Password"){
+    $pass=hash('sha256', $_POST['input'.$i]);
+    $addQuery.=", '".$pass."'";
+  }
+  else{
+    $addQuery.=", '".$_POST['input'.$i]."'";
+  }
 }
 $addQuery.=");";
 echo "Add Query= $addQuery\n";
+if($_REQUEST['submit']=='Submit'){
 $a=mysqli_query($connect, $addQuery);
 if($a){
-     echo "Query Success\n";
+  echo "Query Success\n";
 }
 else{
   echo "Query Unsuccessfull\n";
+}
 }
 mysqli_close($conneciton);
 ?>

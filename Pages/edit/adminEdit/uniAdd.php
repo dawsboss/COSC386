@@ -56,7 +56,7 @@ if($r = $connect->query($query1)){
         echo "<table = border='1'>";
         echo "<thead><tr>";
         while($hold=$r->fetch_field()){
-          echo "<th>" . $hold->name . "</th>";
+            echo "<th>" . $hold->name . "</th>";
                   }
         echo "</tr>";
         echo "</thead>";
@@ -86,26 +86,10 @@ $keys=array();
 $keyCount=0;
 while($row=mysqli_fetch_array($getKeys)){
   if($row['Key']!=Null){
-    $keys[$keyCount]=$row['Key'];
+    $keys[$keyCount]=$row['Field'];
     $keyCount++;
   }
 }
-/*echo "<form name=\"getInfo\" action=\"\" method=\"post\">
-        <input type=\"hidden\" name=\"table\" id=\"table\" value=\"$tableName\">
-        <input type=\"text\" name=\"attribute\" id=\"attribute\" placeholder=\"Enter the name of the attribute you would like to change\" style=\"width:300px;\"><br>
-        <input type=\"text\" name=\"key\" id=\"key\" placeholder=\"Enter the key for the attribute you entered\" style=\"width:300px;\"><br>
-        <input type=\"submit\" value=\"submit\" class=\"button\">
-        </form>";
-$attribute=$_POST['attribute'];
-$k=$_POST['key'];
-$_SESSION['key']=$key;
-//echo "table name=$tableName";
-//echo "Attribute=$att";
-//echo "key=$k";
-$query2 = "SELECT * FROM $tableName where $attribute=\"$k\"";
-$d=mysqli_query($connect,$query2);
-$info=mysqli_fetch_array($d);
- */
 echo "<form name=\"mainForm\" method=\"post\">";
 for ($i=0; $i < sizeof($columnNames);$i++){
   if(in_array($columnNames[$i],$keys)){
@@ -130,7 +114,7 @@ $addQuery.=");";
 echo "Add Query= $addQuery\n";
 $a=mysqli_query($connect, $addQuery);
 if($a){
-  echo "Query Success\n";
+     echo "Query Success\n";
 }
 else{
   echo "Query Unsuccessfull\n";

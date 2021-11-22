@@ -42,15 +42,12 @@ endif;
     </header>
     <div class="container"> 
         <div class= "row">       
-            <div class= "col-3" style="position: relative; top: -85px;">
-                <div class="mt-4 card" style="width: 17rem; border: 4px solid black">
+            <div class= "col-3" style="position: relative; top: -84px;">
+                <div class="mt-4 card" style="width: 17rem; border: 4px solid black; height: auto">
                     <div class="card-body">
                         <h5 class="card-title">Description</h5>
         <p class="card-text"><?php echo $research['Description'];?>
-                        <h5 class="card-title">Contact</h5>
         <p class="card-text">Link(s):<br><?php echo $research['Link'];?></p>
-        <p class="card-text">Phone:<br><?php echo $profile['PhoneNum'];?></p>
-        <p class="card-text">Office:<br><?php echo $profile['OfficeLoc'];?></p>
                     </div>
                 </div>
             </div>
@@ -62,7 +59,7 @@ endif;
                     </div>
                 </div>
 			<h3 style = "text-align: center"><br> Students </h3>
-			<table class = "table" border = "5" style = "width: 55rem">
+			<table class = "table" border = "4" style = "width: 55rem">
 				<thead>
 					<tr>
 					<th scope = "col"> Email</th>
@@ -80,7 +77,7 @@ endif;
         </tbody>
       </table>
 			<h3 style = "text-align: center"><br> Grants </h3>
-			<table class = "table" border = "5" style = "width: 55rem">
+			<table class = "table" border = "4" style = "width: 55rem">
 				<thead>
 					<tr>
 					<th scope = "col"> Organization</th>

@@ -94,6 +94,7 @@ include("../BackEnd.php");
             echo "<td><input type=\"text\" name=\"graYear".$graCount."\" value=\"{$printgrant['year']}\" size=\"10\"></td>";
             echo "<td><input type=\"text\" name=\"graOrg".$graCount."\" value=\"{$printgrant['Amount']}\" size=\"10\"></td>";
             echo "</tr>";
+            $graCount=$graCount+1;
           }
         ?>
         </tbody>

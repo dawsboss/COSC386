@@ -50,7 +50,7 @@ include("../BackEnd.php");
             <div class="col-9" style="position: relative; top: -60px; height: auto">
                 <div class="mb-4 card" style="width: 55rem; border: 4px solid black">
                     <div class="card-body">
-<h5 class="card-title">Abstract</h5>
+                    <h5 class="card-title">Abstract</h5>
                         <p class="card-text">
                           <textarea name="abstract" rows="4" cols="89"><?php echo $research['Abstract'];?></textarea>
                         </p>

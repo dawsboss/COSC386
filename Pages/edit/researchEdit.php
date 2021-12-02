@@ -3,10 +3,16 @@
 <?php
 session_start();
 include("../BackEnd.php");
+if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){
+          echo "CONNECTION SUCCESS";
+          }
+else{
+        echo "Connection Error";
+}
 ?>
 
 <html lang="en">
-  <head>  
+  <head>
   <title><?php echo $research['Title']; ?></title>
     <meta charset="utf-8".>
     <meta name="viewport" content="width=device-width, initial scale=1">
@@ -21,6 +27,7 @@ include("../BackEnd.php");
     <?php include ("../navbar.php");?>
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
+           <form name="rGetInfo" action="" method="post">
           <?php
 
             if($_SESSION['admin'] == true || in_array($_SESSION['logged'], $profs) ):
@@ -35,13 +42,12 @@ include("../BackEnd.php");
           </div>
         </div>
     </header>
-    <div class="container"> 
-        <div class= "row">       
+    <div class="container">
+        <div class= "row">
             <div class= "col-3" style="position: relative; top: -84px;">
                 <div class="mt-4 card" style="width: 17rem; border: 4px solid black; height: auto">
                     <div class="card-body">
                         <h5 class="card-title">Description</h5>
-        <form name="rGetInfo" action="" method="post">
         <p class="card-text"><textarea name="description" rows="4" cols="22"><?php echo $research['Description'];?></textarea>
         <p class="card-text">Link(s):<br><input type="text" name="link" value="<?php echo $research['Link'];?>" size="22"></p>
                     </div>
@@ -50,13 +56,13 @@ include("../BackEnd.php");
             <div class="col-9" style="position: relative; top: -60px; height: auto">
                 <div class="mb-4 card" style="width: 55rem; border: 4px solid black">
                     <div class="card-body">
-                    <h5 class="card-title">Abstract</h5>
+                      <h5 class="card-title">Abstract</h5>
                         <p class="card-text">
                           <textarea name="abstract" rows="4" cols="89"><?php echo $research['Abstract'];?></textarea>
                         </p>
                     </div>
                 </div>
-      <h3 style = "text-align: center"><br> Students </h3>
+                <h3 style = "text-align: center"><br> Students </h3>
       <table class = "table" border = "4" style = "width: 55rem">
         <thead>
           <tr>
@@ -68,12 +74,13 @@ include("../BackEnd.php");
         <?php
               $stuCount=0;
               foreach($students as $printstudents){
-                echo "<tr>"; 
+                echo "<tr>";
                 echo "<td><input type=\"text\" name=\"stuEmail".$stuCount."\" value=\"{$printstudents['Email']}\" size=\"30\"></td>";
                 echo "<td><input type\"text\" name=\"stuName".$stuCount."\" value=\"{$printstudents['Name']}\" size=\"25\"></td>";
                 echo "</tr>";
                 $stuCount=$stuCount+1;
-        }?>
+              }?>
+          <!--<tr><td><a href="https://www.google.com"><button>add a new student</button></a></td><tr></td></tr>-->
         </tbody>
       </table>
       <h3 style = "text-align: center"><br> Grants </h3>
@@ -86,16 +93,19 @@ include("../BackEnd.php");
           </tr>
         </thead>
         <tbody>
-        <?php 
+        <?php
           $graCount=0;
           foreach($grants as $printgrant){
-            echo "<tr>"; 
+            echo "<tr>";
             echo "<td><input type=\"text\" name=\"graOrg".$graCount."\" value=\"{$printgrant['Organization']}\" size=\"10\"></td>";
             echo "<td><input type=\"text\" name=\"graYear".$graCount."\" value=\"{$printgrant['year']}\" size=\"10\"></td>";
-            echo "<td><input type=\"text\" name=\"graOrg".$graCount."\" value=\"{$printgrant['Amount']}\" size=\"10\"></td>";
+            echo "<td><input type=\"text\" name=\"graAmount".$graCount."\" value=\"{$printgrant['Amount']}\" size=\"10\"></td>";
             echo "</tr>";
             $graCount=$graCount+1;
           }
+          $_SESSION['rID']=$research['ID'];
+          $rID=$_SESSION['rID'];
+          echo $_SESSION['rID'];
         ?>
         </tbody>
                   </table>
@@ -103,10 +113,56 @@ include("../BackEnd.php");
         </div>
         </div>
     </div>
-  <center><input type="submit" value="Submit Changes" class="button"></center>
+    <center><input type="submit" value="Submit Changes" class="button">
+      </form>
     <?php
-      echo "Testing php for submit query\n";
-    ?>
-    </form>
+          if(isset($_POST['abstract'])){
+            $rQuery="update Research set Description='".$_POST['description']."', Abstract='".$_POST['abstract']."', Link='".$_POST['link']."', Title='".$_POST['title']."' where ID = $rID";
+            //echo "<br> $rQuery <br>";
+            $editResearch=mysqli_query($connect,$rQuery);
+            $gCount=0;
+            foreach($grants as $getGrantInfo){
+              $tempA="graAmount".$gCount;
+              $tempY="graYear".$gCount;
+              $tempO="graOrg".$gCount;
+              $gQuery="update Grants set Amount='".$_POST[$tempA]."', year=".$_POST[$tempY].", Organization='".$_POST[$tempO]."' where Amount='".$getGrantInfo['Amount']."' and year=".$getGrantInfo['year']." and Organization='".$getGrant$              #echo "<br> $gQuery <br>";
+              $editGrant=mysqli_query($connect, $gQuery);
+              if($editGrant){
+                //echo "<br>editGrant Successful<br>";
+              }
+              else{
+                //echo "<br>editGrant unsuccessful<br>";
+              }
+              $gCount=$gCount+1;
+            }
+            $sCount=0;
+            foreach($students as $getStudInfo){
+              $tempN="stuName".$sCount;
+              $tempE="stuEmail".$sCount;
+              $sQuery="update Student set Email='".$_POST[$tempE]."', Name='".$_POST[$tempN]."' where Email='".$getStudInfo['Email']."'";
+              //echo"<br>$sQuery";
+              $editStudent=mysqli_query($connect, $sQuery);
+              if($editStudent){
+                //echo "<br>student edited successfuly<br>";
+              }
+              else{
+                //echo "<br>student edit unsuccessful<br>";
+              }
+              $wQuery="update WorkOn set studentEmail='".$_POST[$tempE]."' where studentEmail='".$getStudInfo['Email']."' and researchID=$rID";
+              //echo $wQuery;
+              $editWorkOn=mysqli_query($connect, $wQuery);
+              if($editWorkOn){
+                //echo "<br> workon edited successfuly<br>";
+              }
+              else{
+                //echo "<br> workon edit unsuccessful<br>";
+              }
+              $sCount=$sCount+1;
+            }
+          }
+?>
+    <form name="editStudent" action="addStudent.php" method="get"><input type="hidden" name="r" value="<?php echo $rID;?>"><input type="submit" value="Add/Remove Student from Project"></form>
+    <form name="editGrants" action="addGrant.php" method="get"><input type="hidden" name="r" value="<?php echo $rID;?>"><input type="submit" value="Add/Remove Grant to Project"></form>
+    </center>
 </body>
 </html>

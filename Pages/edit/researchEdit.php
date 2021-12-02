@@ -4,10 +4,10 @@
 session_start();
 include("../BackEnd.php");
 if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){
-          echo "CONNECTION SUCCESS";
+          //echo "CONNECTION SUCCESS";
           }
 else{
-        echo "Connection Error";
+        //echo "Connection Error";
 }
 ?>
 
@@ -43,7 +43,7 @@ else{
         </div>
     </header>
     <div class="container">
-        <div class= "row">
+              <div class= "row">
             <div class= "col-3" style="position: relative; top: -84px;">
                 <div class="mt-4 card" style="width: 17rem; border: 4px solid black; height: auto">
                     <div class="card-body">
@@ -56,7 +56,7 @@ else{
             <div class="col-9" style="position: relative; top: -60px; height: auto">
                 <div class="mb-4 card" style="width: 55rem; border: 4px solid black">
                     <div class="card-body">
-                      <h5 class="card-title">Abstract</h5>
+                        <h5 class="card-title">Abstract</h5>
                         <p class="card-text">
                           <textarea name="abstract" rows="4" cols="89"><?php echo $research['Abstract'];?></textarea>
                         </p>
@@ -66,7 +66,7 @@ else{
       <table class = "table" border = "4" style = "width: 55rem">
         <thead>
           <tr>
-          <th scope = "col"> Email</th>
+                    <th scope = "col"> Email</th>
           <th scope = "col"> Name</th>
           </tr>
         </thead>
@@ -89,7 +89,7 @@ else{
           <tr>
           <th scope = "col"> Organization</th>
           <th scope = "col"> Year</th>
-          <th scope = "col"> Amount</th>
+                    <th scope = "col"> Amount</th>
           </tr>
         </thead>
         <tbody>
@@ -112,9 +112,9 @@ else{
             </div>
         </div>
         </div>
-    </div>
+              </div>
     <center><input type="submit" value="Submit Changes" class="button">
-      </form>
+    </form>
     <?php
           if(isset($_POST['abstract'])){
             $rQuery="update Research set Description='".$_POST['description']."', Abstract='".$_POST['abstract']."', Link='".$_POST['link']."', Title='".$_POST['title']."' where ID = $rID";
@@ -125,7 +125,7 @@ else{
               $tempA="graAmount".$gCount;
               $tempY="graYear".$gCount;
               $tempO="graOrg".$gCount;
-              $gQuery="update Grants set Amount='".$_POST[$tempA]."', year=".$_POST[$tempY].", Organization='".$_POST[$tempO]."' where Amount='".$getGrantInfo['Amount']."' and year=".$getGrantInfo['year']." and Organization='".$getGrant$              #echo "<br> $gQuery <br>";
+              $gQuery="update Grants set Amount='".$_POST[$tempA]."', year=".$_POST[$tempY].", Organization='".$_POST[$tempO]."' where Amount='".$getGrantInfo['Amount']."' and year=".$getGrantInfo['year']." and$              #echo "<br> $gQuery <br>";
               $editGrant=mysqli_query($connect, $gQuery);
               if($editGrant){
                 //echo "<br>editGrant Successful<br>";
@@ -134,7 +134,7 @@ else{
                 //echo "<br>editGrant unsuccessful<br>";
               }
               $gCount=$gCount+1;
-            }
+              }
             $sCount=0;
             foreach($students as $getStudInfo){
               $tempN="stuName".$sCount;

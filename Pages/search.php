@@ -68,7 +68,7 @@
                         <?php 
                           foreach($search as $printpast){
                             echo "<tr>"; 
-                            echo "<tr class='table-row' data-href=\"https://lamp.salisbury.edu/~gdawson1/GitHub/COSC386/Pages/ProfProfile/profile.php?p={$printpast['Username']}\" class='stretched-link'></th>";
+                            echo "<tr class='table-row' data-href=\"profile.php?p={$printpast['Username']}\" class='stretched-link'></th>";
                             echo "<td>{$printpast['Name']}</td>";
                             echo "<td>{$printpast['ResearchStatement']}</td>";
                             echo "<td>{$printpast['DeptName']}</td>";

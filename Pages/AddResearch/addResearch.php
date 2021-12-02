@@ -33,6 +33,12 @@
                     </div>
                 </div>
             </div>
+            <div class="row g-3 mb-2">
+                <div class="col-md-12">
+                    <label for="researchLink">Link</label>
+                    <input type="text" class="form-control" name="rlink">
+                </div>
+            </div>
             <div class="row g-3">
                 <div class="col-md-12 mb-2">
                     <label for="researchDesc">Research Description</label>

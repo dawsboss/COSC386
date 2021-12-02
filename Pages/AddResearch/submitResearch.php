@@ -18,9 +18,8 @@
     include('../BackEnd.php');
     include('../navbar.php');
 
-    echo "<p>Connect6868686</p>";
     if ($connect = @mysqli_connect('localhost', 'gdawson1', 'gdawson1', 'SUResearchProjDB')) {
-        echo "<p>Connect submitResearch!</p>";
+        echo "<p>Connected in submitResearch!</p>";
     }
     if (isset($_POST['submit'])) {
         $research_title = $_POST['rtitle'];
@@ -35,9 +34,10 @@
               VALUES($research_desc, $research_abstract, 'NA', $research_title, 0)";
 
         $Ssql = mysqli_query($connect, $query);
+        echo "Query made";
     }
-    $query = "INSERT INTO Research (Description, Abstract, Link, Title, Current)
-              VALUES ('Joe', 'Joe', 'NA', 'Joe', 0)";
+    #    $query = "INSERT INTO Research (Description, Abstract, Link, Title, Current)
+    #              VALUES ('Joe', 'Joe', 'NA', 'Joe', 0)";
 
     $Ssql = mysqli_query($connect, $query);
     ?>

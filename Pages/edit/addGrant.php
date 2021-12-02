@@ -16,7 +16,17 @@ echo $rID;
 <select name="table" id="table">
 <?php
 foreach($grants as $printgrant){
-  echo "<option value=\"".$printgrant['ID']."\">".$printgrant['Organization']." ".$printgrant['year']." $". $printgrant['Amount']."</option>";
+   $getIDQuery="select ID as grantID from Grants where Organization='".$printgrant['Organization']."' and year='".$printgrant['year']."' and amount='".$printgrant['Amount']."'";
+  //echo "<br>$getIDQuery <br>";
+  $findID=mysqli_query($connect,$getIDQuery);
+  if($findID){
+    //echo "<br>ID successfuly found<br>";
+  }
+  else{
+    //echo "<br>ID not found<br>";
+  }
+  $IDArr=mysqli_fetch_assoc($findID);
+  echo "<option value=\"".$IDArr['grantID']."\">".$printgrant['Organization']." ".$printgrant['year']." $". $printgrant['Amount']."</option>";
 }
 ?>
 </select>

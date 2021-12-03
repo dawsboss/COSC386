@@ -14,8 +14,8 @@
 <body>
     <?php
     session_start();
-    include('../BackEnd.php');
-    include('../navbar.php');
+    include('BackEnd.php');
+    include('navbar.php');
     ?>
     <div class="container mt-5">
         <form name="submit" action="https://lamp.salisbury.edu/~jventura3/COSC386/Pages/AddResearch/submitResearch.php" method="post">

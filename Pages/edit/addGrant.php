@@ -1,27 +1,49 @@
 <html>
+  <head>
+  <title><?php echo $research['Title']; ?> Add Grant</title>
+    <meta charset="utf-8".>
+    <meta name="viewport" content="width=device-width, initial scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ </head>
 <body>
+<header class="header" style="position: relative; margin-bottom: 100px;">
 <?php
 session_start();
 include("../BackEnd.php");
 if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){
-  echo "CONNECTION SUCCESS";
+  //echo "CONNECTION SUCCESS";
  }
  else{
-         echo "Connection Error";
+         //echo "Connection Error";
  }
 $rID = $research['ID'];
-echo $rID;
+//echo $rID;
+include("../navbar.php");
 ?>
 <form name="getDelStud" method="post">
 <select name="table" id="table">
 <?php
 foreach($grants as $printgrant){
-  echo "<option value=\"".$printgrant['ID']."\">".$printgrant['Organization']." ".$printgrant['year']." $". $printgrant['Amount']."</option>";
+  $getIDQuery="select ID as grantID from Grants where Organization='".$printgrant['Organization']."' and year='".$printgrant['year']."' and amount='".$printgrant['Amount']."'";
+  //echo "<br>$getIDQuery <br>";
+  $findID=mysqli_query($connect,$getIDQuery);
+  if($findID){
+    //echo "<br>ID successfuly found<br>";
+  }
+  else{
+    //echo "<br>ID not found<br>";
+  }
+  $IDArr=mysqli_fetch_assoc($findID);
+  echo "<option value=\"".$IDArr['grantID']."\">".$printgrant['Organization']." ".$printgrant['year']." $". $printgrant['Amount']."</option>";
 }
 ?>
 </select>
 <input type="submit" value="Delete grant">
-</form>
+  </form>
 <?php
 $delQuery="DELETE FROM FundedBy WHERE grantID=".$_POST['table']."";
 echo $delQuery;
@@ -44,7 +66,7 @@ if(isset($_POST['table'])){
 </form>
 <?php
 if(isset($_POST['grantOrg'])&& isset($_POST['grantYear'])){
-$findQuery= "select count(Organization) as num from Grants where Organization='".$_POST['grantOrg']."' and year='".$_POST['grantYear']."' and Amount='".$_POST['grantAmount']."'";
+  $findQuery= "select count(Organization) as num from Grants where Organization='".$_POST['grantOrg']."' and year='".$_POST['grantYear']."' and Amount='".$_POST['grantAmount']."'";
 echo $findQuery;
 $findGrant=mysqli_query($connect, $findQuery);
 if($findGrant){
@@ -99,5 +121,9 @@ if($findGArr['numG']==0){
 }
 }
 ?>
+<form action="researchEdit.php">
+  <input type="hidden" name="r" id="r" value="<?php echo $rID;?>">
+  <input type="submit" class="button" value="Back">
+</form>
 </body>
 </html>

@@ -31,11 +31,14 @@
         echo $research_abstract . '
         ';
 
-        $query = "insert into Research(Description, Abstract, Link, Title, Current) values($research_desc, $research_abstract, 'joemomma.com', $research_title, 0);";
+        $query = "INSERT INTO Research VALUES($research_desc, $research_abstract, 'joemomma.com', $research_title, 0);";
 
         $Ssql = mysqli_query($connect, $query);
-        echo 'Query made
-        ';
+        if ($Ssql) {
+            echo "Query made\n";
+        } else {
+            echo "Query failed\n";
+        }
     }
     #    $query = "INSERT INTO Research (Description, Abstract, Link, Title, Current)
     #              VALUES ('Joe', 'Joe', 'NA', 'Joe', 0)";

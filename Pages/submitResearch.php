@@ -31,7 +31,7 @@
         echo $research_abstract . '
         ';
 
-        $query = "insert into Research(Description, Abstract, Link, Title, Current) values('joe', 'momma', 'joemomma.com', 'JOEMOMMA', 0);";
+        $query = "insert into Research(Description, Abstract, Link, Title, Current) values($research_desc, $research_abstract, 'joemomma.com', $research_title, 0);";
 
         $Ssql = mysqli_query($connect, $query);
         echo 'Query made

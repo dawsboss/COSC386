@@ -28,13 +28,14 @@
 
         echo $research_title . ' ';
         echo $research_desc . ' ';
-        echo $research_abstract . '\n';
+        echo $research_abstract . '
+        ';
 
-        $query = "INSERT INTO Research(Description, Abstract, Link, Title, Current)
-              VALUES($research_desc, $research_abstract, 'NA', $research_title, 0)";
+        $query = "insert into Research(Description, Abstract, Link, Title, Current) values('joe', 'momma', 'joemomma.com', 'JOEMOMMA', 0);";
 
         $Ssql = mysqli_query($connect, $query);
-        echo 'Query made\n';
+        echo 'Query made
+        ';
     }
     #    $query = "INSERT INTO Research (Description, Abstract, Link, Title, Current)
     #              VALUES ('Joe', 'Joe', 'NA', 'Joe', 0)";

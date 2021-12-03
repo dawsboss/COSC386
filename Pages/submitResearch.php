@@ -15,8 +15,8 @@
 <body>
     <?php
     session_start();
-    include('../BackEnd.php');
-    include('../navbar.php');
+    include('BackEnd.php');
+    include('navbar.php');
 
     if ($connect = @mysqli_connect('localhost', 'gdawson1', 'gdawson1', 'SUResearchProjDB')) {
         echo "<p>Connected in submitResearch!</p>";
@@ -26,15 +26,15 @@
         $research_desc = $_POST['rdesc'];
         $research_abstract = $_POST['rabstract'];
 
-        echo $research_title;
-        echo $research_desc;
-        echo $research_abstract;
+        echo $research_title . ' ';
+        echo $research_desc . ' ';
+        echo $research_abstract . '\n';
 
         $query = "INSERT INTO Research(Description, Abstract, Link, Title, Current)
               VALUES($research_desc, $research_abstract, 'NA', $research_title, 0)";
 
         $Ssql = mysqli_query($connect, $query);
-        echo "Query made";
+        echo 'Query made\n';
     }
     #    $query = "INSERT INTO Research (Description, Abstract, Link, Title, Current)
     #              VALUES ('Joe', 'Joe', 'NA', 'Joe', 0)";

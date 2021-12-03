@@ -2,7 +2,7 @@
 
 <?php
 session_start();
-include("../BackEnd.php");
+include("BackEnd.php");
 ?>
 
 <html lang="en">
@@ -19,6 +19,7 @@ include("../BackEnd.php");
  </head>
 <body>
     <header class="header" style="position: relative; top: -70px;">
+      <?php include ("navbar.php");?>
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
           <h1 class="text-center"><?php echo $profile['Name'];?></h1>

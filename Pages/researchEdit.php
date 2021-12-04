@@ -2,7 +2,7 @@
 
 <?php
 session_start();
-include("../BackEnd.php");
+include("BackEnd.php");
 if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){
           //echo "CONNECTION SUCCESS";
           }
@@ -24,7 +24,7 @@ else{
  </head>
 <body>
     <header class="header" style="position: relative; margin-bottom: 100px;">
-    <?php include ("../navbar.php");?>
+    <?php include ("navbar.php");?>
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
            <form name="rGetInfo" action="" method="post">

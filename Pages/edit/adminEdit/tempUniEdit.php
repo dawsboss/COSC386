@@ -30,7 +30,7 @@
 <div class="header">
         <h1><b>Admin edit</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->
-        <form action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/tableMenu.php">
+        <form action="https://lamp.salisbury.edu/~bmason3/COSC386-1/Pages/edit/adminEdit/tempTableMenu.php">
         <input type="submit" value="Back" class="btn btn-outline-secondary">
         </form>
 

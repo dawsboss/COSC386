@@ -29,64 +29,47 @@
                 </div>
         </header>
         <div class="container">
-                <div class="dropdown text-center">
-                        <form action="tempUniEdit.php" method="post">
-                        <select class="btn btn-outline-secondary dropdown-toggle" type="button"
-                            aria-haspopup="true" aria-expanded="false" name="table">
-                                <option class="dropdown-item" value="Department">Department</option>
-                                <option class="dropdown-item" value="FundedBy">Funded By</option>
-                                <option class="dropdown-item" value="Grants">Grants</option>
-                                <option class="dropdown-item" value="Has">Has</option>
-                                <option class="dropdown-item" value="Login">Login</option>
-                                <option class="dropdown-item" value="Professor">Professor</option>
-                                <option class="dropdown-item" value="Research">Research</option>
-                                <option class="dropdown-item" value="School">School</option>
-                                <option class="dropdown-item" value="Student">Student</option>
-                                <option class="dropdown-item" value="WorkOn">Work On</option>
-                        <input type="submit" name="submit" value="Go!" class="btn btn-outline-secondary">
-                        </form>
-                
+                <div class="row justify-content-md-center">
+                        <div class="dropdown text-center">
+                                <form action="tempUniEdit.php" method="post">
+                                <select class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                aria-haspopup="true" aria-expanded="false" name="table">
+                                        <option class="dropdown-item" value="Department">Department</option>
+                                        <option class="dropdown-item" value="FundedBy">Funded By</option>
+                                        <option class="dropdown-item" value="Grants">Grants</option>
+                                        <option class="dropdown-item" value="Has">Has</option>
+                                        <option class="dropdown-item" value="Login">Login</option>
+                                        <option class="dropdown-item" value="Professor">Professor</option>
+                                        <option class="dropdown-item" value="Research">Research</option>
+                                        <option class="dropdown-item" value="School">School</option>
+                                        <option class="dropdown-item" value="Student">Student</option>
+                                        <option class="dropdown-item" value="WorkOn">Work On</option>
+                                </select>
+                        </div>
                 </div>
-        </div>
+                <div class="row justify-content-md-center">
+                        <button type="submit" onClick="name='editButton'" class="btn btn-outline-secondary" style="width:70px; margin-right: 16px; margin-top:6px;">Edit</button>
+                        <button type="submit" onClick="name='addButton'" class="btn btn-outline-secondary" style="width:70px; margin-top:6px;">Add</button>
+                        <button type="submit" onClick="name='deleteButton'" class="btn btn-outline-secondary" style="width:70px; margin-left: 16px; margin-top:6px; ">Delete</button>
+                        </form>
+                </div>
+        </div>  
+<?php
+session_start();
+$_SESSION['table']=$_POST['table'];
+echo $_SESSION['table'];
+if(isset($_POST['editButton'])){
+  header('Location: uniEdit.php');
+  exit();
+}
+else if(isset($_POST['addButton'])){
+  header('Location: uniAdd.php');
+  exit();
+}
+else if(isset($_POST['deleteButton'])){
+  header('Location: uniEdit.php');//FILLER UNTIL uniDel.php IS MADE
+  exit();
+}
+?>
 </body>
-<!-- <body>
-<style>
-.button{
-  background-color:#910101;
-  color: #ffffff;
-  padding: 15px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 17%;
-}
-.button:hover{
-        color=#ffffff;
-        background-color: #b00000;
-}
-</style>
-<div class="header">
-        <h1><b>Admin Edit</b></h1>
-</div>
-<center>
-<label for "table" style="font-size: 150%;"> Select a Table: </label>
-            <form action="uniEdit.php" method="post">
-                     <select name="table" id="table">
-                                     <option value="Department">Department</option>
-                                     <option value="FundedBy">Funded By</option>
-                                     <option value="Grants">Grants</option>
-                                     <option value="Has">Has</option>
-                                     <option value="Login">Login</option>
-                                     <option value="Professor">Professor</option>
-                                     <option value="Research">Research</option>
-                                     <option value="School">School</option>
-                                     <option value="Student">Student</option>
-                                        <option value="WorkOn">Work On</option>
-                                        </select>
-                                        <br>
-                                        <input type="submit" name="submit" value="Go!" class="button">
-                                    </form>
-</center>
-</body> -->
 </html>

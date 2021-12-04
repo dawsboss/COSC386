@@ -13,7 +13,7 @@
 <header class="header" style="position: relative; margin-bottom: 100px;">
 <?php
 session_start();
-include("../BackEnd.php");
+include("BackEnd.php");
 if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){
   //echo "CONNECTION SUCCESS";
  }
@@ -22,7 +22,7 @@ if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearc
  }
 $rID = $research['ID'];
 //echo $rID;
-include("../navbar.php");
+include("navbar.php");
 ?>
 <form name="getDelStud" method="post">
 <select name="table" id="table">

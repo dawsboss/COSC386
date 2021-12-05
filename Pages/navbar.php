@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php 
 session_start();
-include('../BackUp.php');
+include('BackUp.php');
 ?>
 
 <html lang="en">

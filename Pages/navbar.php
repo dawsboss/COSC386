@@ -39,6 +39,13 @@ include('../BackUp.php');
       <li class="nav-item">
         <a class="nav-link" href="login.php">Login</a>
       </li>
+      <?php
+         if($_SESSION['admin']==true){
+           echo"<li class=\"nav-item acticve\">
+             <a class=\"nav-link\" href=\"tableMenu.php\">Admin</a>
+              </li>";
+         }
+      ?>
       <!--<li class="nav-item">
         <a class="nav-link" href="#">Test</a>
       </li>

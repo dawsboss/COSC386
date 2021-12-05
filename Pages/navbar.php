@@ -64,7 +64,7 @@ echo "
 if($_SESSION['logged']!='null'){
 echo "
   <li id='login' class='nav-item'>
-    <a class='nav-link' style='position:absolute; right:1%;' >".$_SESSION['logged']."</a>
+    <a class='nav-link' style='position:absolute; right:1%;' >Hello, ".$_SESSION['logged']."</a>
   </li>
 ";
 }

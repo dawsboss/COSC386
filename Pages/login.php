@@ -39,7 +39,7 @@ include('BackUp.php');
             <div class="col-4"></div>
               <div class="col-3">
         <div class="text-center">
-        <form class="form-signin" method="post" action="../BackEnd.php">
+        <form class="form-signin" method="post" action="BackEnd.php">
           <div class="imageRound">
             <img class="mb-4" src="https://s3-us-west-2.amazonaws.com/webresources-savingforcollege/images/school_logos/salisbury-university.png" alt="" width="128" height="128">
           </div>

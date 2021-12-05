@@ -125,7 +125,7 @@ else{
               $tempA="graAmount".$gCount;
               $tempY="graYear".$gCount;
               $tempO="graOrg".$gCount;
-              $gQuery="update Grants set Amount='".$_POST[$tempA]."', year=".$_POST[$tempY].", Organization='".$_POST[$tempO]."' where Amount='".$getGrantInfo['Amount']."' and year=".$getGrantInfo['year']." and$              #echo "<br> $gQuery <br>";
+              $gQuery="update Grants set Amount='".$_POST[$tempA]."', year=".$_POST[$tempY].", Organization='".$_POST[$tempO]."' where Amount='".$getGrantInfo['Amount']."' and year=".$getGrantInfo['year']." and Organization='".$getGrantInfo['Organization']."'";
               $editGrant=mysqli_query($connect, $gQuery);
               if($editGrant){
                 //echo "<br>editGrant Successful<br>";

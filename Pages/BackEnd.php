@@ -54,7 +54,7 @@ if(isset($_POST['username']) && $_POST['username'] && isset($_POST['password']) 
   }
   print("<br>");
   print_r($_SESSION);
-  header("Location: Login/login.php");
+  header("Location: search.php");
 }
 
 #Profile Page Quering

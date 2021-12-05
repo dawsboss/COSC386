@@ -121,8 +121,8 @@ include("BackEnd.php");
    <center><input type="submit" value="Submit Changes" class="button"></center>
 <?php
                          if($_POST['bio']!=""){
-                         $query="UPDATE Professor SET Bio=\"".$_POST['bio']."\", ResearchStatement=\"".$_POST['researchStatement']."\", PhoneNum=\"".$_POST['phoneNum']."\", OfficeLoc=\"".$_POST['office']."\" WHERE Name=\"".$profile['Nam$                         }
-                         //"\"", ResearchStatement=\"".$_POST['researchStatement']."\", PhoneNum=\"".$_POST['phoneNum']."\", OfficeLoc=\"".$_POST['office'].
+                           $query="UPDATE Professor SET Bio=\"".$_POST['bio']."\", ResearchStatement=\"".$_POST['researchStatement']."\", PhoneNum=\"".$_POST['phoneNum']."\", OfficeLoc=\"".$_POST['office']."\" WHERE Name=\"".$profile['Name']."\";";
+                         }
                          //echo $query;
                          $test=mysqli_query($connection, $query);
                          if($test){
@@ -143,7 +143,7 @@ include("BackEnd.php");
                          echo "<br>".$queryCurr;
                          }
                          for($i=0; $i<$count;$i++){
-                         $temp="pastTitle".$i;
+                           $temp="pastTitle".$i;
                            echo "<br>".$_POST[$temp];
                            $tempTitle=$_POST[$temp];
                            $temp="pastDes".$i;
@@ -154,3 +154,4 @@ include("BackEnd.php");
   </form>
 </body>
 </html>
+                         

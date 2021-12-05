@@ -2,9 +2,9 @@
 
 <?php
 session_start();
-include("../BackEnd.php");
+include("BackEnd.php");
 if ( !$_GET['r'] ):
-  header('Location: ../Search/testing.php');#TODO Go to search page
+  header('Location: search.php');#TODO Go to search page
 endif;
 
 
@@ -23,13 +23,13 @@ endif;
  </head>
 <body>
     <header class="header" style="position: relative; margin-bottom: 100px;">
-    <?php include ("../navbar.php");?>
+    <?php include ("navbar.php");?>
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
           <?php
             
             if($_SESSION['admin'] == true || in_array($_SESSION['logged'], $profs) ):
-              echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
+              echo "<form action='researchEdit.php' method='get'><input type='hidden' name='r' value='{$_GET['r']}'><input type='submit' class='btn btn-warning' value='Edit'></form>";
             endif;
             if ( !$research ):
               echo "<h1 class='text-center'>NO RESEARCH</h1>";

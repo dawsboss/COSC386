@@ -29,7 +29,7 @@ endif;
           <?php
             
             if($_SESSION['admin'] == true || in_array($_SESSION['logged'], $profs) ):
-              echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
+              echo "<form action='researchEdit.php' method='get'><input type='hidden' name='r' value='{$_GET['r']}'><input type='submit' class='btn btn-warning' value='Edit'></form>";
             endif;
             if ( !$research ):
               echo "<h1 class='text-center'>NO RESEARCH</h1>";

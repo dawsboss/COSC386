@@ -27,6 +27,7 @@
 </style>
 </head>
 <body>
+    <?php include ("navbar.php");?>
 <center>
 <div class="header">
 <h1><b>Updated <?php

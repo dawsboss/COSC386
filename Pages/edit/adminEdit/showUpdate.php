@@ -33,7 +33,7 @@
     session_start();
     echo $_SESSION['table'];?> Table</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->
-        <form action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/tableMenu.php">
+        <form action="tableMenu.php">
         <input type="submit" class="button" value="Back to table selection">
         </form>
 

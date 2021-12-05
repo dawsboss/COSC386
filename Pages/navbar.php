@@ -27,24 +27,47 @@ include('BackUp.php');
   </head>
   <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Salisbury University</a>
+  <a class="navbar-brand" href="search.php">Salisbury University</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="search.php">Search</a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="login.php">Login</a>
+        <a class="nav-link" href="search.php">Search</a>
       </li>
       <?php
          if($_SESSION['admin']==true){
-           echo"<li class=\"nav-item acticve\">
+           echo"<li class=\"nav-item\">
              <a class=\"nav-link\" href=\"tableMenu.php\">Admin</a>
               </li>";
          }
+      ?>
+      <?php 
+if($_SESSION['logged']!="null"){
+echo "
+  <li id='logout' class='nav-item'>
+    <form action='BackEnd.php' method='POST'>
+      <input type='hidden' name='back' value= $_SERVER[REQUEST_URI]>
+      <input  class='nav-link' type='submit'value='Log Out'>
+    </form>
+  </li>
+";
+}else{
+echo "
+  <li id='login' class='nav-item'>
+    <a class='nav-link' href='login.php'>Login</a>
+  </li>
+";
+}
+
+if($_SESSION['logged']!='null'){
+echo "
+  <li id='login' class='nav-item'>
+    <a class='nav-link' style='position:absolute; right:1%;' >Hello, ".$_SESSION['logged']."</a>
+  </li>
+";
+}
       ?>
       <!--<li class="nav-item">
         <a class="nav-link" href="#">Test</a>

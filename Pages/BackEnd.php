@@ -13,6 +13,13 @@ $profile = null;
 
 //print_r($_SESSION);
 
+#Logout Button
+if((isset($_POST["back"]) && $_POST['back'])){
+  $_SESSION['logged'] = "null";
+  $_SESSION['admin'] = 0;
+  header("location: ".$_POST['back']);
+}
+
 #Search Page Quering
 #To use: Make the href have ?q=VAR1&f=VAR2
 #Returns: A query p in Professor table where VAR2 like %VAR1%

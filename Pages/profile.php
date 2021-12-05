@@ -40,7 +40,7 @@ include("BackEnd.php");
           <div class="container">
             <?php
               if ($_SESSION['logged'] == $profile['Username'] || $_SESSION['admin'] == true):
-              echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
+              echo "<form action='profileEdit.php' method='get'><input type='hidden' name='p' value='{$profile['Username']}'><input type='submit' class='btn btn-warning' value='Edit'></form>";
               endif;
             ?>
             <h1 class="text-center"><?php echo $profile['Name'];?></h1>

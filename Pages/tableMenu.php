@@ -17,6 +17,7 @@
 <link href="style.css" rel="stylesheet">
 </head>
 <body>
+<?php include ("navbar.php");?>
 <style>
 .button{
   background-color:#910101;

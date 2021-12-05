@@ -28,6 +28,7 @@
   <title>Admin Edit <?php echo $_POST['table'];?></title>
 </head>
 <body>
+    <?php include ("navbar.php");?>
 <div class="header">
         <h1><b>Admin Add</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->

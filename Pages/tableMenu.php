@@ -17,6 +17,11 @@
 <link href="style.css" rel="stylesheet">
 </head>
 <body>
+        <?php
+         if($_SESSION['admin']!=true){
+           header("Location: search.php");
+         }
+      ?>
 <?php include ("navbar.php");?>
 <style>
 .button{

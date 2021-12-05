@@ -31,7 +31,7 @@
 <div class="header">
         <h1><b>Admin Add</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->
-        <form action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/tableMenu.php">
+        <form action="tableMenu.php">
         <input type="submit" class="button" value="Back">
         </form>
 
@@ -129,7 +129,7 @@ else{
 }
 mysqli_close($conneciton);
 ?>
-<form method="post" action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/showUpdate.php">
+<form method="post" action="showUpdate.php">
 <input type="hidden" name="table" id="table" value="<?php echo $tableName;?>">
      <input type="submit" class="button" value="View updated table">
 </form>

@@ -18,6 +18,7 @@
 </head>
 <body>
         <?php
+        include("BackEnd.php");
          if($_SESSION['admin']!=true){
            header("Location: search.php");
          }

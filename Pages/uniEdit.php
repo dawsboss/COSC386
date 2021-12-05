@@ -28,6 +28,11 @@
   <title>Admin Edit <?php echo $_POST['table'];?></title>
 </head>
 <body>
+	<?php
+         if($_SESSION['admin']!=true){
+           header("Location: search.php");
+         }
+      ?>
 	<?php include ("navbar.php");?>
 <div class="header">
         <h1><b>Admin Edit</b></h1>

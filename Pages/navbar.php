@@ -46,7 +46,7 @@ include('BackUp.php');
       <?php 
 if($_SESSION['logged']!="null"){
 echo "
-  <li id='logout' class='nav-item'>
+  <li class='nav-item'>
     <form action='BackEnd.php' method='POST'>
       <input type='hidden' name='back' value= $_SERVER[REQUEST_URI]>
       <input  class='nav-link' type='submit'value='Log Out'>
@@ -55,7 +55,7 @@ echo "
 ";
 }else{
 echo "
-  <li id='login' class='nav-item'>
+  <li class='nav-item'>
     <a class='nav-link' href='login.php'>Login</a>
   </li>
 ";
@@ -63,25 +63,17 @@ echo "
 
 if($_SESSION['logged']!='null'){
 echo "
-  <li id='login' class='nav-item'>
+  <li id='logname' class='nav-item'>
     <a class='nav-link' style='position:absolute; right:1%;' >Hello, ".$_SESSION['logged']."</a>
   </li>
+  <script type='text/javascript'>
+    document.getElementById('logname').onclick = function () {
+      window.document.location = \"profile.php?p={$_SESSION['logged']}\"
+    };
+  </script>
 ";
 }
       ?>
-      <!--<li class="nav-item">
-        <a class="nav-link" href="#">Test</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Drop Test
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>-->
     </ul>
   </div>
 </nav>

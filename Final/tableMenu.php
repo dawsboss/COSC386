@@ -45,6 +45,9 @@
 </div>
 <center>
 <label for "table" style="font-size: 150%;"> Select a Table: </label>
+        <form action="search.php" style="width:70px; margin-right: 16px; margin-top:6px;">
+              <input type="submit" class="btn btn-outline-secondary" value="Back">
+            </form>
             <form method="post">
                      <select name="table" id="table">
                                      <option value="Department">Department</option>

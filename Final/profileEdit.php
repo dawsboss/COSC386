@@ -20,7 +20,11 @@ include("BackEnd.php");
 
 <body>
   <header class="header" style="position: relative; top: -70px;">
-    <?php include("navbar.php"); ?>
+    <?php include("navbar.php"); 
+    if ($_SESSION['logged'] != $profile['Username'] || $_SESSION['admin'] != true){
+       header("Location: search.php");
+    }
+    ?>
     <div class="jumbotron jumbotron-fluid" , style="width: auto; height: auto;">
       <div class="container">
         <h1 class="text-center"><?php echo $profile['Name']; ?></h1>

@@ -135,7 +135,7 @@ for ($i=0; $i < sizeof($columnNames);$i++){
       </div>";
     }
 }
-echo "<button name=\"submit\" type=\"submit\" value=\"Submit\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\" class=\"btn btn-outline-secondary\">Submit</button>";
+echo "<button name=\"submit\" type=\"submit\" value=\"Submit\" name=\"submitChanges\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\" class=\"btn btn-outline-secondary\">Submit</button>";
 echo "</form>";
 $addQuery="INSERT INTO $tableName VALUES ('".$_POST['input0']."'";
 for($i=1; $i <sizeof($columnNames); $i++){
@@ -167,6 +167,10 @@ else{
     </button>
   </div>";
 }
+if(isset($_POST['submitChanges'])){
+   header("Refresh:0");
+}
+
 }
 mysqli_close($conneciton);
 ?>

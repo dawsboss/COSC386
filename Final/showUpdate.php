@@ -45,12 +45,7 @@
 
 </div>
 <?php
-    if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){//connects to the database
-        //echo "CONNECTION SUCCESS";
-}
-else{
-        //echo "Connection Error";
-}
+require_once("config.php");
 $tableName=$_SESSION['table'];//gets the table from the previous page or this page
 $query1 = "SELECT * FROM $tableName";//to display the table
 $columnNames=array();//gets the names of the columns

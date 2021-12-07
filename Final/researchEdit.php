@@ -108,7 +108,7 @@ require_once("config.php");
     </div>
   </div>
   </div>
-  <center><input type="submit" value="Submit Changes" name="submitChanges" class="button">
+  <center><input type="submit" value="Submit Changes" class="button">
     </form>
     <?php
     if (isset($_POST['abstract'])) {
@@ -150,9 +150,6 @@ require_once("config.php");
           //echo "<br> workon edit unsuccessful<br>";
         }
         $sCount = $sCount + 1;
-      }
-      if(isset($_POST['submitChanges'])){
-        header("Refresh:0");
       }
 
     }

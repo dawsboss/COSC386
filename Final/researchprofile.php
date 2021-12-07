@@ -2,9 +2,9 @@
 
 <?php
 session_start();
-include("../BackEnd.php");
+include("BackEnd.php");
 if ( !$_GET['r'] ):
-  header('Location: ../Search/testing.php');#TODO Go to search page
+  header('Location: search.php');#TODO Go to search page
 endif;
 
 
@@ -23,13 +23,17 @@ endif;
  </head>
 <body>
     <header class="header" style="position: relative; margin-bottom: 100px;">
-    <?php include ("../navbar.php");?>
+    <?php include ("navbar.php");?>
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
           <div class="container">
           <?php
-            
-            if($_SESSION['admin'] == true || in_array($_SESSION['logged'], $profs) ):
-              echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
+            if ($_SESSION['logged'] == $profile['Username'] || $_SESSION['admin'] == true) :
+              echo "<form action='researchEdit.php' method='get'>
+                <input type='hidden' name='r' value='{$_GET['r']}'> 
+                <div class=\"text-right\">
+                <button class=\"btn btn-outline-secondary float-right\" type='submit'>Edit</button>
+                </div>
+                </form>";
             endif;
             if ( !$research ):
               echo "<h1 class='text-center'>NO RESEARCH</h1>";
@@ -43,7 +47,7 @@ endif;
     <div class="container"> 
         <div class= "row">       
             <div class= "col-3" style="position: relative; top: -84px;">
-                <div class="mt-4 card" style="width: 17rem; border: 4px solid black; height: auto">
+                <div class="mt-4 card">
                     <div class="card-body">
                         <h5 class="card-title">Description</h5>
         <p class="card-text"><?php echo $research['Description'];?>
@@ -52,14 +56,14 @@ endif;
                 </div>
             </div>
             <div class="col-9" style="position: relative; top: -60px; height: auto">
-                <div class="mb-4 card" style="width: 55rem; border: 4px solid black">
+                <div class="mb-4 card">
                     <div class="card-body">
                         <h5 class="card-title">Abstract</h5>
                         <p class="card-text"><?php echo $research['Abstract'];?></p>
                     </div>
                 </div>
 			<h3 style = "text-align: center"><br> Students </h3>
-			<table class = "table" border = "4" style = "width: 55rem">
+			<table class = "table">
 				<thead>
 					<tr>
 					<th scope = "col"> Email</th>
@@ -77,7 +81,7 @@ endif;
         </tbody>
       </table>
 			<h3 style = "text-align: center"><br> Grants </h3>
-			<table class = "table" border = "4" style = "width: 55rem">
+			<table class = "table">
 				<thead>
 					<tr>
 					<th scope = "col"> Organization</th>

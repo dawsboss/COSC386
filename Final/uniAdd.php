@@ -28,10 +28,16 @@
   <title>Admin Edit <?php echo $_POST['table'];?></title>
 </head>
 <body>
+      <?php
+         //if($_SESSION['admin']!=true){
+           //header("Location: search.php");
+         //}
+      ?>
+    <?php include ("navbar.php");?>
 <div class="header">
         <h1><b>Admin Add</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->
-        <form action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/tableMenu.php">
+        <form action="tableMenu.php">
         <input type="submit" class="button" value="Back">
         </form>
 
@@ -104,7 +110,7 @@ for ($i=0; $i < sizeof($columnNames);$i++){
         }
     echo "<br>";
 }
-echo "<button name=\"submit\" type=\"submit\" value=\"Submit\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\" class=\"btn btn-primary\">Submit</button>
+echo "<input name=\"submit\" type=\"submit\" value=\"Submit\" class=\"button\">
       </form>";
 $addQuery="INSERT INTO $tableName VALUES ('".$_POST['input0']."'";
 for($i=1; $i <sizeof($columnNames); $i++){
@@ -117,25 +123,6 @@ for($i=1; $i <sizeof($columnNames); $i++){
   }
 }
 $addQuery.=");";
-echo "<div class=\"modal fade\" id=\"exampleModalCenter\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">
-  <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">
-    <div class=\"modal-content\">
-      <div class=\"modal-header\">
-        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Modal title</h5>
-        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
-          <span aria-hidden=\"true\">&times;</span>
-        </button>
-      </div>
-      <div class=\"modal-body\">
-        ...
-      </div>
-      <div class=\"modal-footer\">
-        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>
-        <button type=\"button\" class=\"btn btn-primary\">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>";
 echo "Add Query= $addQuery\n";
 if($_REQUEST['submit']=='Submit'){
 $a=mysqli_query($connect, $addQuery);
@@ -148,7 +135,7 @@ else{
 }
 mysqli_close($conneciton);
 ?>
-<form method="post" action="https://lamp.salisbury.edu/~jfernandez3/COSC386/Pages/edit/adminEdit/showUpdate.php">
+<form method="post" action="showUpdate.php">
 <input type="hidden" name="table" id="table" value="<?php echo $tableName;?>">
      <input type="submit" class="button" value="View updated table">
 </form>

@@ -16,7 +16,7 @@
     left: 0px; 
     width: 100%;
     z-index:9999; 
-    border-radius:0px
+    border-radius:0px;
 }
 .my-custom-scrollbar {
 position: relative;
@@ -50,7 +50,7 @@ display: block;
         <h1><b>Admin Add</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->
         <form action="https://lamp.salisbury.edu/~bmason3/COSC386-1/Final/tempTableMenu.php">
-        <input type="submit" value="Back" class="btn btn-outline-secondary">
+        <input type="submit" value="Back" class="btn btn-outline-secondary mb-2">
         </form>
 
 </div>
@@ -59,10 +59,10 @@ display: block;
 session_start();
 //echo "<button class=\"button\" onclick=\"history.go(-1)\">Back </button>";//goes back to the table selection page
 if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){//connects to the database
-        echo "CONNECTION SUCCESS";
+        //echo "CONNECTION SUCCESS";
 }
 else{
-        echo "Connection Error";
+        //echo "Connection Error";
 }
 if(isset($_SESSION['table'])){
   $tableName=$_SESSION['table'];//gets the table from the previous page or this page
@@ -159,7 +159,6 @@ $a=mysqli_query($connect, $addQuery);
 if($a){
   echo "<div class=\"alert alert-success alert-fixed alert-dismissible fade show\" role=\"alert\">
     Success! 
-    $addQuery 
     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
     <span aria-hidden=\"true\">&times;</span>
     </button>
@@ -168,7 +167,6 @@ if($a){
 else{
   echo "<div class=\"alert alert-danger alert-fixed alert-dismissible fade show\" role=\"alert\">
     Failed!
-    $addQuery 
     <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
     <span aria-hidden=\"true\">&times;</span>
     </button>
@@ -177,7 +175,7 @@ else{
 }
 mysqli_close($conneciton);
 ?>
-<form method="post" action="https://lamp.salisbury.edu/~bmason3/COSC386-1/Final/tempShowUpdate.php">
+<form method="post" action="tempShowUpdate.php">
 <input type="hidden" name="table" id="table" value="<?php echo $tableName;?>">
      <button class="btn btn-outline-secondary" type="submit">View Updated Table</button>
 </form>

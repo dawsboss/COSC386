@@ -13,6 +13,13 @@ $profile = null;
 
 //print_r($_SESSION);
 
+#Logout Button
+if((isset($_POST["back"]) && $_POST['back'])){
+  $_SESSION['logged'] = "null";
+  $_SESSION['admin'] = 0;
+  header("location: ".$_POST['back']);
+}
+
 #Search Page Quering
 #To use: Make the href have ?q=VAR1&f=VAR2
 #Returns: A query p in Professor table where VAR2 like %VAR1%
@@ -54,7 +61,7 @@ if(isset($_POST['username']) && $_POST['username'] && isset($_POST['password']) 
   }
   print("<br>");
   print_r($_SESSION);
-  header("Location: Login/login.php");
+  header("Location: search.php");
 }
 
 #Profile Page Quering
@@ -124,7 +131,7 @@ if(isset($_GET['r']) && $_GET['r']){
   $profs = [];#List of professors that worked on the proj
   $data = null;
   $RPquery="SELECT * FROM Professor WHERE Username in (SELECT Username FROM Has where researchID = $RID)";
-  $RPsql = mysqli_query($RPquery);
+  $RPsql = mysqli_query($connect, $RPquery);
   while($data = mysqli_fetch_array($RPsql)){
     array_push($profs,$data);
   }

@@ -17,12 +17,19 @@
 <!-- <link href="style.css" rel="stylesheet"> -->
 </head>
 <body>
+<?php
+        include("BackEnd.php");
+         if(!isset($_SESSION['admin'])){
+           header("Location: search.php");
+         }
+?>
+
         <header class="header">
                 <div class="jumbotron jumbotron-fluid" , style="width: auto; height: auto;">
                         <div class="container">
                         <div class="row">
                                 <div class="col-12">
-                                <?php echo "<h1 class='text-center'>Admin</h1>";print_r($_SESSION);?>
+                                <?php echo "<h1 class='text-center'>Admin</h1>";?>
                                 </div>
                         </div>
                         </div>
@@ -48,9 +55,9 @@
                         </div>
                 </div>
                 <div class="row justify-content-md-center">
-                        <button type="submit" name='editButton' value="Edit" class="btn btn-outline-secondary" style="width:70px; margin-right: 16px; margin-top:6px;">Edit</button>
-                        <button type="submit" name='addButton' value="Add" class="btn btn-outline-secondary" style="width:70px; margin-top:6px;">Add</button>
-                        <button type="submit" name='deleteButton' value="Delete" class="btn btn-outline-secondary" style="width:70px; margin-left: 16px; margin-top:6px; ">Delete</button>
+                        <button type="submit" name='editButton' class="btn btn-outline-secondary" style="width:70px; margin-right: 16px; margin-top:6px;">Edit</button>
+                        <button type="submit" name='addButton'  class="btn btn-outline-secondary" style="width:70px; margin-top:6px;">Add</button>
+                        <button type="submit" name='deleteButton'  class="btn btn-outline-secondary" style="width:70px; margin-left: 16px; margin-top:6px; ">Delete</button>
                         </form>
                 </div>
         </div>  

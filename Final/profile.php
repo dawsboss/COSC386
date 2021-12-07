@@ -40,7 +40,7 @@ include("BackEnd.php");
           <div class="container">
             <?php
               if ($_SESSION['logged'] == $profile['Username'] || $_SESSION['admin'] == true):
-              echo "<a type='button' class='btn btn-warning' href='#'> Edit </a>";
+              echo "<form action='profileEdit.php' method='get'><input type='hidden' name='p' value='{$profile['Username']}'><input type='submit' class='btn btn-outline-secondary float-right' value='Edit'></form>";
               endif;
             ?>
             <h1 class="text-center"><?php echo $profile['Name'];?></h1>
@@ -81,7 +81,7 @@ include("BackEnd.php");
                     <tbody>
                         <?php
                           foreach($currentresearch as $printpast){
-                            echo "<tr class='table-row' data-href='https://lamp.salisbury.edu/~bmason3/COSC386-1/Final/researchprofile.php?r={$printpast['ID']}'>";
+                            echo "<tr class='table-row' data-href='researchprofile.php?r={$printpast['ID']}'>";
                             echo "<td>{$printpast['Title']}</td>";
                             echo "<td>{$printpast['Description']}</td>";
                             echo "</tr>";
@@ -112,7 +112,7 @@ include("BackEnd.php");
                         </tr>-->
                             <?php 
                               foreach($pastresearch as $printpast){
-                            echo "<tr class='table-row' data-href='https://lamp.salisbury.edu/~bmason3/COSC386-1/Final/researchprofile.php?r={$printpast['ID']}'>";
+                            echo "<tr class='table-row' data-href='researchprofile.php?r={$printpast['ID']}'>";
                                 echo "<td>{$printpast['Title']}</td>";
                                 echo "<td>{$printpast['Description']}</td>";
                                 echo "</tr>";

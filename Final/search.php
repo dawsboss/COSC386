@@ -45,9 +45,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-1"></div>
             <div class="col-1">
-                <input class="btn btn-outline-secondary float-right" type="submit">
+                <button class="btn btn-outline-secondary float-right" type="submit">Search</button>
             </div>
         </div>
         </form>

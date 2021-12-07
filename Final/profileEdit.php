@@ -34,9 +34,7 @@ include("BackEnd.php");
     </div>
   </header>
   <?php
-  if ($connection = @mysqli_connect('localhost', 'jfernandez3', 'jfernandez3', 'SUResearchProjDB')) {
-    //echo "<br> connection successful<br>";
-  }
+  require_once("config.php");
   ?>
   <div class="container">
     <div class="row">

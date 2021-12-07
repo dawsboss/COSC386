@@ -28,33 +28,23 @@
         $research_desc = $_POST['rdesc'];
         $research_link = $_POST['rlink'];
         $research_abstract = $_POST['rabstract'];
-
         # Collect data from the submit checkbox:
         if (isset($_POST['ongoing'])) $is_ongoing = 1;
         else $is_ongoing = 0;
 
         # Prepare and execute the database post:
-        $query = $connect->prepare("INSERT INTO Research VALUES
-                                   (Description, Abstract, Link, Title, Current)");
+        $query = $connect->prepare("INSERT INTO Research(Description, Abstract, Link, Title, Current) VALUES(?, ?, ?, ?, ?)");
         $query->bind_param(
             "ssssi",
             $research_desc,
             $research_abstract,
-            $reseach_link,
+            $research_link,
             $research_title,
             $is_ongoing
         );
         $query->execute();
         echo "New research added successfully";
-
-        $Ssql = mysqli_query($connect, $query);
-        if (!$Ssql) {
-            echo "<p>Query failed in submitResearch.php</p>";
-        } else {
-            echo "Query failed\n";
-        }
     }
-
     $query->close();
     $connect->close();
 

@@ -36,7 +36,7 @@ foreach($students as $printStudents){
 </form>
 <?php
 $delQuery="DELETE FROM WorkOn WHERE studentEmail='".$_POST['table']."'";
-echo $delQuery;
+//echo $delQuery;
 if(isset($_POST['table'])){
   $delStudent=mysqli_query($connect, $delQuery);
   if($delStudent){
@@ -55,45 +55,45 @@ if(isset($_POST['table'])){
 <?php
 if(isset($_POST['studentName'])&& isset($_POST['studentEmail'])){
 $findQuery= "select count(Name) as num from Student where Name='".$_POST['studentName']."' and Email='".$_POST['studentEmail']."'";
-echo $findQuery;
+//echo $findQuery;
 $findStud=mysqli_query($connect, $findQuery);
 if($findStud){
-  echo "find query successful";
+  //echo "find query successful";
 }
 else{
-  echo "find query unsuccessful";
+  //echo "find query unsuccessful";
 }
 $findArr=mysqli_fetch_assoc($findStud);
-echo $findArr['num'];
+//echo $findArr['num'];
 if($findArr['num']==0){
   $addToStudentQuery="insert into Student values('".$_POST['studentEmail']."','".$_POST['studentName']."')";
-  echo $addToStudentQuery;
+  //echo $addToStudentQuery;
   $addStudent=mysqli_query($connect, $addToStudentQuery);
   if($addStudent){
-     echo "Add student successful<br>";
+     //echo "Add student successful<br>";
   }
   else{
-     echo "add student unsuccessful\n";
+     //echo "add student unsuccessful\n";
   }
 }
 $findRQuery="select count(studentEmail) as numE from WorkOn where studentEmail='".$_POST['studentEmail']."'";
 $findRStud=mysqli_query($connect, $findRQuery);
 if($findRStud){
-  echo "find r stud successful\n";
+  //echo "find r stud successful\n";
 }
 else{
-  echo "find r stud unsuccessful\n";
+  //echo "find r stud unsuccessful\n";
 }
 $findRArr=mysqli_fetch_assoc($findRStud);
 if($findRArr['numE']==0){
   $addStudentToResearch="insert into WorkOn values('".$rID."','".$_POST['studentEmail']."')";
-  echo "<br>".$addStudentToResearch;
+  //echo "<br>".$addStudentToResearch;
   $add=mysqli_query($connect, $addStudentToResearch);
   if($add){
-    echo "Student inserted to workon\n";
+    //echo "Student inserted to workon\n";
   }
   else{
-    echo "student not added to workon\n";
+    //echo "student not added to workon\n";
   }
 }
 }

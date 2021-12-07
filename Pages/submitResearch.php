@@ -45,8 +45,7 @@
             $is_ongoing
         );
         $query->execute();
-        $query->close();
-        $connect->close();
+        echo "New research added successfully";
 
         $Ssql = mysqli_query($connect, $query);
         if (!$Ssql) {
@@ -55,6 +54,9 @@
             echo "Query failed\n";
         }
     }
+
+    $query->close();
+    $connect->close();
 
     ?>
 

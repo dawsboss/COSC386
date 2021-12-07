@@ -105,7 +105,7 @@ for ($i=0; $i < sizeof($columnNames);$i++){
         }
     echo "<br>";
 }
-echo "<input name=\"submit\" type=\"submit\" value=\"Submit\" class=\"button\">
+echo "<input name=\"submit\" type=\"submit\" name=\"submitChanges\" value=\"Submit\" class=\"button\">
       </form>";
 $addQuery="INSERT INTO $tableName VALUES ('".$_POST['input0']."'";
 for($i=1; $i <sizeof($columnNames); $i++){
@@ -122,11 +122,14 @@ echo "Add Query= $addQuery\n";
 if($_REQUEST['submit']=='Submit'){
 $a=mysqli_query($connect, $addQuery);
 if($a){
-  echo "Query Success\n";
+  //echo "Query Success\n";
 }
 else{
-  echo "Query Unsuccessfull\n";
+  //echo "Query Unsuccessfull\n";
 }
+}
+if(isset($_POST['submitChanges'])){
+   header("Refresh:0");
 }
 mysqli_close($conneciton);
 ?>

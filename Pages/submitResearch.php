@@ -14,36 +14,48 @@
 
 <body>
     <?php
-    session_start();
     include('BackEnd.php');
     include('navbar.php');
 
-    if ($connect = @mysqli_connect('localhost', 'gdawson1', 'gdawson1', 'SUResearchProjDB')) {
-        echo "<p>Connected in submitResearch!</p>";
+    if (!($connect = @mysqli_connect('localhost', 'gdawson1', 'gdawson1', 'SUResearchProjDB'))) {
+        echo "<p>Connection Failed in submitResearch.php</p>";
     }
+
+    # Check for the submit POST:
     if (isset($_POST['submit'])) {
+        # Collect data from submit text fields:
         $research_title = $_POST['rtitle'];
         $research_desc = $_POST['rdesc'];
+        $research_link = $_POST['rlink'];
         $research_abstract = $_POST['rabstract'];
 
-        echo $research_title . ' ';
-        echo $research_desc . ' ';
-        echo $research_abstract . '
-        ';
+        # Collect data from the submit checkbox:
+        if (isset($_POST['ongoing'])) $is_ongoing = 1;
+        else $is_ongoing = 0;
 
-        $query = "INSERT INTO Research VALUES($research_desc, $research_abstract, 'joemomma.com', $research_title, 0);";
+        # Prepare and execute the database post:
+        $query = $connect->prepare("INSERT INTO Research VALUES
+                                   (Description, Abstract, Link, Title, Current)");
+        $query->bind_param(
+            "ssssi",
+            $research_desc,
+            $research_abstract,
+            $reseach_link,
+            $research_title,
+            $is_ongoing
+        );
+        $query->execute();
+        $query->close();
+        $connect->close();
 
         $Ssql = mysqli_query($connect, $query);
-        if ($Ssql) {
-            echo "Query made\n";
+        if (!$Ssql) {
+            echo "<p>Query failed in submitResearch.php</p>";
         } else {
             echo "Query failed\n";
         }
     }
-    #    $query = "INSERT INTO Research (Description, Abstract, Link, Title, Current)
-    #              VALUES ('Joe', 'Joe', 'NA', 'Joe', 0)";
 
-    $Ssql = mysqli_query($connect, $query);
     ?>
 
     <div class="container mt-5">

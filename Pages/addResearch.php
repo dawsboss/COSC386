@@ -27,7 +27,7 @@
                             <input type="text" class="form-control" name="rtitle">
                         </div>
                         <div class="col-md-2">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="" name="ongoing" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">Ongoing Research?</label>
                         </div>
                     </div>

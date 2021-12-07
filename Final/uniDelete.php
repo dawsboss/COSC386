@@ -62,11 +62,7 @@
                 <?php
                 session_start();
                 //echo "<button class=\"button\" onclick=\"history.go(-1)\">Back </button>";//goes back to the table selection page
-                if ($connect = @mysqli_connect('localhost', 'jfernandez3', 'jfernandez3', 'SUResearchProjDB')) { //connects to the database
-                        //echo "CONNECTION SUCCESS";
-                } else {
-                        //echo "Connection Error";
-                }
+                require_once("config.php");
 
                 if (isset($_SESSION['table'])) {
                         $tableName = $_SESSION['table']; //gets the table from the previous page or this page

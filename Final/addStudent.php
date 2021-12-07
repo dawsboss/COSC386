@@ -14,12 +14,7 @@
 <?php
 session_start();
 include("BackEnd.php");
-if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){
-  //echo "CONNECTION SUCCESS";
- }
- else{
-         //echo "Connection Error";
- }
+require_once("config.php");
 $rID = $research['ID'];
 //echo $rID;
 include("navbar.php");

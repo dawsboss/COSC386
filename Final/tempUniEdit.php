@@ -137,7 +137,7 @@
                 <input type=\"hidden\" name=\"keyAttIn\" id=\"keyAttIn\" value=\"$attribute\">
                 <div class=\"input-group mb-3 mx-sm-3 mb-2\" >
                 <input type=\"text\" class=\"form-control\" name=\"input\" id=\"input\" value=\"" . $info[$i] . "\" placeholder=\"" . $columnNames[$i] . "\" aria-label=\"key\" aria-describedby=\"basic-addon2\">
-                <button class=\"btn btn-outline-secondary\" value=\"Submit\" type=\"submit\">Submit</button>
+                <button class=\"btn btn-outline-secondary\" value=\"Submit\" name=\"submitChanges\" type=\"submit\">Submit</button>
                 </div></form>
                 ";
                         $toReplace = $_POST['toReplace'];
@@ -175,6 +175,10 @@
                                 </div>";
                         }
                 }
+                if(isset($_POST['submitChanges'])){
+                        header("Refresh:0");
+                }
+
                 mysqli_close($conneciton);
                 ?>
                 <form method="post" action="tempShowUpdate.php">

@@ -1,4 +1,4 @@
-<!-- JOe mOMa -->
+<!-- Justin Ventura -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,13 +28,14 @@
         $research_desc = $_POST['rdesc'];
         $research_link = $_POST['rlink'];
         $research_abstract = $_POST['rabstract'];
+
         # Collect data from the submit checkbox:
         if (isset($_POST['ongoing'])) $is_ongoing = 1;
         else $is_ongoing = 0;
 
         # Prepare and execute the database post:
-        $query = $connect->prepare("INSERT INTO Research(Description, Abstract, Link, Title, Current) VALUES(?, ?, ?, ?, ?)");
-        $query->bind_param(
+        $r_query = $connect->prepare("INSERT INTO Research(Description, Abstract, Link, Title, Current) VALUES(?, ?, ?, ?, ?)");
+        $r_query->bind_param(
             "ssssi",
             $research_desc,
             $research_abstract,
@@ -42,10 +43,22 @@
             $research_title,
             $is_ongoing
         );
-        $query->execute();
-        echo "New research added successfully";
+        $r_query->execute();
+
+        $r_id = $connect->insert_id;
+        echo "New research profile created successfully. Last inserted ID is: " . $r_id;
+
+        # Now we must change the Has relation:
+        $h_query = $connect->prepare("INSERT INTO Has(Username, researchID) VALUES(?, ?)");
+        $h_query->bind_param(
+            "si",
+            $_SESSION['logged'],
+            $r_id
+        );
+        $h_query->execute();
+        $h_query->close();
+        $r_query->close();
     }
-    $query->close();
     $connect->close();
 
     ?>

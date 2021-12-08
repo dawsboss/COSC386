@@ -1,3 +1,4 @@
+<!-- Justin Ventura -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +40,7 @@
                     <input type="text" class="form-control" name="rlink">
                 </div>
             </div>
-            <div class="row g-3">
+            <div class="row g-3 mb-2">
                 <div class="col-md-12 mb-2">
                     <label for="researchDesc">Research Description</label>
                     <textarea class="form-control" rows="5" name="rdesc"></textarea>
@@ -47,6 +48,28 @@
                 <div class="col-md-12 mb-2">
                     <label for="researchAbstract">Abstract</label>
                     <textarea class="form-control" rows="5" name="rabstract"></textarea>
+                </div>
+            </div>
+            <div class="row g-3 mb-2">
+                <div class="col-md-2 mb-2">
+                    <label for="grantAmount">Grant Amount (USD)</label>
+                    <input type="text" class="form-control" name="gamount">
+                </div>
+                <div class="col-md-2 mb-2">
+                    <label for="grantYear">Grant Year</label>
+                    <input type="text" class="form-control" name="ryear">
+                </div>
+                <div class="col-md-8 mb-2">
+                    <label for="grantOrg">Organization</label>
+                    <input type="text" class="form-control" name="gorg">
+                </div>
+            </div>
+            <div class="row g-3 mb-2">
+                <div class="col-md-6">
+                    <label for="studentName">Student Researcher Name</label>
+                </div>
+                <div class="col-md-6">
+                    <label for="studentEmail">Email</label>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary" name="submit">Submit</button>

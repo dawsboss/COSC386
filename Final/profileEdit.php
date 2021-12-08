@@ -20,7 +20,11 @@ include("BackEnd.php");
 
 <body>
   <header class="header" style="position: relative; top: -70px;">
-    <?php include("navbar.php"); ?>
+    <?php include("navbar.php"); 
+    if ($_SESSION['logged'] != $profile['Username'] && $_SESSION['admin'] != true){
+       header("Location: search.php");
+    }
+    ?>
     <div class="jumbotron jumbotron-fluid" , style="width: auto; height: auto;">
       <div class="container">
         <h1 class="text-center"><?php echo $profile['Name']; ?></h1>
@@ -34,9 +38,7 @@ include("BackEnd.php");
     </div>
   </header>
   <?php
-  if ($connection = @mysqli_connect('localhost', 'jfernandez3', 'jfernandez3', 'SUResearchProjDB')) {
-    //echo "<br> connection successful<br>";
-  }
+  require_once("config.php");
   ?>
   <div class="container">
     <div class="row">
@@ -139,7 +141,7 @@ include("BackEnd.php");
     $query = "UPDATE Professor SET Bio=\"" . $_POST['bio'] . "\", ResearchStatement=\"" . $_POST['researchStatement'] . "\", PhoneNum=\"" . $_POST['phoneNum'] . "\", OfficeLoc=\"" . $_POST['office'] . "\" WHERE Name=\"" . $profile['Name'] . "\";";
   }
   //echo $query;
-  $test = mysqli_query($connection, $query);
+  $test = mysqli_query($connect, $query);
   if ($test) {
     //echo "<br> update query succeeded";
   } else {

@@ -38,6 +38,10 @@
         <div class="container">
                 <div class="row justify-content-md-center">
                         <div class="dropdown text-center">
+                                <form action="search.php" style="width:70px; margin-right: 16px; margin-top:6px;">
+                                      <input type="submit" class="btn btn-outline-secondary" value="Back">
+                                </form>
+
                                 <form method="post">
                                 <select class="btn btn-outline-secondary dropdown-toggle" type="button"
                                 aria-haspopup="true" aria-expanded="false" name="table" id="table">

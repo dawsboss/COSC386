@@ -49,7 +49,7 @@ display: block;
 <div class="header">
         <h1><b>Admin Add</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->
-        <form action="https://lamp.salisbury.edu/~bmason3/COSC386-1/Final/tempTableMenu.php">
+        <form action="tempTableMenu.php">
         <input type="submit" value="Back" class="btn btn-outline-secondary mb-2">
         </form>
 
@@ -58,53 +58,64 @@ display: block;
 <?php
 session_start();
 //echo "<button class=\"button\" onclick=\"history.go(-1)\">Back </button>";//goes back to the table selection page
-if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){//connects to the database
-        //echo "CONNECTION SUCCESS";
-}
-else{
-        //echo "Connection Error";
-}
+require_once("config.php");
 if(isset($_SESSION['table'])){
   $tableName=$_SESSION['table'];//gets the table from the previous page or this page
 }
 $query1 = "SELECT * FROM $tableName";//to display the table
     $columnNames=array();//gets the names of the columns
 $count=0;
-if($r = $connect->query($query1)){
-    echo "<div class=\"container-fluid\">";
-    echo "<div class=\"row-fluid\">";
-    echo "<div class=\"table-wrapper-scroll-y my-custom-scrollbar\">";
-    echo "<table class=\"table\" >";
-    echo "<thead>";
-    echo "<tr>";
-    while($hold=$r->fetch_field()){
-            echo "<th scope=\"col\">" . $hold->name . "</th>";
-    }
-    echo "</tr>";
-    echo "</thead>";
-    echo "<tbody>";
-    while($row=mysqli_fetch_array($r)){
-            echo "<tr>";
-            for($i=0; $i<sizeof($row)/2; $i++){
-                    echo "<td>" . $row[$i] . "</td>";
-            }
-            echo "</tr>";
-    }
-    echo "</tbody>";
-    echo "</table>";
-    echo "</div>";
-    echo "</div>";
-    echo "</div>";
-}
-else{
-        echo "if statement did not work for r";
-}
-if($r = $connect->query($query1)){
-        while($hold=$r->fetch_field()){
-                $columnNames[$count]=$hold->name;
-                $count++;
-        }
-}
+if ($r = $connect->query($query1)) {
+                        echo "<div class=\"container-fluid\">";
+                        echo "<div class=\"row-fluid\">";
+                        echo "<div class=\"table-wrapper-scroll-y my-custom-scrollbar\">";
+                        echo "<table class=\"table\" >";
+                        echo "<thead>";
+                        echo "<tr>";
+                        while ($hold = $r->fetch_field()) {
+                          $columnNames[$count]=$hold->name;
+                                if($columnNames[$count]!="Password"){
+                                  echo "<th scope=\"col\">" . $hold->name . "</th>";
+                                }
+                                $count++;
+                        }
+                        echo "</tr>";
+                        echo "</thead>";
+                        echo "<tbody>";
+                        while ($row = mysqli_fetch_array($r)) {
+                                echo "<tr>";
+                                for ($i = 0; $i < sizeof($row) / 2; $i++) {
+                                        if($columnNames[$i]!="Password"){
+                                          echo "<td>" . $row[$i] ."</td>";
+                                        }
+                                }
+                                echo "</tr>";
+                        }
+                        echo "</tbody>";
+                        echo "</table>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                }
+                // if($r = mysqli_query($connect, $query1)){
+                //         while($row=mysqli_fetch_array($r)){
+                //                 echo "<tr>";
+                //                 for($i=0; $i<sizeof($row)/2; $i++){
+                //                         echo "<td>" . $row[$i] . "</td>";
+                //                 }
+                //                 echo "</tr>";
+                //         }
+                //         echo "</table>";
+                // }
+                // else{
+                //         echo "if statement did not work for r";
+                // }
+                /*if ($r = $connect->query($query1)) {
+                        while ($hold = $r->fetch_field()) {
+                                $columnNames[$count] = $hold->name;
+                                $count++;
+                        }
+                }*/
 $keyQuery="show fields from $tableName";
 $getKeys=mysqli_query($connect, $keyQuery);
 $keys=array();
@@ -140,7 +151,7 @@ for ($i=0; $i < sizeof($columnNames);$i++){
       </div>";
     }
 }
-echo "<button name=\"submit\" type=\"submit\" value=\"Submit\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\" class=\"btn btn-outline-secondary\">Submit</button>";
+echo "<button name=\"submit\" type=\"submit\" value=\"Submit\" name=\"submitChanges\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\" class=\"btn btn-outline-secondary\">Submit</button>";
 echo "</form>";
 $addQuery="INSERT INTO $tableName VALUES ('".$_POST['input0']."'";
 for($i=1; $i <sizeof($columnNames); $i++){
@@ -172,6 +183,10 @@ else{
     </button>
   </div>";
 }
+if(isset($_POST['submitChanges'])){
+   header("Refresh:0");
+}
+
 }
 mysqli_close($conneciton);
 ?>

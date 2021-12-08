@@ -3,11 +3,7 @@
 <?php
 session_start();
 include("BackEnd.php");
-if ($connect = @mysqli_connect('localhost', 'jfernandez3', 'jfernandez3', 'SUResearchProjDB')) {
-  //echo "CONNECTION SUCCESS";
-} else {
-  //echo "Connection Error";
-}
+require_once("config.php");
 ?>
 
 <html lang="en">
@@ -29,6 +25,9 @@ if ($connect = @mysqli_connect('localhost', 'jfernandez3', 'jfernandez3', 'SURes
       <div class="container">
         <form name="rGetInfo" action="" method="post">
           <?php
+          if ($_SESSION['logged'] != $profile['Username'] && $_SESSION['admin'] != true){
+       header("Location: search.php");
+    }
           if (!$research) :
             echo "<h1 class='text-center'>NO RESEARCH</h1>";
           else :
@@ -155,6 +154,7 @@ if ($connect = @mysqli_connect('localhost', 'jfernandez3', 'jfernandez3', 'SURes
         }
         $sCount = $sCount + 1;
       }
+
     }
     ?>
     <form name="editStudent" action="addStudent.php" method="get"><input type="hidden" name="r" value="<?php echo $rID; ?>"><input type="submit" value="Add/Remove Student from Project"></form>

@@ -18,7 +18,7 @@
     include('navbar.php');
     ?>
     <div class="container mt-5">
-        <form name="submit" action="https://lamp.salisbury.edu/~jventura3/COSC386/Pages/submitResearch.php" method="post">
+        <form name="submit" action="submitResearch.php" method="post">
             <div class="row g-3 mb-2">
                 <div class="col-md-12">
                     <label for="researchTitle">Research Title</label>

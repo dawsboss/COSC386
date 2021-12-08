@@ -15,18 +15,13 @@
 <div class="header">
 <h1><b>Updated <?php echo $_POST['table'];?> Table</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->
-        <form action="https://lamp.salisbury.edu/~bmason3/COSC386-1/Final/tempTableMenu.php">
+        <form action="tempTableMenu.php">
         <input type="submit" value="Back to table selection" class="btn btn-outline-secondary">
         </form>
 
 </div>
 <?php
-if($connect = @mysqli_connect('localhost','jfernandez3','jfernandez3','SUResearchProjDB')){//connects to the database
-        //echo "CONNECTION SUCCESS";
-}
-else{
-        //echo "Connection Error";
-}
+require_once("config.php");
 $tableName=$_POST['table'];//gets the table from the previous page or this page
 $query1 = "SELECT * FROM $tableName";//to display the table
 $columnNames=array();//gets the names of the columns

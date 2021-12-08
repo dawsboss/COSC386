@@ -46,11 +46,7 @@
                 <?php
                 session_start();
                 //echo "<button class=\"button\" onclick=\"history.go(-1)\">Back </button>";//goes back to the table selection page
-                if ($connect = @mysqli_connect('localhost', 'jfernandez3', 'jfernandez3', 'SUResearchProjDB')) { //connects to the database
-                        //echo "CONNECTION SUCCESS";
-                } else {
-                        //echo "Connection Error";
-                }
+                require_once("config.php");
                 if (isset($_SESSION['table'])) {
                         $tableName = $_SESSION['table']; //gets the table from the previous page or this page
                 }
@@ -65,7 +61,11 @@
                         echo "<thead>";
                         echo "<tr>";
                         while ($hold = $r->fetch_field()) {
-                                echo "<th scope=\"col\">" . $hold->name . "</th>";
+                          $columnNames[$count]=$hold->name;
+                                if($columnNames[$count]!="Password"){
+                                  echo "<th scope=\"col\">" . $hold->name . "</th>";
+                                }
+                                $count++;
                         }
                         echo "</tr>";
                         echo "</thead>";
@@ -73,7 +73,9 @@
                         while ($row = mysqli_fetch_array($r)) {
                                 echo "<tr>";
                                 for ($i = 0; $i < sizeof($row) / 2; $i++) {
-                                        echo "<td>" . $row[$i] . "</td>";
+                                        if($columnNames[$i]!="Password"){
+                                          echo "<td>" . $row[$i] ."</td>";
+                                        }
                                 }
                                 echo "</tr>";
                         }
@@ -96,12 +98,12 @@
                 // else{
                 //         echo "if statement did not work for r";
                 // }
-                if ($r = $connect->query($query1)) {
+                /*if ($r = $connect->query($query1)) {
                         while ($hold = $r->fetch_field()) {
                                 $columnNames[$count] = $hold->name;
                                 $count++;
                         }
-                }
+                }*/
                 // echo "<form name=\"getInfo\" action=\"\" method=\"post\">
                 //         <input type=\"hidden\" name=\"table\" id=\"table\" value=\"$tableName\">
                 //         <input type=\"text\" name=\"attribute\" id=\"attribute\" placeholder=\"Enter the name of the attribute you would like to change\" style=\"width:300px;\"><br>
@@ -141,7 +143,7 @@
                 <input type=\"hidden\" name=\"keyAttIn\" id=\"keyAttIn\" value=\"$attribute\">
                 <div class=\"input-group mb-3 mx-sm-3 mb-2\" >
                 <input type=\"text\" class=\"form-control\" name=\"input\" id=\"input\" value=\"" . $info[$i] . "\" placeholder=\"" . $columnNames[$i] . "\" aria-label=\"key\" aria-describedby=\"basic-addon2\">
-                <button class=\"btn btn-outline-secondary\" value=\"Submit\" type=\"submit\">Submit</button>
+                <button class=\"btn btn-outline-secondary\" value=\"Submit\" name=\"submitChanges\" type=\"submit\">Submit</button>
                 </div></form>
                 ";
                         $toReplace = $_POST['toReplace'];
@@ -179,6 +181,10 @@
                                 </div>";
                         }
                 }
+                if(isset($_POST['submitChanges'])){
+                        header("Refresh:0");
+                }
+
                 mysqli_close($conneciton);
                 ?>
                 <form method="post" action="tempShowUpdate.php">

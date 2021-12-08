@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-md-2 mb-2">
                     <label for="grantYear">Grant Year</label>
-                    <input type="text" class="form-control shadow-sm rounded" name="ryear">
+                    <input type="text" class="form-control shadow-sm rounded" name="gyear">
                 </div>
                 <div class="col-md-8 mb-2">
                     <label for="grantOrg">Organization</label>

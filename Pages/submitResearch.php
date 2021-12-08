@@ -20,6 +20,10 @@
     if (!($connect = @mysqli_connect('localhost', 'gdawson1', 'gdawson1', 'SUResearchProjDB'))) {
         echo "<p>Connection Failed in submitResearch.php</p>";
     }
+    $_SESSION['logged'] = 'jtanderson';
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
     # Check for the submit POST:
     if (isset($_POST['submit'])) {
@@ -44,9 +48,7 @@
             $is_ongoing
         );
         $r_query->execute();
-
         $r_id = $connect->insert_id;
-        echo "New research profile created successfully. Last inserted ID is: " . $r_id;
 
         # Now we must change the Has relation:
         $h_query = $connect->prepare("INSERT INTO Has(Username, researchID) VALUES(?, ?)");
@@ -56,14 +58,14 @@
             $r_id
         );
         $h_query->execute();
-        $h_query->close();
         $r_query->close();
+        $h_query->close();
 
         # If there is a grant, add it:
-        if ($isset($_POST['gamount'])) {
+        if (isset($_POST['gamount'])) {
             $g_query = $connect->prepare("INSERT INTO Grants(Amount, year, Organization) VALUES(?, ?, ?)");
             $g_query->bind_param(
-                "iis",
+                "iss",
                 $_POST['gamount'],
                 $_POST['gyear'],
                 $_POST['gorg']
@@ -91,7 +93,6 @@
             );
             $s_query->execute();
             $s_query->close();
-            $s_id = $connect->insert_id;
 
             $workon_query = $connect->prepare("INSERT INTO WorkOn(researchID, studentEmail) VALUES(?, ?)");
             $workon_query->bind_param(

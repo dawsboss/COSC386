@@ -127,14 +127,14 @@
                 echo "<form name=\"mainForm\" method=\"post\">";
                 if ($tableName == "Professor") {
                         echo "<div class=\"input-group mb-3 mx-sm-3 mb-2\" >
-<input type=\"text\" class=\"form-control\" name=\"key\" id=\"key\" placeholder=\"Enter the name\" aria-label=\"key\" aria-describedby=\"basic-addon2\">
-</div>
-<div class=\"input-group mb-3 mx-sm-3 mb-2\" >
-<input type=\"text\" class=\"form-control\" name=\"user\" id=\"user\" placeholder=\"Enter the username\" aria-label=\"user\" aria-describedby=\"basic-addon2\">
-</div>
-<button class=\"btn btn-outline-secondary\" value=\"submit\" type=\"submit\">Submit</button>
-</div>
-</form>";
+                        <input type=\"text\" class=\"form-control\" name=\"key\" id=\"key\" placeholder=\"Enter the name\" aria-label=\"key\" aria-describedby=\"basic-addon2\">
+                        </div>
+                        <div class=\"input-group mb-3 mx-sm-3 mb-2\" >
+                        <input type=\"text\" class=\"form-control\" name=\"user\" id=\"user\" placeholder=\"Enter the username\" aria-label=\"user\" aria-describedby=\"basic-addon2\">
+                        </div>
+                        <button class=\"btn btn-outline-secondary\" name=\"submit\" value=\"submit\" type=\"submit\">Submit</button>
+                        </div>
+                        </form>";
 
                         $k = $_POST['key'];
                         $_SESSION['key'] = $key;
@@ -144,13 +144,22 @@
 
                         $query1 = "DELETE FROM $tableName WHERE Name=\"$k\";";
                         if ($d = $connect->query($query1)) {
-                                //echo "<br>d query succeeded";
-                                //echo "$user";
+                                echo "<div class=\"alert alert-success alert-fixed alert-dismissible fade show\" role=\"alert\">
+                                        Success! 
+                                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                        <span aria-hidden=\"true\">&times;</span>
+                                        </button>
+                                </div>";
                         } else {
-                                //echo "<br>The query failed";
+                                echo "<div class=\"alert alert-danger alert-fixed alert-dismissible fade show\" role=\"alert\">
+                                        Failed!
+                                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                        <span aria-hidden=\"true\">&times;</span>
+                                        </button>
+                                </div>";
                         }
                         $query2 = "DELETE FROM Research WHERE ID IN
-           (SELECT ID FROM Has WHERE researchID GROUP BY COUNT(researchID) = 1)";
+                                   (SELECT ID FROM Has WHERE researchID GROUP BY COUNT(researchID) = 1)";
                         if ($e = $connect->query($query2)) {
                                 //echo "<br>e query succ";
                                 //echo $info;
@@ -170,7 +179,7 @@
                                 </div>
                                 <div class=\"input-group mb-3 mx-sm-3 mb-2 \" >
                                 <input type=\"text\" class=\"form-control\" name=\"key\" id=\"key\" placeholder=\"Enter the key\" aria-label=\"key\" aria-describedby=\"basic-addon2\">
-                                <button class=\"btn btn-outline-secondary\" value=\"submit\" type=\"submit\">Submit</button>
+                                <button class=\"btn btn-outline-secondary\"  name=\"submit\" type=\"submit\" value=\"Submit\">Submit</button>
                                 </div>
                                 </form>";
 
@@ -182,40 +191,35 @@
                         //echo "Attribute=$att";
                         //echo "key=$k";
                         $query2 = "DELETE FROM $tableName WHERE $attribute=\"$k\";";
-                        if ($test = $connect->query($query2)) {
-                                //echo"<br>update query success";
-                        } else {
-                                //echo"<br>update query fail";
+                        if($_REQUEST['submit']=='Submit'){
+                                if ($test = $connect->query($query2)) {
+                                        echo "<div class=\"alert alert-success alert-fixed alert-dismissible fade show\" role=\"alert\">
+                                                Success! 
+                                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                                <span aria-hidden=\"true\">&times;</span>
+                                                </button>
+                                        </div>";
+                                } else {
+                                        echo "<div class=\"alert alert-danger alert-fixed alert-dismissible fade show\" role=\"alert\">
+                                                Failed!
+                                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                                <span aria-hidden=\"true\">&times;</span>
+                                                </button>
+                                        </div>";
+                                }
                         }
                 }
                 
 
                 #echo "<br> Size of columnNames= " . sizeof($columnNames);
 
-                //echo "<br>Query=$query<br>";
+                //echo "<br>Query=$query2<br>";
 
 
 
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
-                if ($_REQUEST['submit'] == 'Submit') {
-                        if ($d) {
-                                echo "<div class=\"alert alert-success alert-fixed alert-dismissible fade show\" role=\"alert\">
-                                        Success! 
-                                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                                        </button>
-                                </div>";
-                        } else {
-                                echo "<div class=\"alert alert-danger alert-fixed alert-dismissible fade show\" role=\"alert\">
-                                        Failed!
-                                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                                        </button>
-                                </div>";
-                        }
-                }
                 mysqli_close($conneciton);
                 ?>
                 <form method="post" action="tempShowUpdate.php">

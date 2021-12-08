@@ -71,7 +71,11 @@
                             echo "<td>{$printpast['Name']}</td>";
                             echo "<td>{$printpast['ResearchStatement']}</td>";
                             echo "<td>{$printpast['DeptName']}</td>";
-                            echo "<td>{$printpast['Availability']}</td>";
+                            if($printpast['Availability'] == 1):
+                                echo "<td>Available</td>";
+                            else:
+                                echo "<td>Unavailable</td>";
+                            endif;
                             echo "</tr>";
                           } 
                         ?>

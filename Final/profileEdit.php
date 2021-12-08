@@ -30,7 +30,7 @@ include("BackEnd.php");
             if ($_SESSION['logged'] == $profile['Username'] || $_SESSION['admin'] == true):
               echo "<form action='profile.php' method='get'>
                 <input type='hidden' name='p' value='{$profile['Username']}'>
-                <input type='submit' class='btn btn-outline-secondary float-left' value='Back'>
+                <input type='submit' class='btn btn-outline-secondary float-left ml-4' value='Back'>
                 </form>";
               endif;
         ?>
@@ -139,7 +139,7 @@ include("BackEnd.php");
   </div>
   </div>
   </div>
-  <center><button class="btn btn-outline-secondary" type="submit">Submit</button></center>
+  <center><button class="btn btn-outline-secondary mb-4" type="submit">Submit</button></center>
   <?php
   if ($_POST['bio'] != "") {
     $query = "UPDATE Professor SET Bio=\"" . $_POST['bio'] . "\", ResearchStatement=\"" . $_POST['researchStatement'] . "\", PhoneNum=\"" . $_POST['phoneNum'] . "\", OfficeLoc=\"" . $_POST['office'] . "\" WHERE Name=\"" . $profile['Name'] . "\";";

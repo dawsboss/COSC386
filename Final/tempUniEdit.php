@@ -143,7 +143,7 @@
                         <input type=\"hidden\" name=\"keyAttIn\" id=\"keyAttIn\" value=\"$attribute\">
                         <div class=\"input-group mb-3 mx-sm-3 mb-2\" >
                         <input type=\"text\" class=\"form-control\" name=\"input\" id=\"input\" value=\"" . $info[$i] . "\" placeholder=\"" . $columnNames[$i] . "\" aria-label=\"key\" aria-describedby=\"basic-addon2\">
-                        <button class=\"btn btn-outline-secondary\" value=\"Submit\" name=\"submitChanges\" type=\"submit\">Submit</button>
+                        <button class=\"btn btn-outline-secondary\" value=\"Submit\" name=\"submit\" type=\"submit\">Submit</button>
                         </div>
                         </form>
                         ";
@@ -156,32 +156,28 @@
                         $query = "UPDATE $tableName SET $att=\"$replaceWith\" WHERE $keyAtt=\"$keyVal\"";
                         //echo "<br>Query=$query<br>";
                         $test = $connect->query($query);
-                        if (!$test) {
-                                //echo"<br>update query failed";
-                        } else {
-                                //echo"<br>update query succeeded";
+                        if ($_REQUEST['submit'] == 'Submit') {
+                                if ($test) {
+                                        echo "<div class=\"alert alert-success alert-fixed alert-dismissible fade show\" role=\"alert\">
+                                                Success! 
+                                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                                <span aria-hidden=\"true\">&times;</span>
+                                                </button>
+                                        </div>";
+                                } else {
+                                        echo "<div class=\"alert alert-danger alert-fixed alert-dismissible fade show\" role=\"alert\">
+                                                Failed!
+                                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                                <span aria-hidden=\"true\">&times;</span>
+                                                </button>
+                                        </div>";
+                                }
                         }
                 }
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
-                if ($_REQUEST['submit'] == 'Submit') {
-                        if ($d) {
-                                echo "<div class=\"alert alert-success alert-fixed alert-dismissible fade show\" role=\"alert\">
-                                        Success! 
-                                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                                        </button>
-                                </div>";
-                        } else {
-                                echo "<div class=\"alert alert-danger alert-fixed alert-dismissible fade show\" role=\"alert\">
-                                        Failed!
-                                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
-                                        </button>
-                                </div>";
-                        }
-                }
+                
                 if(isset($_POST['submitChanges'])){
                         header("Refresh:0");
                 }

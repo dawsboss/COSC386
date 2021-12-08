@@ -34,6 +34,19 @@ endif;
                 <button class=\"btn btn-outline-secondary float-right\" type='submit' >Edit</button>
                 </div>
                 </form>";
+                echo "<form action='profile.php' method='get'>
+                <input type='hidden' name='p' value='{$_GET['p']}'> 
+                <div class=\"text-right\">
+                <button class=\"btn btn-outline-secondary float-left ml-2\" type='submit' >Back</button>
+                </div>
+                </form>";
+            else:
+              echo "<form action='profile.php' method='get'>
+                <input type='hidden' name='p' value='{$_GET['p']}'> 
+                <div class=\"text-right\">
+                <button class=\"btn btn-outline-secondary float-left ml-2\" type='submit' >Back</button>
+                </div>
+                </form>";
             endif;
             if ( !$research ):
               echo "<h1 class='text-center'>NO RESEARCH</h1>";

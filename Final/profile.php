@@ -37,19 +37,18 @@ include("BackEnd.php");
     <header class="header" style="position: relative; margin-bottom: 100px;">
       <?php include ("navbar.php"); ?>
         <div class="jumbotron jumbotron-fluid", style="width: auto; height: auto;">
-          <div class="container">
-            <?php
+        <?php
               if ($_SESSION['logged'] == $profile['Username'] || $_SESSION['admin'] == true):
               echo "<form action='profileEdit.php' method='get'>
               <input type='hidden' name='p' value='{$profile['Username']}'>
-              <input type='submit' class='btn btn-outline-secondary float-right' value='Edit'>
+              <input type='submit' class='btn btn-outline-secondary float-right mr-2' value='Edit'>
               </form>";
-              echo "<form action='profileEdit.php' method='get'>
-              <input type='hidden' name='p' value='{$profile['Username']}'>
-              <input type='submit' class='btn btn-outline-secondary float-right' value='Add Research'>
+              echo "<form action='submitResearch.php'>
+              <input type='submit' class='btn btn-outline-secondary float-right mr-2' value='Add Research'>
               </form>";
               endif;
             ?>
+          <div class="container">
             <h1 class="text-center"><?php echo $profile['Name'];?></h1>
           </div>
         </div>

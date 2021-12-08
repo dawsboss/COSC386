@@ -16,7 +16,7 @@
 <h1><b>Updated <?php echo $_POST['table'];?> Table</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->
         <form action="tempTableMenu.php">
-        <input type="submit" value="Back to table selection" class="btn btn-outline-secondary">
+        <input type="submit" value="Back to table selection" class="btn btn-outline-secondary mb-2">
         </form>
 
 </div>

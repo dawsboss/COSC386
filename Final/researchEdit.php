@@ -26,7 +26,7 @@ require_once("config.php");
             if ($_SESSION['logged'] == $profile['Username'] || $_SESSION['admin'] == true):
               echo "<form action='researchprofile.php' method='get'>
                 <input type='hidden' name='r' value='{$research['ID']}'>
-                <input type='submit' class='btn btn-outline-secondary float-left' value='Back'>
+                <input type='submit' class='btn btn-outline-secondary float-left ml-2' value='Back'>
                 </form>";
               endif;
         ?>

@@ -115,7 +115,7 @@ if(isset($_GET['r']) && $_GET['r']){
   echo mysqli_error($connect);
   //$students = mysqli_fetch_array($RSsql);
   while($data = mysqli_fetch_array($RSsql)){
-    print($data." test<br>");
+    //print($data." test<br>");
     array_push($students, $data);
   }
 

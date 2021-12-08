@@ -21,7 +21,7 @@ include("BackEnd.php");
 <body>
   <header class="header" style="position: relative; top: -70px;">
     <?php include("navbar.php"); 
-    if ($_SESSION['logged'] != $profile['Username'] || $_SESSION['admin'] != true){
+    if ($_SESSION['logged'] != $profile['Username'] && $_SESSION['admin'] != true){
        header("Location: search.php");
     }
     ?>

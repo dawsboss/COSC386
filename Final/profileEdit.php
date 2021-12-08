@@ -141,7 +141,7 @@ include("BackEnd.php");
     $query = "UPDATE Professor SET Bio=\"" . $_POST['bio'] . "\", ResearchStatement=\"" . $_POST['researchStatement'] . "\", PhoneNum=\"" . $_POST['phoneNum'] . "\", OfficeLoc=\"" . $_POST['office'] . "\" WHERE Name=\"" . $profile['Name'] . "\";";
   }
   //echo $query;
-  $test = mysqli_query($connection, $query);
+  $test = mysqli_query($connect, $query);
   if ($test) {
     //echo "<br> update query succeeded";
   } else {

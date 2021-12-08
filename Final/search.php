@@ -17,7 +17,7 @@
         session_start();
     ?>
     <header class="header">
-        <div class="jumbotron jumbotron-fluid" , style="width: auto; height: 170px;">
+        <div class="jumbotron jumbotron-fluid" , style="width: auto; height: auto;">
             <div class="container">
                 <div class="row">
                     <div class="col-11">

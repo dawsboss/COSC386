@@ -176,7 +176,7 @@ mysqli_close($conneciton);
 ?>
 <form method="post" action="tempShowUpdate.php">
 <input type="hidden" name="table" id="table" value="<?php echo $tableName;?>">
-     <button class="btn btn-outline-secondary" type="submit">View Updated Table</button>
+     <button class="btn btn-outline-secondary mt-2" type="submit">View Updated Table</button>
 </form>
 </center>
 </body>

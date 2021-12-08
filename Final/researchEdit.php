@@ -22,6 +22,14 @@ require_once("config.php");
   <header class="header" style="position: relative; margin-bottom: 100px;">
     <?php include("navbar.php"); ?>
     <div class="jumbotron jumbotron-fluid" , style="width: auto; height: auto;">
+    <?php
+            if ($_SESSION['logged'] == $profile['Username'] || $_SESSION['admin'] == true):
+              echo "<form action='researchprofile.php' method='get'>
+                <input type='hidden' name='r' value='{$research['ID']}'>
+                <input type='submit' class='btn btn-outline-secondary float-left' value='Back'>
+                </form>";
+              endif;
+        ?>
       <div class="container">
         <form name="rGetInfo" action="" method="post">
           <?php
@@ -40,7 +48,7 @@ require_once("config.php");
   <div class="container">
     <div class="row">
       <div class="col" style="position: relative; top: -84px;">
-      <div class="mt-4 card" style="width: 20rem;">
+        <div class="mt-4 card" style="width: 20rem;">
           <div class="card-body">
             <h5 class="card-title">Description</h5>
             <p class="card-text"><textarea name="description" rows="4" cols="22"><?php echo $research['Description']; ?></textarea>
@@ -49,7 +57,7 @@ require_once("config.php");
         </div>
       </div>
       <div class="col" style="position: relative; top: -60px; height: auto">
-      <div class="mt-4 card" style="width: 59rem;">
+        <div class="mt-4 card" style="width: 59rem;">
           <div class="card-body">
             <h5 class="card-title">Abstract</h5>
             <p class="card-text">
@@ -108,7 +116,7 @@ require_once("config.php");
     </div>
   </div>
   </div>
-  <center><input type="submit" value="Submit Changes" class="button">
+  <center><button type="submit" class="btn btn-outline-secondary mb-4 ml-2">Submit</submit>
     </form>
     <?php
     if (isset($_POST['abstract'])) {
@@ -151,11 +159,16 @@ require_once("config.php");
         }
         $sCount = $sCount + 1;
       }
-
     }
     ?>
-    <form name="editStudent" action="addStudent.php" method="get"><input type="hidden" name="r" value="<?php echo $rID; ?>"><input type="submit" value="Add/Remove Student from Project"></form>
-    <form name="editGrants" action="addGrant.php" method="get"><input type="hidden" name="r" value="<?php echo $rID; ?>"><input type="submit" value="Add/Remove Grant to Project"></form>
+    <form name="editStudent" action="addStudent.php" method="get">
+      <input type="hidden" name="r" value="<?php echo $rID; ?>">
+      <button type="submit" class="btn btn-outline-secondary mb-4 ml-2">Add/Remove Student</submit>
+    </form>
+    <form name="editGrants" action="addGrant.php" method="get">
+      <input type="hidden" name="r" value="<?php echo $rID; ?>">
+      <button type="submit" class="btn btn-outline-secondary mb-4 ml-2">Add/Remove Grant</submit>
+    </form>
   </center>
 </body>
 

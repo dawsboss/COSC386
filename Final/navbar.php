@@ -49,7 +49,7 @@ echo "
   <li class='nav-item'>
     <form action='BackEnd.php' method='POST'>
       <input type='hidden' name='back' value= $_SERVER[REQUEST_URI]>
-      <input  class='nav-link' type='submit'value='Log Out'>
+      <button type=\"submit\" class=\"btn btn-outline-secondary\" style='position:absolute; right:1%;' >Logout</button>
     </form>
   </li>
 ";
@@ -64,7 +64,7 @@ echo "
 if($_SESSION['logged']!='null'){
 echo "
   <li id='logname' class='nav-item'>
-    <a class='nav-link' style='position:absolute; right:1%;' >Hello, ".$_SESSION['logged']."</a>
+    <a class='nav-link' style='position:absolute; right:12%;' >Hello, ".$_SESSION['logged']."</a>
   </li>
   <script type='text/javascript'>
     document.getElementById('logname').onclick = function () {

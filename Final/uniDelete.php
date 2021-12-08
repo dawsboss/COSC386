@@ -128,7 +128,10 @@
                 if ($tableName == "Professor") {
                         echo "<div class=\"input-group mb-3 mx-sm-3 mb-2\" >
 <input type=\"text\" class=\"form-control\" name=\"key\" id=\"key\" placeholder=\"Enter the name\" aria-label=\"key\" aria-describedby=\"basic-addon2\">
+</div>
+<div class=\"input-group mb-3 mx-sm-3 mb-2\" >
 <input type=\"text\" class=\"form-control\" name=\"user\" id=\"user\" placeholder=\"Enter the username\" aria-label=\"user\" aria-describedby=\"basic-addon2\">
+</div>
 <button class=\"btn btn-outline-secondary\" value=\"submit\" type=\"submit\">Submit</button>
 </div>
 </form>";
@@ -137,29 +140,29 @@
                         $_SESSION['key'] = $key;
                         $u = $_POST['user'];
                         $_SESSION['user'] = $user;
-                        echo "Username= $u\n";
+                        //echo "Username= $u\n";
 
                         $query1 = "DELETE FROM $tableName WHERE Name=\"$k\";";
                         if ($d = $connect->query($query1)) {
-                                echo "<br>d query succeeded";
-                                echo "$user";
+                                //echo "<br>d query succeeded";
+                                //echo "$user";
                         } else {
-                                echo "<br>The query failed";
+                                //echo "<br>The query failed";
                         }
                         $query2 = "DELETE FROM Research WHERE ID IN
            (SELECT ID FROM Has WHERE researchID GROUP BY COUNT(researchID) = 1)";
                         if ($e = $connect->query($query2)) {
-                                echo "<br>e query succ";
-                                echo $info;
+                                //echo "<br>e query succ";
+                                //echo $info;
                         } else {
-                                echo "<br>The query failed";
+                                //echo "<br>The query failed";
                         }
                         $query3 = "DELETE FROM Has WHERE Username=\"$u\"";
                         if ($c = $connect->query($query3)) {
-                                echo "<br>c query succ";
-                                echo "$info";
+                                //echo "<br>c query succ";
+                                //echo "$info";
                         } else {
-                                echo "<br>The query failed";
+                                //echo "<br>The query failed";
                         }
                 } else {
                         echo "<div class=\"input-group mb-3 mx-sm-3 mb-2\" >
@@ -217,7 +220,7 @@
                 ?>
                 <form method="post" action="tempShowUpdate.php">
                         <input type="hidden" name="table" id="table" value="<?php echo $tableName; ?>">
-                        <button class="btn btn-outline-secondary" type="submit">View Updated Table</button>
+                        <button class="btn btn-outline-secondary mt-2" type="submit">View Updated Table</button>
                 </form>
         </center>
 </body>

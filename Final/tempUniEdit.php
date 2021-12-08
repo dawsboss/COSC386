@@ -130,16 +130,17 @@
 
                 for ($i = 0; $i < sizeof($columnNames); $i++) {
                         echo "<form name=\"" . $columnNames[$i] . "\" action =\"\" method=\"post\">
-                <input type=\"hidden\" name=\"attribute\" id=\"attribute\" value=\"" . $columnNames[$i] . "\">
-                <input type=\"hidden\" name=\"table\" id=\"table\" value=\"$tableName\">
-                <input type=\"hidden\" name=\"toReplace\" id=\"toReplace\" value=\"" . $info[$i] . "\">
-                <input type=\"hidden\" name=\"keyValIn\" id=\"keyValIn\" value=\"$k\">
-                <input type=\"hidden\" name=\"keyAttIn\" id=\"keyAttIn\" value=\"$attribute\">
-                <div class=\"input-group mb-3 mx-sm-3 mb-2\" >
-                <input type=\"text\" class=\"form-control\" name=\"input\" id=\"input\" value=\"" . $info[$i] . "\" placeholder=\"" . $columnNames[$i] . "\" aria-label=\"key\" aria-describedby=\"basic-addon2\">
-                <button class=\"btn btn-outline-secondary\" value=\"Submit\" name=\"submitChanges\" type=\"submit\">Submit</button>
-                </div></form>
-                ";
+                        <input type=\"hidden\" name=\"attribute\" id=\"attribute\" value=\"" . $columnNames[$i] . "\">
+                        <input type=\"hidden\" name=\"table\" id=\"table\" value=\"$tableName\">
+                        <input type=\"hidden\" name=\"toReplace\" id=\"toReplace\" value=\"" . $info[$i] . "\">
+                        <input type=\"hidden\" name=\"keyValIn\" id=\"keyValIn\" value=\"$k\">
+                        <input type=\"hidden\" name=\"keyAttIn\" id=\"keyAttIn\" value=\"$attribute\">
+                        <div class=\"input-group mb-3 mx-sm-3 mb-2\" >
+                        <input type=\"text\" class=\"form-control\" name=\"input\" id=\"input\" value=\"" . $info[$i] . "\" placeholder=\"" . $columnNames[$i] . "\" aria-label=\"key\" aria-describedby=\"basic-addon2\">
+                        <button class=\"btn btn-outline-secondary\" value=\"Submit\" name=\"submitChanges\" type=\"submit\">Submit</button>
+                        </div>
+                        </form>
+                        ";
                         $toReplace = $_POST['toReplace'];
                         $att = $_POST['attribute'];
                         $replaceWith = $_POST['input'];

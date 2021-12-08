@@ -28,7 +28,14 @@
                 <div class="jumbotron jumbotron-fluid" , style="width: auto; height: auto;">
                         <div class="container">
                         <div class="row">
-                                <div class="col-12">
+                        <div class="col">
+                        <form action="search.php" style="width:70px; margin-right: 16px; margin-top:6px;">
+                                      <input type="submit" class="btn btn-outline-secondary" value="Back">
+                        </form>
+                        </div>
+        </div>
+                        <div class="row">
+                                <div class="col">
                                 <?php echo "<h1 class='text-center'>Admin</h1>";?>
                                 </div>
                         </div>
@@ -38,10 +45,6 @@
         <div class="container">
                 <div class="row justify-content-md-center">
                         <div class="dropdown text-center">
-                                <form action="search.php" style="width:70px; margin-right: 16px; margin-top:6px;">
-                                      <input type="submit" class="btn btn-outline-secondary" value="Back">
-                                </form>
-
                                 <form method="post">
                                 <select class="btn btn-outline-secondary dropdown-toggle" type="button"
                                 aria-haspopup="true" aria-expanded="false" name="table" id="table">
@@ -68,7 +71,7 @@
 <?php
 session_start();
 $_SESSION['table']=$_POST['table'];
-echo $_SESSION['table'];
+//echo $_SESSION['table'];
 if(isset($_POST['editButton'])){
   header('Location: tempUniEdit.php');
   exit();

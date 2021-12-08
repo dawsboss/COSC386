@@ -31,7 +31,7 @@ endif;
               echo "<form action='researchEdit.php' method='get'>
                 <input type='hidden' name='r' value='{$_GET['r']}'> 
                 <div class=\"text-right\">
-                <button class=\"btn btn-outline-secondary float-right\" type='submit'>Edit</button>
+                <button class=\"btn btn-outline-secondary float-right\" type='submit' >Edit</button>
                 </div>
                 </form>";
             endif;

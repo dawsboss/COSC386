@@ -20,7 +20,6 @@
     if (!($connect = @mysqli_connect('localhost', 'gdawson1', 'gdawson1', 'SUResearchProjDB'))) {
         echo "<p>Connection Failed in submitResearch.php</p>";
     }
-    $_SESSION['logged'] = 'jtanderson';
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);

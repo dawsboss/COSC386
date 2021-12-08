@@ -61,7 +61,11 @@
                         echo "<thead>";
                         echo "<tr>";
                         while ($hold = $r->fetch_field()) {
-                                echo "<th scope=\"col\">" . $hold->name . "</th>";
+                          $columnNames[$count]=$hold->name;
+                                if($columnNames[$count]!="Password"){
+                                  echo "<th scope=\"col\">" . $hold->name . "</th>";
+                                }
+                                $count++;
                         }
                         echo "</tr>";
                         echo "</thead>";
@@ -69,7 +73,9 @@
                         while ($row = mysqli_fetch_array($r)) {
                                 echo "<tr>";
                                 for ($i = 0; $i < sizeof($row) / 2; $i++) {
-                                        echo "<td>" . $row[$i] . "</td>";
+                                        if($columnNames[$i]!="Password"){
+                                          echo "<td>" . $row[$i] ."</td>";
+                                        }
                                 }
                                 echo "</tr>";
                         }
@@ -92,12 +98,12 @@
                 // else{
                 //         echo "if statement did not work for r";
                 // }
-                if ($r = $connect->query($query1)) {
+                /*if ($r = $connect->query($query1)) {
                         while ($hold = $r->fetch_field()) {
                                 $columnNames[$count] = $hold->name;
                                 $count++;
                         }
-                }
+                }*/
                 // echo "<form name=\"getInfo\" action=\"\" method=\"post\">
                 //         <input type=\"hidden\" name=\"table\" id=\"table\" value=\"$tableName\">
                 //         <input type=\"text\" name=\"attribute\" id=\"attribute\" placeholder=\"Enter the name of the attribute you would like to change\" style=\"width:300px;\"><br>

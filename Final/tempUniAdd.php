@@ -65,41 +65,57 @@ if(isset($_SESSION['table'])){
 $query1 = "SELECT * FROM $tableName";//to display the table
     $columnNames=array();//gets the names of the columns
 $count=0;
-if($r = $connect->query($query1)){
-    echo "<div class=\"container-fluid\">";
-    echo "<div class=\"row-fluid\">";
-    echo "<div class=\"table-wrapper-scroll-y my-custom-scrollbar\">";
-    echo "<table class=\"table\" >";
-    echo "<thead>";
-    echo "<tr>";
-    while($hold=$r->fetch_field()){
-            echo "<th scope=\"col\">" . $hold->name . "</th>";
-    }
-    echo "</tr>";
-    echo "</thead>";
-    echo "<tbody>";
-    while($row=mysqli_fetch_array($r)){
-            echo "<tr>";
-            for($i=0; $i<sizeof($row)/2; $i++){
-                    echo "<td>" . $row[$i] . "</td>";
-            }
-            echo "</tr>";
-    }
-    echo "</tbody>";
-    echo "</table>";
-    echo "</div>";
-    echo "</div>";
-    echo "</div>";
-}
-else{
-        echo "if statement did not work for r";
-}
-if($r = $connect->query($query1)){
-        while($hold=$r->fetch_field()){
-                $columnNames[$count]=$hold->name;
-                $count++;
-        }
-}
+if ($r = $connect->query($query1)) {
+                        echo "<div class=\"container-fluid\">";
+                        echo "<div class=\"row-fluid\">";
+                        echo "<div class=\"table-wrapper-scroll-y my-custom-scrollbar\">";
+                        echo "<table class=\"table\" >";
+                        echo "<thead>";
+                        echo "<tr>";
+                        while ($hold = $r->fetch_field()) {
+                          $columnNames[$count]=$hold->name;
+                                if($columnNames[$count]!="Password"){
+                                  echo "<th scope=\"col\">" . $hold->name . "</th>";
+                                }
+                                $count++;
+                        }
+                        echo "</tr>";
+                        echo "</thead>";
+                        echo "<tbody>";
+                        while ($row = mysqli_fetch_array($r)) {
+                                echo "<tr>";
+                                for ($i = 0; $i < sizeof($row) / 2; $i++) {
+                                        if($columnNames[$i]!="Password"){
+                                          echo "<td>" . $row[$i] ."</td>";
+                                        }
+                                }
+                                echo "</tr>";
+                        }
+                        echo "</tbody>";
+                        echo "</table>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                }
+                // if($r = mysqli_query($connect, $query1)){
+                //         while($row=mysqli_fetch_array($r)){
+                //                 echo "<tr>";
+                //                 for($i=0; $i<sizeof($row)/2; $i++){
+                //                         echo "<td>" . $row[$i] . "</td>";
+                //                 }
+                //                 echo "</tr>";
+                //         }
+                //         echo "</table>";
+                // }
+                // else{
+                //         echo "if statement did not work for r";
+                // }
+                /*if ($r = $connect->query($query1)) {
+                        while ($hold = $r->fetch_field()) {
+                                $columnNames[$count] = $hold->name;
+                                $count++;
+                        }
+                }*/
 $keyQuery="show fields from $tableName";
 $getKeys=mysqli_query($connect, $keyQuery);
 $keys=array();

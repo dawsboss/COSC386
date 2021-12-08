@@ -25,6 +25,9 @@ require_once("config.php");
       <div class="container">
         <form name="rGetInfo" action="" method="post">
           <?php
+          if ($_SESSION['logged'] != $profile['Username'] && $_SESSION['admin'] != true){
+       header("Location: search.php");
+    }
           if (!$research) :
             echo "<h1 class='text-center'>NO RESEARCH</h1>";
           else :

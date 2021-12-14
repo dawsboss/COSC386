@@ -54,7 +54,7 @@ require_once("config.php");
         <div class="mt-4 card" style="width: 20rem;">
           <div class="card-body">
             <h5 class="card-title">Description</h5>
-            <p class="card-text"><textarea name="description" rows="4" cols="22"><?php echo $research['Description']; ?></textarea>
+            <p class="card-text"><textarea name="description" rows="4" cols="50"><?php echo $research['Description']; ?></textarea>
             <p class="card-text">Link(s):<br><input type="text" name="link" value="<?php echo $research['Link']; ?>" size="22"></p>
           </div>
         </div>

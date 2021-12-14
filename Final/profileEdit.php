@@ -19,21 +19,25 @@ include("BackEnd.php");
 </head>
 
 <body>
-  <header class="header" style="position: relative; top: -70px;">
+  <header class="header" style="position: relative;">
     <?php include("navbar.php"); 
     if ($_SESSION['logged'] != $profile['Username'] && $_SESSION['admin'] != true){
        header("Location: search.php");
     }
     ?>
     <div class="jumbotron jumbotron-fluid" , style="width: auto; height: auto;">
+    <?php
+            if ($_SESSION['logged'] == $profile['Username'] || $_SESSION['admin'] == true):
+              echo "<form action='profile.php' method='get'>
+                <input type='hidden' name='p' value='{$profile['Username']}'>
+                <input type='submit' class='btn btn-outline-secondary float-left ml-4' value='Back'>
+                </form>";
+              endif;
+        ?>
       <div class="container">
         <h1 class="text-center"><?php echo $profile['Name']; ?></h1>
       </div>
       <div class="row justify-content-center">
-            <form action="search.php">
-              <!-- NEED TO FIX -->
-              <input type="submit" value="Back" class="btn btn-outline-secondary">
-            </form>
       </div>
     </div>
   </header>
@@ -135,7 +139,7 @@ include("BackEnd.php");
   </div>
   </div>
   </div>
-  <center><button class="btn btn-outline-secondary" type="submit">Submit</button></center>
+  <center><button class="btn btn-outline-secondary mb-4" type="submit">Submit</button></center>
   <?php
   if ($_POST['bio'] != "") {
     $query = "UPDATE Professor SET Bio=\"" . $_POST['bio'] . "\", ResearchStatement=\"" . $_POST['researchStatement'] . "\", PhoneNum=\"" . $_POST['phoneNum'] . "\", OfficeLoc=\"" . $_POST['office'] . "\" WHERE Name=\"" . $profile['Name'] . "\";";

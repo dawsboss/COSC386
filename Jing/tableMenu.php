@@ -76,10 +76,10 @@
         $_SESSION['table'] = $_POST['table'];
         //echo $_SESSION['table'];
         if (isset($_POST['editButton'])) {
-                header('Location: tempUniEdit.php');
+                header('Location: uniEdit.php');
                 exit();
         } else if (isset($_POST['addButton'])) {
-                header('Location: tempUniAdd.php');
+                header('Location: uniAdd.php');
                 exit();
         } else if (isset($_POST['deleteButton'])) {
                 header('Location: uniDelete.php'); //FILLER UNTIL uniDel.php IS MADE

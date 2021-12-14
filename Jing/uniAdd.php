@@ -49,7 +49,7 @@ display: block;
 <div class="header">
         <h1><b>Admin Add</b></h1>
         <!--<button class="button" onclick="history.go(-1)">Back </button>-->
-        <form action="tempTableMenu.php">
+        <form action="tableMenu.php">
         <input type="submit" value="Back" class="btn btn-outline-secondary mb-2">
         </form>
 
@@ -190,7 +190,7 @@ if(isset($_POST['submitChanges'])){
 }
 mysqli_close($conneciton);
 ?>
-<form method="post" action="tempShowUpdate.php">
+<form method="post" action="showUpdate.php">
 <input type="hidden" name="table" id="table" value="<?php echo $tableName;?>">
      <button class="btn btn-outline-secondary mt-2" type="submit">View Updated Table</button>
 </form>

@@ -39,7 +39,7 @@ include('BackUp.php');
       <?php
          if($_SESSION['admin']==true){
            echo"<li class=\"nav-item\">
-             <a class=\"nav-link\" href=\"tempTableMenu.php\">Admin</a>
+             <a class=\"nav-link\" href=\"tableMenu.php\">Admin</a>
               </li>";
          }
       ?>
